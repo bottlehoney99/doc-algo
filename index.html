@@ -181,6 +181,146 @@
   .clutter-tag.done{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);text-decoration:line-through;opacity:.7;transform:scale(.94);}
   .clutter-progress{font-size:12.6px;font-weight:800;color:var(--ink-faint);text-align:center;}
 
+  /* ===== 지저분한 방 청소 : 그림 활동 ===== */
+  .rm-wrap{display:flex;flex-direction:column;gap:8px;}
+  .rm-scene{width:100%;height:auto;display:block;border-radius:16px;border:1px solid var(--border-soft);touch-action:none;user-select:none;-webkit-user-select:none;}
+  .rm-wall{fill:var(--surface-2);} .rm-floor{fill:var(--surface-3);} .rm-base{stroke:var(--border);stroke-width:3;}
+  .rm-plank{stroke:var(--border-soft);stroke-width:2;}
+  .rm-wood{fill:var(--amber-soft);stroke:var(--amber);stroke-width:2.2;stroke-linejoin:round;}
+  .rm-line{stroke:var(--amber);stroke-width:2;fill:none;stroke-linecap:round;}
+  .rm-ink{fill:var(--ink-soft);} .rm-screen{fill:var(--accent-soft);}
+  .rm-out{stroke:var(--ink-soft);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;}
+  .rm-c1{fill:var(--accent);} .rm-c2{fill:var(--teal);} .rm-c3{fill:var(--amber);} .rm-c4{fill:var(--danger);} .rm-c5{fill:var(--violet);} .rm-cs{fill:var(--surface);}
+  .rm-lbl{font-size:15px;font-weight:800;fill:var(--ink-soft);text-anchor:middle;}
+  .rm-dest{cursor:pointer;outline:none;}
+  .rm-dest .rm-hit{fill:transparent;stroke:transparent;stroke-width:2.5;stroke-dasharray:7 6;rx:14;}
+  .rm-dest:hover .rm-hit,.rm-dest:focus-visible .rm-hit{stroke:var(--accent);}
+  .rm-dest.over .rm-hit{fill:var(--accent-soft);fill-opacity:.55;stroke:var(--accent);}
+  .rm-dest.hintable .rm-hit{stroke:var(--accent);stroke-opacity:.45;}
+  .rm-dest .rm-shake{transform-box:fill-box;transform-origin:center;}
+  .rm-dest.wrong .rm-shake{animation:rmShake .4s;}
+  @keyframes rmShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .rm-badge{opacity:0;transition:opacity .3s;}
+  .rm-dest.filled .rm-badge{opacity:1;}
+  .rm-badge circle{fill:var(--teal);} .rm-badge path{stroke:var(--surface);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .rm-item{cursor:grab;outline:none;transition:transform .55s cubic-bezier(.3,.7,.3,1),opacity .4s;transform-box:view-box;transform-origin:0 0;}
+  .rm-item.drag{transition:none;cursor:grabbing;}
+  .rm-item .rm-ring{fill:var(--surface);fill-opacity:.85;stroke:var(--accent);stroke-width:3;stroke-dasharray:6 5;opacity:0;transition:opacity .2s;}
+  .rm-item.sel .rm-ring,.rm-item:focus-visible .rm-ring{opacity:1;}
+  .rm-item .rm-itxt{font-size:13px;font-weight:800;fill:var(--ink);text-anchor:middle;paint-order:stroke;stroke:var(--surface);stroke-width:4px;stroke-linejoin:round;}
+  .rm-item.gone{opacity:0;pointer-events:none;}
+  .rm-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .rm-hint{font-size:13.4px;font-weight:700;color:var(--ink-soft);min-height:20px;}
+  .rm-hint.ok{color:var(--teal);} .rm-hint.bad{color:var(--danger);}
+  .rm-bar .clutter-progress{margin:0;}
+  @media (prefers-reduced-motion: reduce){.rm-item{transition:none;}.rm-dest.wrong .rm-shake{animation:none;}}
+
+  /* ===== 지저분한 방 청소 v2 : 두 가지 방법 비교 ===== */
+  .rm2-stage{position:relative;}
+  .rm-item2{cursor:pointer;outline:none;transition:opacity .25s;}
+  .rm-item2 .rm-ring{fill:var(--surface);fill-opacity:.7;stroke:var(--accent);stroke-width:4;stroke-dasharray:7 6;opacity:0;transition:opacity .15s;}
+  .rm-item2:hover .rm-ring,.rm-item2:focus-visible .rm-ring{opacity:1;}
+  .rm-item2.gone{opacity:0;pointer-events:none;}
+  .rm2-locked .rm-item2{cursor:default;}
+  .rm2-locked .rm-item2 .rm-ring{opacity:0!important;}
+  .rm-trail{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;opacity:.55;}
+  .rm-trail.r1{stroke:var(--danger);} .rm-trail.r2{stroke:var(--teal);opacity:.75;}
+  .rm-person .body{fill:var(--accent);} .rm-person .head{fill:var(--amber-soft);stroke:var(--ink-soft);stroke-width:2;}
+  .rm-person .carry{opacity:0;transition:opacity .2s;} .rm-person.carrying .carry{opacity:1;}
+  .rm-person .carry circle{fill:var(--amber);} .rm-person .carry text{fill:#fff;font-size:15px;font-weight:900;text-anchor:middle;}
+  .rm-cnt{opacity:0;transition:opacity .2s;} .rm-cnt.on{opacity:1;}
+  .rm-cnt circle{fill:var(--teal);} .rm-cnt text{fill:#fff;font-size:17px;font-weight:900;text-anchor:middle;}
+  .rm2-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px;}
+  .rm2-steps{display:flex;gap:6px;align-items:center;font-size:12px;font-weight:800;}
+  .rm2-step{appearance:none;font-family:inherit;font-size:12px;font-weight:800;cursor:pointer;padding:5px 11px;border-radius:999px;background:var(--surface-2);color:var(--ink-faint);border:1px solid var(--border-soft);}
+  .rm2-step.on{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .rm2-step.done{background:var(--teal-soft);color:var(--teal);border-color:transparent;}
+  .rm2-meter{display:flex;gap:8px;margin-left:auto;}
+  .rm2-meter span{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:800;color:var(--ink);background:var(--surface-2);border-radius:9px;padding:6px 11px;font-variant-numeric:tabular-nums;}
+  .rm2-meter b{color:var(--ink-faint);font-family:"Gothic A1",sans-serif;font-size:11.5px;margin-right:5px;}
+  .rm2-cats{display:flex;gap:7px;flex-wrap:wrap;}
+  .rm2-cat{appearance:none;display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--border);background:var(--surface);color:var(--ink);font-weight:800;font-size:12.6px;padding:6px 11px;border-radius:999px;cursor:pointer;}
+  .rm2-cat:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
+  .rm2-cat:disabled{opacity:.4;cursor:default;text-decoration:line-through;}
+  .rm2-cat svg{width:22px;height:22px;}
+  .rm2-hint{font-size:13px;font-weight:700;color:var(--ink-soft);}
+  .rm2-compare{position:absolute;inset:0;background:var(--surface);border-radius:16px;border:1px solid var(--border-soft);display:none;grid-template-columns:1fr 1fr;gap:14px;padding:12px;align-content:center;}
+  .rm2-compare.on{display:grid;animation:rise .4s;}
+  .rm2-col{display:flex;flex-direction:column;gap:6px;min-width:0;}
+  .rm2-col svg{width:100%;height:auto;border-radius:10px;border:1px solid var(--border-soft);}
+  .rm2-col h4{margin:0;font-size:13.4px;font-weight:900;color:var(--ink);}
+  .rm2-num{display:flex;gap:10px;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:800;color:var(--ink-soft);}
+  .rm2-track{height:12px;border-radius:6px;background:var(--surface-3);overflow:hidden;}
+  .rm2-fill{height:100%;width:0;border-radius:6px;transition:width 1.2s cubic-bezier(.3,.7,.3,1);}
+  .rm2-col.a .rm2-fill{background:var(--danger);} .rm2-col.b .rm2-fill{background:var(--teal);}
+  @media (max-width:760px){.rm2-compare{grid-template-columns:1fr;position:static;}}
+
+  /* ===== 분할 정복 — 생활 속 예시 ===== */
+  .dl-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .dl-tab{appearance:none;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:12.8px;padding:8px 14px;border-radius:9px;cursor:pointer;}
+  .dl-tab:hover{border-color:var(--accent);color:var(--accent);}
+  .dl-tab.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .dl-body{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:16px;flex:1;min-height:0;}
+  .dl-tree{display:flex;flex-direction:column;align-items:stretch;gap:9px;min-width:0;}
+  .dl-root{align-self:center;background:var(--accent);color:var(--accent-ink);font-weight:900;font-size:16px;padding:12px 22px;border-radius:12px;text-align:center;}
+  .dl-arrow{text-align:center;color:var(--ink-faint);font-size:14px;line-height:1;padding:4px 0;}
+  .dl-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;}
+  .dl-card{border-radius:12px;padding:13px 13px;font-size:14.6px;line-height:1.5;font-weight:700;transition:opacity .35s,transform .35s;}
+  .dl-card small{display:block;font-size:12px;font-weight:800;opacity:.8;margin-bottom:2px;}
+  .dl-sub{background:var(--accent-soft);color:var(--accent);}
+  .dl-done{background:var(--teal-soft);color:var(--teal);}
+  .dl-final{align-self:center;background:var(--violet);color:#fff;font-weight:900;font-size:15.5px;padding:12px 22px;border-radius:12px;text-align:center;max-width:90%;}
+  .dl-hide{opacity:.12;transform:translateY(4px);}
+  .dl-side{display:flex;flex-direction:column;gap:10px;}
+  .dl-stage{background:var(--surface-2);border-radius:12px;padding:12px 14px;}
+  .dl-stage .k{font-size:11px;font-weight:800;color:var(--ink-faint);}
+  .dl-stage .v{font-size:15px;font-weight:900;color:var(--accent);margin-top:2px;}
+  .dl-stage .d{font-size:12.8px;color:var(--ink-soft);margin-top:4px;line-height:1.5;}
+  @media (max-width:760px){.dl-body{grid-template-columns:1fr;}.dl-row{grid-template-columns:1fr 1fr;}}
+  .mdl-pic{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;}
+  .mdl-pic svg{width:100%;max-width:120px;height:auto;}
+  .mp-label{margin:18px 0 0;font-size:15.5px;font-weight:900;color:var(--ink);}
+  .rc-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch;margin-top:8px;}
+  .rc-step{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;}
+  .rc-n{font-family:"Black Han Sans",sans-serif;font-size:24px;color:var(--accent);}
+  .rc-step h3{margin:0;font-size:16px;font-weight:900;color:var(--ink);}
+  .rc-step p{margin:0;font-size:13.4px;line-height:1.55;color:var(--ink-soft);}
+  .rc-ex{margin-top:auto;background:var(--surface);border:1px dashed var(--border);border-radius:10px;padding:8px 10px;font-size:12.6px;line-height:1.5;color:var(--ink-soft);}
+  .rc-ex b{display:block;font-size:11.5px;color:var(--teal);margin-bottom:2px;}
+  .rc-arrow{display:flex;align-items:center;color:var(--ink-faint);font-size:20px;}
+  @media (max-width:760px){.rc-flow{grid-template-columns:1fr;}.rc-arrow{transform:rotate(90deg);justify-content:center;}}
+  /* ===== 클래스 · 객체 · 속성 · 메서드 ===== */
+  .oo-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);gap:18px;flex:1;min-height:0;}
+  .oo-diagram{display:flex;flex-direction:column;gap:8px;min-width:0;}
+  .oo-class{align-self:center;width:min(100%,430px);background:var(--accent-soft);border:2px solid var(--accent);border-radius:14px;padding:10px 14px;display:flex;flex-direction:column;gap:6px;transition:box-shadow .2s;}
+  .oo-cname{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:17px;color:var(--accent);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .oo-cname small{font-family:"Gothic A1",sans-serif;font-size:12px;color:var(--ink-soft);font-weight:700;}
+  .oo-tag{font-family:"Gothic A1",sans-serif;font-size:11px;font-weight:800;background:var(--accent);color:var(--accent-ink);padding:2px 8px;border-radius:999px;}
+  .oo-sec{display:flex;gap:6px;flex-wrap:wrap;align-items:center;border-top:1px dashed var(--border);padding-top:6px;border-radius:6px;transition:background .2s;}
+  .oo-sec b{font-size:12px;color:var(--ink-soft);min-width:44px;}
+  .oo-sec span{font-family:"JetBrains Mono",monospace;font-size:12.6px;font-weight:700;background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:2px 8px;color:var(--ink);}
+  .oo-arrows{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:center;}
+  .oo-arrows span{font-family:"JetBrains Mono",monospace;font-size:11.4px;color:var(--ink-faint);font-weight:700;}
+  .oo-arrows span::before{content:"↓ ";color:var(--accent);font-size:15px;}
+  .oo-objs{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .oo-obj{background:var(--surface-2);border:2px solid var(--border);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;transition:box-shadow .2s,border-color .2s;}
+  .oo-oname{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:14px;color:var(--ink);display:flex;align-items:center;gap:6px;}
+  .oo-oname .oo-tag{background:var(--teal);}
+  .oo-vals{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:12.8px;border-radius:6px;padding:2px;transition:background .2s;}
+  .oo-vals dt{font-family:"JetBrains Mono",monospace;color:var(--ink-soft);font-weight:700;}
+  .oo-vals dd{margin:0;font-family:"JetBrains Mono",monospace;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;transition:color .3s,background .3s;border-radius:4px;padding:0 4px;}
+  .oo-vals dd.up{background:var(--teal-soft);color:var(--teal);} .oo-vals dd.down{background:var(--danger-soft);color:var(--danger);}
+  .oo-btns{display:flex;gap:6px;flex-wrap:wrap;border-radius:6px;transition:background .2s;}
+  .oo-btns .sim-btn{flex:1;font-family:"JetBrains Mono",monospace;font-size:12px;padding:7px 6px;}
+  .oo-terms{display:flex;flex-direction:column;gap:8px;min-width:0;}
+  .oo-term{appearance:none;text-align:left;font-family:inherit;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:10px 12px;cursor:pointer;display:flex;flex-direction:column;gap:3px;color:var(--ink-soft);}
+  .oo-term b{font-size:15px;color:var(--ink);}
+  .oo-term span{font-size:12.8px;line-height:1.5;} .oo-term em{font-style:normal;font-weight:800;color:var(--accent);}
+  .oo-term:hover{border-color:var(--accent);}
+  .oo-term.on{border-color:var(--amber);background:var(--amber-soft);}
+  .oo-layout .hl{box-shadow:0 0 0 3px var(--amber);background-color:var(--amber-soft);}
+  @media (max-width:760px){.oo-layout{grid-template-columns:1fr;}}
+
   /* ===== interactive: 문장 선택형 (불필요한 정보 고르기) ===== */
   .sentence-list{display:flex;flex-direction:column;gap:8px;}
   .sentence-item{display:flex;gap:10px;align-items:center;padding:11px 14px;border-radius:11px;background:var(--surface-2);border:1.5px solid var(--border-soft);cursor:pointer;transition:.15s;font-size:14.2px;font-weight:600;color:var(--ink);}
@@ -823,6 +963,19 @@
   .case-bar{display:flex;gap:8px;flex:none;}
   .case-btn{flex:1;appearance:none;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:12.6px;padding:8px 12px;border-radius:9px;cursor:pointer;}
   .case-btn.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .case-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:12px;align-items:stretch;}
+  .case-note{font-size:11.5px;color:var(--ink-faint);font-weight:600;}
+  .case-explain{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:9px;min-width:0;}
+  .case-explain .ce-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+  .case-explain .ce-name{font-size:16px;font-weight:900;color:var(--accent);}
+  .case-explain .ce-def{font-size:13.2px;color:var(--ink-soft);font-weight:700;}
+  .case-explain .ce-item{display:flex;flex-direction:column;gap:3px;background:var(--surface);border:1px solid var(--border-soft);border-radius:10px;padding:9px 11px;}
+  .case-explain .ce-item h4{margin:0;font-size:13px;font-weight:800;color:var(--ink);display:flex;justify-content:space-between;gap:8px;}
+  .case-explain .ce-item h4 span{font-family:"JetBrains Mono",monospace;font-size:12.4px;}
+  .case-explain .ce-item p{margin:0;font-size:12.6px;line-height:1.55;color:var(--ink-soft);}
+  .case-explain code{font-family:"JetBrains Mono",monospace;font-size:12px;background:var(--surface-2);padding:1px 5px;border-radius:5px;color:var(--ink);}
+  .case-explain .ins h4 span{color:var(--amber);} .case-explain .qk h4 span{color:var(--teal);}
+  @media (max-width:760px){.case-layout{grid-template-columns:1fr;}}
 
   /* ===== interactive: flip-cards (용어) ===== */
   .flip-card{perspective:1000px;height:130px;cursor:pointer;}
@@ -1003,16 +1156,17 @@
   .stepper-meta b{color:var(--accent);font-family:"JetBrains Mono",monospace;}
 
   /* ===== interactive: 이진 탐색 숫자 맞히기 (생각 열기) ===== */
-  .guess-wrap{display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:6px;}
-  .guess-range{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:15px;color:var(--ink-faint);}
+  .guess-wrap{display:flex;flex-direction:column;gap:16px;align-items:center;margin-top:18px;}
+  .guess-range{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:21px;color:var(--ink-faint);}
   .guess-range b{color:var(--accent);}
-  .guess-input-row{display:flex;gap:10px;align-items:center;}
-  .guess-input-row input[type="number"]{width:110px;font-family:"JetBrains Mono",monospace;font-size:18px;font-weight:800;text-align:center;border:1.5px solid var(--border);border-radius:10px;padding:9px 10px;background:var(--surface);color:var(--ink);}
-  .guess-feedback{font-size:14px;font-weight:800;min-height:22px;text-align:center;}
+  .guess-input-row{display:flex;gap:12px;align-items:stretch;}
+  .guess-input-row input[type="number"]::placeholder{font-size:18px;font-weight:700;color:var(--ink-faint);}
+  .guess-input-row input[type="number"]{width:210px;font-family:"JetBrains Mono",monospace;font-size:28px;font-weight:800;text-align:center;border:2px solid var(--border);border-radius:12px;padding:10px 14px;background:var(--surface);color:var(--ink);}
+  .guess-feedback{font-size:20px;font-weight:800;min-height:30px;text-align:center;}
   .guess-feedback.up{color:var(--danger);} .guess-feedback.down{color:var(--accent);} .guess-feedback.win{color:var(--teal);}
-  .guess-log{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:520px;}
-  .guess-chip{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-soft);}
-  .guess-count{font-size:12.5px;color:var(--ink-faint);font-weight:700;}
+  .guess-log{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:640px;}
+  .guess-chip{font-family:"JetBrains Mono",monospace;font-size:15px;font-weight:800;padding:6px 12px;border-radius:999px;background:var(--surface-2);color:var(--ink-soft);}
+  .guess-count{font-size:15.5px;color:var(--ink-faint);font-weight:700;}
 
   /* ===== array bar 탐색 modifiers (search-stepper 공용, array-* 재사용) ===== */
   .array-bar.target{outline:3px solid var(--accent);outline-offset:2px;}
@@ -1031,6 +1185,166 @@
   .hash-node.collide{background:var(--amber-soft);border-color:var(--amber);color:var(--amber);}
   .hash-insert-row{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;}
   .hash-cur-key{font-family:"JetBrains Mono",monospace;font-weight:900;font-size:20px;color:var(--ink);}
+
+  /* ===== 해시 탐색: 버킷에 직접 넣어 보기 ===== */
+  .hp-layout{display:grid;grid-template-columns:minmax(250px,.8fr) 1.2fr;gap:16px;flex:1;min-height:0;align-items:stretch;}
+  .hp-side{display:flex;flex-direction:column;gap:8px;min-height:0;}
+  .hp-steps{display:flex;gap:6px;align-items:center;font-size:11.5px;font-weight:800;}
+  .hp-step{padding:5px 11px;border-radius:999px;background:var(--surface-2);color:var(--ink-faint);border:1px solid var(--border-soft);}
+  .hp-step.on{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .hp-step.done{background:var(--teal-soft);color:var(--teal);border-color:transparent;}
+  .hp-arrow{color:var(--ink-faint);}
+  .hp-pool-label{font-size:11.5px;font-weight:800;color:var(--ink-faint);}
+  .hp-pool{display:flex;flex-wrap:wrap;gap:7px;min-height:38px;}
+  .hp-key{appearance:none;font-family:"JetBrains Mono",monospace;font-weight:900;font-size:15px;min-width:46px;padding:7px 12px;border-radius:10px;border:2px solid var(--border);background:var(--surface);color:var(--ink);cursor:grab;transition:.15s;}
+  .hp-key:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
+  .hp-key.selected{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .hp-key.placed{opacity:.35;cursor:default;text-decoration:line-through;border-style:dashed;}
+  .hp-key.target{cursor:default;}
+  .hp-key.t-done{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);}
+  .hp-key.t-miss{background:var(--amber-soft);border-color:var(--amber);color:var(--amber);}
+  .hp-key.t-now{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);}
+  .hp-key.t-wait{opacity:.5;}
+  .hp-calc{background:var(--surface-2);border-radius:11px;padding:9px 12px;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:800;color:var(--ink);line-height:1.6;min-height:56px;}
+  .hp-calc .q{color:var(--accent);}
+  .hp-calc .hint{display:block;margin-top:2px;color:var(--amber);font-weight:700;font-size:12.4px;}
+  .hp-log{background:var(--accent-soft);color:var(--accent);border-radius:11px;padding:9px 12px;font-size:12.8px;font-weight:700;line-height:1.55;min-height:96px;max-height:190px;flex:none;overflow-y:auto;}
+  .hp-log.ok{background:var(--teal-soft);color:var(--teal);}
+  .hp-log.bad{background:var(--danger-soft);color:var(--danger);}
+  .hp-log .hp-sub{display:block;margin-top:3px;font-weight:600;color:var(--ink-soft);}
+  .hp-btnrow{display:flex;gap:8px;flex-wrap:wrap;}
+  .hp-btnrow .sim-btn{flex:1;min-width:110px;}
+  .hp-table{display:flex;flex-direction:column;gap:5px;min-height:0;overflow-y:auto;}
+  .hp-row{display:flex;align-items:center;gap:8px;padding:4px 8px;border-radius:10px;border:1.5px solid var(--border-soft);background:var(--surface-2);cursor:pointer;transition:background .15s,border-color .15s;min-height:36px;}
+  .hp-row:hover,.hp-row:focus-visible{border-color:var(--accent);outline:none;}
+  .hp-row.over{background:var(--accent-soft);border-color:var(--accent);}
+  .hp-row.wrong{border-color:var(--danger);background:var(--danger-soft);animation:hpShake .35s;}
+  .hp-row.right{border-color:var(--teal);background:var(--teal-soft);}
+  .hp-row.locked{cursor:default;}
+  @keyframes hpShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  @media (prefers-reduced-motion: reduce){.hp-row.wrong{animation:none;}}
+  .hp-addr{width:62px;flex:none;font-family:"JetBrains Mono",monospace;font-weight:800;font-size:12.4px;color:var(--ink-faint);text-align:right;}
+  .hp-chain{display:flex;gap:5px;align-items:center;flex-wrap:wrap;flex:1;min-height:28px;}
+  .hp-chain .hp-link{color:var(--ink-faint);font-size:12px;}
+  .hp-node{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:13px;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:3px 10px;color:var(--ink);transition:.2s;}
+  .hp-node.new{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);}
+  .hp-node.collide{background:var(--amber-soft);border-color:var(--amber);color:var(--amber);}
+  .hp-node.cmp{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);transform:scale(1.08);}
+  .hp-node.hit{background:var(--teal);border-color:var(--teal);color:#fff;transform:scale(1.1);}
+  .hp-node.skip{opacity:.45;}
+  .hp-cnt{flex:none;font-size:11px;font-weight:800;color:var(--ink-faint);min-width:28px;text-align:right;}
+  @media (max-width:760px){.hp-layout{grid-template-columns:1fr;}}
+
+  /* ===== 참고 영상 카드 (YouTube 링크) ===== */
+  .vid-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:22px;align-items:center;flex:1;min-height:0;}
+  .vid-card{display:block;position:relative;aspect-ratio:16/9;border-radius:16px;background:linear-gradient(135deg,var(--code-bg),#16264a);color:#fff;text-decoration:none;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border);}
+  .vid-card:hover .vid-play,.vid-card:focus-visible .vid-play{transform:scale(1.08);}
+  .vid-card:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+  .vid-grid{position:absolute;inset:0;background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.09) 1px,transparent 1px) 0 0/22px 22px;}
+  .vid-play{position:absolute;left:50%;top:50%;width:84px;height:60px;margin:-30px 0 0 -42px;border-radius:16px;background:#e53935;display:flex;align-items:center;justify-content:center;transition:transform .18s;box-shadow:0 10px 28px -8px rgba(0,0,0,.6);}
+  .vid-play svg{width:26px;height:26px;fill:#fff;margin-left:3px;}
+  .vid-dur{position:absolute;right:12px;bottom:12px;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;background:rgba(0,0,0,.72);padding:3px 8px;border-radius:6px;}
+  .vid-badge{position:absolute;left:14px;top:12px;font-size:11px;font-weight:800;letter-spacing:.06em;color:#cfe0ff;}
+  .vid-info{display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .vid-title{font-size:17px;font-weight:900;line-height:1.4;color:var(--ink);}
+  .vid-meta{font-size:13px;color:var(--ink-soft);line-height:1.6;}
+  .vid-meta b{color:var(--ink);}
+  .vid-open{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:13px;padding:10px 16px;border-radius:10px;text-decoration:none;}
+  .vid-open:hover{filter:brightness(1.08);}
+  .vid-open:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px;}
+  @media (max-width:760px){.vid-layout{grid-template-columns:1fr;flex:none;min-height:auto;}}
+
+  /* ===== 시간 복잡도 예시 코드 (기본 작업 · 반복/재귀 · 입력 특성) ===== */
+  .ex-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .ex-tab{appearance:none;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:12.6px;padding:8px 15px;border-radius:9px;cursor:pointer;}
+  .ex-tab:hover{border-color:var(--accent);color:var(--accent);}
+  .ex-tab.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .ex-panel{display:none;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:16px;flex:1;min-height:0;}
+  .ex-panel.active{display:grid;}
+  .ex-code{flex:1;font-size:14px;line-height:1.9;white-space:pre;}
+  .ex-codewrap{display:flex;flex-direction:column;gap:6px;min-width:0;}
+  .ex-code .cline.skip{opacity:.38;}
+  .ex-side{display:flex;flex-direction:column;gap:9px;min-width:0;}
+  .ex-chiprow{display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
+  .ex-chiprow .lbl{font-size:11.5px;font-weight:800;color:var(--ink-faint);}
+  .ex-chiprow .chip{font-size:12.4px;padding:6px 12px;}
+  .ex-explain{font-size:14px;line-height:1.7;color:var(--ink-soft);}
+  .ex-explain b{color:var(--ink);}
+  .ex-result{background:var(--accent-soft);color:var(--accent);border-radius:12px;padding:11px 14px;font-weight:800;font-size:14.5px;line-height:1.6;}
+  .ex-result .big{font-family:"Black Han Sans",sans-serif;font-size:26px;margin-right:6px;}
+  .ex-cmp{font-size:13px;font-weight:700;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:8px 12px;line-height:1.6;}
+  .ex-cells{display:flex;gap:6px;flex-wrap:wrap;}
+  .ex-cell{min-width:46px;text-align:center;font-family:"JetBrains Mono",monospace;font-weight:800;font-size:16px;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1.5px solid var(--border);color:var(--ink);}
+  .ex-cell.cmp{background:var(--amber-soft);border-color:var(--amber);color:var(--amber);}
+  .ex-cell.hit{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);}
+  @media (max-width:760px){.ex-panel.active{grid-template-columns:1fr;}}
+
+  /* ===== 시간 복잡도 그래프 ===== */
+  .gc-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;flex:1;min-height:0;align-items:start;}
+  .gc-chart{background:var(--surface-2);border-radius:14px;padding:8px;min-width:0;}
+  .gc-chart svg{display:block;width:100%;height:auto;}
+  .gc-grid{stroke:var(--border);stroke-width:1;}
+  .gc-axis{stroke:var(--ink-faint);stroke-width:1.5;}
+  .gc-tick{font-family:"JetBrains Mono",monospace;font-size:12px;fill:var(--ink-faint);}
+  .gc-axname{font-size:11.5px;font-weight:800;fill:var(--ink-soft);}
+  .gc-line{fill:none;stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round;}
+  .gc-c1{stroke:var(--teal);} .gc-c2{stroke:var(--violet);} .gc-c3{stroke:var(--accent);} .gc-c4{stroke:var(--amber);} .gc-c5{stroke:var(--danger);}
+  .gc-dot.gc-c1{fill:var(--teal);} .gc-dot.gc-c2{fill:var(--violet);} .gc-dot.gc-c3{fill:var(--accent);} .gc-dot.gc-c4{fill:var(--amber);} .gc-dot.gc-c5{fill:var(--danger);}
+  .gc-dot{stroke:var(--surface);stroke-width:2;}
+  .gc-marker{stroke:var(--ink-faint);stroke-width:1.4;stroke-dasharray:4 4;}
+  .gc-side{display:flex;flex-direction:column;gap:9px;min-width:0;}
+  .gc-slider{display:flex;flex-direction:column;gap:4px;}
+  .gc-slider label{font-size:13px;font-weight:800;color:var(--ink);}
+  .gc-slider input[type=range]{width:100%;accent-color:var(--accent);}
+  .gc-legend{display:flex;flex-direction:column;gap:5px;}
+  .gc-row{display:flex;align-items:center;gap:9px;appearance:none;width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;cursor:pointer;color:var(--ink);font-family:inherit;}
+  .gc-row.off{opacity:.45;}
+  .gc-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .gc-sw{width:22px;height:4px;border-radius:3px;flex:none;}
+  .gc-name{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:12.6px;flex:1;}
+  .gc-val{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:12.6px;font-variant-numeric:tabular-nums;color:var(--ink);}
+  .gc-note{font-size:13.2px;font-weight:700;line-height:1.55;}
+  .gc-foot{font-size:12px;color:var(--ink-faint);font-weight:600;}
+  @media (max-width:760px){.gc-layout{grid-template-columns:1fr;}}
+
+  /* ===== 버튼 없는 엘리베이터 : 애니메이션 ===== */
+  .ev-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start;margin-top:6px;}
+  .ev-building{position:relative;display:grid;grid-template-columns:34px repeat(3,minmax(0,1fr)) 78px;gap:0;background:var(--surface-2);border:1.5px solid var(--border-soft);border-radius:14px;padding:38px 10px 8px;}
+  .ev-col{position:relative;height:260px;}
+  .ev-col.shaft{border-left:1.5px solid var(--border);background:repeating-linear-gradient(to top,transparent 0,transparent 25px,var(--border-soft) 25px,var(--border-soft) 26px);}
+  .ev-col.shaft:nth-child(4){border-right:1.5px solid var(--border);}
+  .ev-head{position:absolute;top:-36px;left:0;right:0;text-align:center;font-size:11.5px;font-weight:800;color:var(--ink-soft);line-height:1.2;}
+  .ev-head b{display:block;font-family:"Black Han Sans",sans-serif;font-size:15px;color:var(--accent);font-weight:400;}
+  .ev-flabel{position:absolute;left:0;right:6px;height:26px;display:flex;align-items:center;justify-content:flex-end;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;color:var(--ink-faint);}
+  .ev-car{position:absolute;left:10px;right:10px;height:22px;margin-bottom:2px;border-radius:5px;background:var(--surface-3);border:1.5px solid var(--ink-faint);overflow:hidden;transition:bottom 1.1s cubic-bezier(.45,.05,.3,1),box-shadow .3s,opacity .3s,border-color .3s;z-index:2;}
+  .ev-car .dl,.ev-car .dr{position:absolute;top:0;bottom:0;width:50%;background:var(--accent);transition:transform .5s;}
+  .ev-car .dl{left:0;border-right:1px solid var(--accent-ink);} .ev-car .dr{right:0;}
+  .ev-car.open .dl{transform:translateX(-82%);} .ev-car.open .dr{transform:translateX(82%);}
+  .ev-car .in{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--amber);opacity:0;transition:opacity .3s;}
+  .ev-car.occupied .in{opacity:1;}
+  .ev-car.check{box-shadow:0 0 0 3px var(--amber);border-color:var(--amber);}
+  .ev-car.dim{opacity:.4;}
+  .ev-car.win{box-shadow:0 0 0 3px var(--teal);border-color:var(--teal);}
+  .ev-car.win .dl,.ev-car.win .dr{background:var(--teal);}
+  .ev-dist{position:absolute;left:50%;width:0;border-left:2px dashed var(--amber);opacity:0;transition:opacity .35s;z-index:1;}
+  .ev-dist.on{opacity:1;}
+  .ev-dist span{position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:10.5px;font-weight:800;color:var(--amber);background:var(--surface-2);padding:1px 4px;border-radius:4px;white-space:nowrap;}
+  .ev-tline{position:absolute;left:34px;right:0;height:0;border-top:2px dashed var(--accent);opacity:0;transition:opacity .35s;z-index:0;pointer-events:none;}
+  .ev-tline.on{opacity:.8;}
+  .ev-pax{position:absolute;left:8px;height:22px;margin-bottom:2px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:var(--ink);opacity:0;transition:opacity .35s;}
+  .ev-pax i{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--amber);}
+  .ev-pax.on{opacity:1;}
+  .ev-panel{display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .ev-panel .elev-target-row{margin-top:0;justify-content:flex-start;}
+  .ev-calc{display:flex;flex-direction:column;gap:6px;}
+  .ev-row{display:grid;grid-template-columns:28px 64px minmax(0,1fr);gap:8px;align-items:center;background:var(--surface-2);border:1.5px solid var(--border-soft);border-radius:10px;padding:8px 11px;font-size:13px;color:var(--ink-soft);font-weight:700;transition:.25s;}
+  .ev-row b{font-family:"Black Han Sans",sans-serif;font-size:17px;color:var(--accent);font-weight:400;}
+  .ev-row .calc{font-family:"JetBrains Mono",monospace;font-size:12.6px;color:var(--ink-faint);}
+  .ev-row.now{border-color:var(--amber);background:var(--amber-soft);} .ev-row.now .calc{color:var(--amber);}
+  .ev-row.done .calc{color:var(--ink);}
+  .ev-row.winner{border-color:var(--teal);background:var(--teal-soft);} .ev-row.winner .calc{color:var(--teal);}
+  @media (prefers-reduced-motion: reduce){.ev-car,.ev-car .dl,.ev-car .dr,.ev-dist,.ev-tline,.ev-pax{transition:none;}}
+  @media (max-width:760px){.ev-stage{grid-template-columns:1fr;}}
 
   /* ===== 나의 탐색 전략 선택하기 (개별 활동) ===== */
   .strategy-scenario{background:var(--surface-2);border-radius:13px;padding:16px 18px;font-size:14.4px;font-weight:700;color:var(--ink);text-align:center;min-height:60px;display:flex;align-items:center;justify-content:center;}
@@ -1234,31 +1548,31 @@
         <div class="hu-top"><span class="hu-num">2-2</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>문제 분해와 모델링</h2>
         <p>문제를 분석해 필요한 요소를 선별하고, 추상화와 모델링으로 표현하는 과정을 실습을 통해 익힌다.</p>
-        <div class="hu-foot"><span>총 25장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 28장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u23">
         <div class="hu-top"><span class="hu-num">2-3</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>알고리즘 설계</h2>
         <p>순차·선택·반복 구조로 알고리즘을 설계하고, 순서도와 Python 코드로 표현하는 방법을 배운다.</p>
-        <div class="hu-foot"><span>총 25장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 24장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u24">
         <div class="hu-top"><span class="hu-num">2-4</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>알고리즘 성능 분석</h2>
         <p>시간·공간 복잡도의 개념과 빅 오·오메가·세타 표기법으로 알고리즘의 성능을 분석하는 방법을 익힌다.</p>
-        <div class="hu-foot"><span>총 22장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 25장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u31">
         <div class="hu-top"><span class="hu-num">3-1</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>정렬 알고리즘</h2>
         <p>선택·버블·삽입 정렬의 원리를 이해하고, 배열이 단계별로 정렬되는 과정을 직접 조작하며 확인한다.</p>
-        <div class="hu-foot"><span>총 18장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 19장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u32">
         <div class="hu-top"><span class="hu-num">3-2</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>탐색 알고리즘</h2>
         <p>선형 탐색·이진 탐색·해싱의 원리를 이해하고, 탐색 알고리즘이 데이터를 찾아가는 과정을 직접 실습한다.</p>
-        <div class="hu-foot"><span>총 20장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 21장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u33">
         <div class="hu-top"><span class="hu-num">3-3</span><span class="hu-badge">✨ 인터랙티브</span></div>
@@ -1303,13 +1617,34 @@
   <!-- 1 : 생각 열기 (interactive) -->
   <section class="slide" data-kind="interactive" data-title="생각 열기 — 지저분한 방 청소" data-tag="실습">
     <div class="topbar"><span class="breadcrumb">02. 문제 분해와 모델링</span><span class="kind-tag">✨ 인터랙티브 · 생각 열기</span></div>
-    <div class="slide-inner">
+    <div class="slide-inner" style="justify-content:flex-start;">
       <span class="kicker">Think · 지저분한 방 청소</span>
-      <h1 class="h1">잡동사니를 눌러서 하나씩 치워 보자</h1>
-      <p class="lead" style="margin-bottom:12px;">철수는 오랜만에 지저분한 방을 대청소하려 한다. 옷가지, 책, 게임기, 전자 제품, 쓰레기 등 온갖 잡동사니가 널브러져 있어 무엇부터 시작해야 할지 막막하다. 아래 항목을 눌러 정리해 보자.</p>
-      <div class="clutter-field" id="clutterField"></div>
-      <p class="clutter-progress" id="clutterProgress" style="margin-top:10px;">0 / 6 정리 완료</p>
-      <div class="insight-strip" id="clutterMsg" style="margin-top:10px;display:none;">💡 다 치웠다! 그런데 손에 잡히는 대로 치우기만 했다면, 다음에 또 같은 혼란을 겪을 수 있다. 오늘은 '순서를 정해 문제를 나누는 법'을 배워 보자.</div>
+      <h1 class="h1">두 가지 방법으로 방을 치워 보자</h1>
+      <p class="lead" style="margin-bottom:10px;max-width:none;">철수는 오랜만에 지저분한 방을 대청소하려 한다. 옷가지, 책, 게임기, 전자 제품, 쓰레기 등 온갖 잡동사니가 널브러져 있어 무엇부터 시작해야 할지 막막하다. </p>
+      <div class="rm2-stage" id="rm2Stage">
+        <svg class="rm-scene" id="rmScene" viewBox="0 0 960 300" role="group" aria-label="지저분한 방 그림">
+          <g id="rmBg">
+            <rect class="rm-wall" x="0" y="0" width="960" height="185"/>
+            <rect class="rm-floor" x="0" y="185" width="960" height="115"/>
+            <line class="rm-plank" x1="0" y1="228" x2="960" y2="228"/><line class="rm-plank" x1="0" y1="266" x2="960" y2="266"/>
+            <line class="rm-base" x1="0" y1="185" x2="960" y2="185"/>
+            <g id="rmDests"></g>
+          </g>
+          <g id="rmTrails"></g>
+          <g id="rmItems"></g>
+          <g id="rmPerson" class="rm-person"></g>
+        </svg>
+        <div class="rm2-compare" id="rm2Compare"></div>
+      </div>
+      <div class="rm2-bar">
+        <div class="rm2-steps"><button type="button" class="rm2-step on" id="rm2S1">① 손에 잡히는 대로</button><button type="button" class="rm2-step" id="rm2S2">② 종류별로 나누어</button></div>
+        <div class="rm2-cats" id="rm2Cats" style="display:none;"></div>
+        <span class="rm2-hint" id="rm2Hint">아무 물건이나 눌러 하나씩 치우세요.</span>
+        <div class="rm2-meter"><span><b>걸음</b><span id="rm2Steps" style="padding:0;background:none;">0</span></span><span><b>왕복</b><span id="rm2Trips" style="padding:0;background:none;">0</span>번</span></div>
+        <button class="sim-btn primary" type="button" id="rm2Next" style="display:none;">② 해 보기 ▶</button>
+        <button class="sim-btn" type="button" id="rmReset">처음부터 ⟲</button>
+      </div>
+      
     </div>
   </section>
 
@@ -1360,7 +1695,7 @@
     <div class="slide-inner">
       <span class="kicker">Activity · 계주 순서를 정하는 데 필요한 정보는?</span>
       <h1 class="h1">불필요한 정보를 눌러서 제거해 보자</h1>
-      <p class="lead" style="margin-bottom:10px;">민지네 반은 체육대회 계주 순서를 정하려고 다음 정보를 모았다. 이 중 <b>계주 순서를 정하는 데 꼭 필요한 정보만 남기고</b>, 나머지를 클릭해 제거해 보자.</p>
+      <p class="lead" style="margin-bottom:10px;">병수네 반은 체육대회 계주 순서를 정하려고 다음 정보를 모았다. 이 중 <b>계주 순서를 정하는 데 꼭 필요한 정보만 남기고</b>, 나머지를 클릭해 제거해 보자.</p>
       <div class="sentence-list" id="sentenceList"></div>
       <div class="ctrl-row" style="margin-top:12px;max-width:320px;">
         <button class="sim-btn primary" id="sentenceCheck">정답 확인</button>
@@ -1456,6 +1791,23 @@
     </div>
   </section>
 
+  <!-- 분할 정복 — 생활 속 예시 -->
+  <section class="slide" data-kind="interactive" data-title="분할 정복 — 생활 속 예시" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">01. 문제의 분해</span><span class="kind-tag">✨ 인터랙티브 · 생활 속 예시</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Example · 우리 생활 속 분할 정복</span>
+      <h1 class="h1" style="margin-bottom:10px;">우리도 이미 분할 정복을 쓰고 있다</h1>
+      <div class="dl-tabs" id="dlTabs"></div>
+      <div class="dl-body">
+        <div class="dl-tree" id="dlTree"></div>
+        <div class="dl-side">
+          <div class="dl-stage"><div class="k">단계 <span id="dlNum">1</span> / 3</div><div class="v" id="dlTitle">분할</div><div class="d" id="dlDesc"></div></div>
+          <div class="ctrl-row"><button class="sim-btn" type="button" id="dlPrev">◀ 이전</button><button class="sim-btn primary" type="button" id="dlNext">다음 ▶</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 9 : 읽을거리 페이지랭크 -->
   <section class="slide" data-kind="reading" data-title="읽을거리 — 페이지랭크 알고리즘" data-tag="읽을거리">
     <div class="topbar"><span class="breadcrumb">01. 문제의 분해</span><span class="kind-tag">읽을거리</span></div>
@@ -1470,6 +1822,23 @@
         </div>
         <div class="insight-strip">💡 문제를 다른 각도(페이지 간 관계)로 재정의한 것이 핵심 분해 전략이었다.</div>
       </div>
+    </div>
+  </section>
+
+  <!-- 리마인드 : 문제 분해 과정 3단계 -->
+  <section class="slide" data-kind="summary" data-title="다시 보기 — 문제 분해 과정 3단계" data-tag="정리">
+    <div class="topbar"><span class="breadcrumb">01. 문제의 분해</span><span class="kind-tag">다시 보기</span></div>
+    <div class="slide-inner">
+      <span class="kicker">Remind · 모델링으로 넘어가기 전에</span>
+      <h1 class="h1">문제 분해 과정 3단계, 다시 떠올려 보자</h1>
+      <div class="rc-flow">
+        <div class="rc-step"><span class="rc-n">①</span><h3>불필요한 정보 없애기</h3><p>문제 해결에 도움이 되지 않는 정보를 찾아 지운다.</p><div class="rc-ex"><b>우리가 해 본 것</b>병수네 반 계주 순서를 정할 때, 꼭 필요한 정보만 남기기</div></div>
+        <div class="rc-arrow">→</div>
+        <div class="rc-step"><span class="rc-n">②</span><h3>분류하기</h3><p>비슷한 성격을 가진 것끼리 묶는다.</p><div class="rc-ex"><b>우리가 해 본 것</b>도서관 좌석 예약 앱의 요구 사항을 종류별로 나누기</div></div>
+        <div class="rc-arrow">→</div>
+        <div class="rc-step"><span class="rc-n">③</span><h3>하나의 문제로 나누기</h3><p>나누어진 문제가 하나의 목표만 갖도록 다시 나눈다.</p><div class="rc-ex"><b>우리가 해 본 것</b>"계주 순서 정하기"와 "응원 문구 만들기"를 따로 떼어 내기</div></div>
+      </div>
+      <div class="insight-strip" style="margin-top:14px;"><span>✨ 이렇게 나누고 정리한 문제를, 이제 <b>모델링</b>으로 구조화해 보자.</span></div>
     </div>
   </section>
 
@@ -1491,7 +1860,8 @@
       <span class="kicker">Concept · 모델링의 개념</span>
       <h1 class="h1">모델링이란 무엇인가?</h1>
       <p class="lead">문제 해결에 필요한 요소와 규칙, 원리 등을 찾아내어 <b>일반화</b>함으로써, 유사한 문제가 발생했을 때도 적용할 수 있는 구조화된 모습을 만드는 것을 말한다.</p>
-      <div class="card-grid cols-3" style="margin-top:16px;">
+      <p class="mp-label">📌 모델링의 기본 원칙 3가지</p>
+      <div class="card-grid cols-3" style="margin-top:8px;flex:none;">
         <div class="card" style="background:var(--teal-soft);"><h3 style="color:var(--teal);">추상화</h3><p>불필요한 부분을 제거하고 본질에 집중한다.</p></div>
         <div class="card" style="background:var(--teal-soft);"><h3 style="color:var(--teal);">단순화</h3><p>주요 기능에 맞추어 복잡성을 낮춘다.</p></div>
         <div class="card" style="background:var(--teal-soft);"><h3 style="color:var(--teal);">가정 설정</h3><p>현실을 다루기 쉬운 형태로 전제한다.</p></div>
@@ -1528,12 +1898,36 @@
       </div>
       <div class="tab-panel active" data-panel="student" style="flex-direction:column;">
         <div class="table-wrap"><table class="modeling"><thead><tr><th style="width:16%;">현실</th><th style="width:38%;">추상화</th><th style="width:46%;">모델링</th></tr></thead>
-          <tbody><tr><td class="strong">학생의 이미지</td><td>학생은 이름, 학번이 있다.<br>학생은 공부를 한다. 운동을 한다.</td><td><code class="inline">Student(이름, 학번){ study(), exercise() }</code></td></tr></tbody>
+          <tbody><tr><td class="strong"><div class="mdl-pic"><svg viewBox="0 0 120 140" role="img" aria-label="교복을 입고 책을 든 학생 그림">
+<path d="M24 140 Q24 102 60 99 Q96 102 96 140 Z" fill="#33508f"/>
+<path d="M48 100 L60 118 L72 100 Z" fill="#ffffff"/>
+<path d="M55 106 L65 106 L62 120 L58 120 Z" fill="#e2485e"/>
+<rect x="53" y="86" width="14" height="16" rx="5" fill="#f6cdb5"/>
+<circle cx="60" cy="58" r="34" fill="#ffdcc6"/>
+<path d="M25 62 Q20 20 60 18 Q100 20 95 62 Q92 44 80 36 Q72 46 56 40 Q44 48 32 50 Q27 55 25 62 Z" fill="#3d2b22"/>
+<ellipse cx="47" cy="63" rx="4.6" ry="5.8" fill="#2a1d17"/><ellipse cx="73" cy="63" rx="4.6" ry="5.8" fill="#2a1d17"/>
+<circle cx="48.6" cy="61" r="1.7" fill="#fff"/><circle cx="74.6" cy="61" r="1.7" fill="#fff"/>
+<ellipse cx="39" cy="73" rx="6" ry="3.6" fill="#ff9fb0" opacity=".65"/><ellipse cx="81" cy="73" rx="6" ry="3.6" fill="#ff9fb0" opacity=".65"/>
+<path d="M54 74 Q60 80 66 74" stroke="#7a3b2e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<g transform="rotate(-12 34 122)"><rect x="18" y="108" width="30" height="24" rx="3" fill="#2f9e8f"/><rect x="21" y="110" width="25" height="20" rx="2" fill="#fff8e6"/><line x1="33.5" y1="110" x2="33.5" y2="130" stroke="#2f9e8f" stroke-width="2"/></g>
+<circle cx="40" cy="124" r="6" fill="#ffdcc6"/>
+</svg><span>학생의 이미지</span></div></td><td>학생은 이름, 학번이 있다.<br>학생은 공부를 한다. 운동을 한다.</td><td><code class="inline">Student(이름, 학번){ study(), exercise() }</code></td></tr></tbody>
         </table></div>
       </div>
       <div class="tab-panel" data-panel="dog" style="flex-direction:column;">
         <div class="table-wrap"><table class="modeling"><thead><tr><th style="width:16%;">현실</th><th style="width:38%;">추상화</th><th style="width:46%;">모델링</th></tr></thead>
-          <tbody><tr><td class="strong">강아지의 이미지</td><td>강아지는 이름, 품종이 있다.<br>강아지는 짖는다. 걷는다.</td><td><code class="inline">Dog(이름, 품종){ bark(), walk() }</code></td></tr></tbody>
+          <tbody><tr><td class="strong"><div class="mdl-pic"><svg viewBox="0 0 120 140" role="img" aria-label="귀가 처진 강아지 그림">
+<ellipse cx="60" cy="122" rx="30" ry="16" fill="#e0a96d"/>
+<circle cx="60" cy="66" r="34" fill="#f2c28f"/>
+<path d="M28 50 Q14 58 18 92 Q30 96 36 76 Z" fill="#a8693a"/><path d="M92 50 Q106 58 102 92 Q90 96 84 76 Z" fill="#a8693a"/>
+<ellipse cx="60" cy="82" rx="16" ry="12" fill="#fff1de"/>
+<ellipse cx="47" cy="64" rx="4.6" ry="5.6" fill="#2a1d17"/><ellipse cx="73" cy="64" rx="4.6" ry="5.6" fill="#2a1d17"/>
+<circle cx="48.6" cy="62" r="1.6" fill="#fff"/><circle cx="74.6" cy="62" r="1.6" fill="#fff"/>
+<ellipse cx="60" cy="76" rx="6" ry="4.4" fill="#3a2a22"/>
+<path d="M54 84 Q60 89 66 84" stroke="#3a2a22" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<path d="M57 87 Q60 96 63 87 Z" fill="#ff7b8e"/>
+<ellipse cx="40" cy="76" rx="5" ry="3.2" fill="#ff9fb0" opacity=".55"/><ellipse cx="80" cy="76" rx="5" ry="3.2" fill="#ff9fb0" opacity=".55"/>
+</svg><span>강아지의 이미지</span></div></td><td>강아지는 이름, 품종이 있다.<br>강아지는 짖는다. 걷는다.</td><td><code class="inline">Dog(이름, 품종){ bark(), walk() }</code></td></tr></tbody>
         </table></div>
       </div>
     </div>
@@ -1610,6 +2004,34 @@
       </div>
     </div>
   </section>
+
+  <!-- 클래스 · 객체 · 속성 · 메서드 한눈에 보기 -->
+  <section class="slide" data-kind="interactive" data-title="클래스 · 객체 · 속성 · 메서드" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">02. 모델링과 검증</span><span class="kind-tag">✨ 용어를 눌러 보세요</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Concept · 클래스와 객체의 구조</span>
+      <h1 class="h1" style="margin-bottom:10px;">설계도 하나로 학생을 여러 명 만든다</h1>
+      <div class="oo-layout">
+        <div class="oo-diagram">
+          <div class="oo-class" data-role="class">
+            <div class="oo-cname"><span class="oo-tag">클래스</span>Student <small>학생 설계도</small></div>
+            <div class="oo-sec" data-role="attr"><b>속성</b><span>name</span><span>age</span><span>grade</span><span>stamina</span></div>
+            <div class="oo-sec" data-role="method"><b>메서드</b><span>study(d)</span><span>exercise(e)</span></div>
+          </div>
+          <div class="oo-arrows"><span>Student("홍길동", 20, 3.5, 50)</span><span>Student("김영희", 19, 3.8, 70)</span></div>
+          <div class="oo-objs" id="ooObjs"></div>
+          <button class="sim-btn" type="button" id="ooReset" style="align-self:flex-end;">값 처음으로 ⟲</button>
+        </div>
+        <div class="oo-terms" id="ooTerms">
+          <button type="button" class="oo-term" data-role="class"><b>클래스</b><span>객체를 만들기 위한 <em>설계도(틀)</em>. 어떤 속성과 메서드를 가질지 정해 둔다. 예: 붕어빵 틀</span></button>
+          <button type="button" class="oo-term" data-role="object"><b>객체</b><span>설계도로 실제로 만든 <em>하나하나의 대상</em>. 같은 틀에서 나와도 값은 서로 다르다. 예: 틀로 구운 붕어빵</span></button>
+          <button type="button" class="oo-term" data-role="attr"><b>속성</b><span>객체가 가진 <em>데이터(특징)</em>. 이름, 나이, 성적처럼 값이 저장된다.</span></button>
+          <button type="button" class="oo-term" data-role="method"><b>메서드</b><span>객체가 할 수 있는 <em>동작(기능)</em>. 실행하면 속성 값이 바뀔 수 있다. 버튼을 눌러 확인!</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- 17 : Python 코드 실행 시뮬레이터 (interactive) -->
   <section class="slide" data-kind="interactive" data-title="코드 실행 시뮬레이터 · Student 객체" data-tag="실습">
@@ -1930,21 +2352,6 @@
           <div class="mini-code" id="fsCode"></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 8 : 실생활 예시 -->
-  <section class="slide" data-kind="example" data-title="실생활 속 순차 구조 — 구명조끼 착용법" data-tag="예시">
-    <div class="topbar"><span class="breadcrumb">01. 순차 구조</span><span class="kind-tag">실생활 예시</span></div>
-    <div class="slide-inner">
-      <span class="kicker">Example · 우리 생활에서 볼 수 있는 순차 구조</span>
-      <h1 class="h1">고체식 구명조끼 착용하기 (조끼형)</h1>
-      <div class="card-grid cols-3">
-        <div class="card"><span class="num">①</span><h3>조끼를 입는다</h3><p>양팔을 소매에 넣고 조끼를 몸에 맞게 착용한다.</p></div>
-        <div class="card"><span class="num">②</span><h3>허리 버클을 확실하게 채운다</h3><p>허리 벨트를 몸에 꼭 맞게 조여 준다.</p></div>
-        <div class="card"><span class="num">③</span><h3>끈을 앞으로 당겨 조인다</h3><p>풀리지 않게 단단히 조여 착용을 마무리한다.</p></div>
-      </div>
-      <div class="insight-strip" style="margin-top:14px;">💡 세 단계는 반드시 순서대로, 이전 단계가 끝나야 다음 단계로 넘어간다 — 전형적인 순차 구조다.</div>
     </div>
   </section>
 
@@ -2305,13 +2712,18 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   <!-- 1 : 생각 열기 (interactive) -->
   <section class="slide" data-kind="interactive" data-title="생각 열기 — 버튼이 없는 엘리베이터" data-tag="실습">
     <div class="topbar"><span class="breadcrumb">04. 알고리즘 성능 분석</span><span class="kind-tag">✨ 인터랙티브 · 생각 열기</span></div>
-    <div class="slide-inner">
+    <div class="slide-inner" style="justify-content:flex-start;">
       <span class="kicker">Think · 버튼이 없는 엘리베이터</span>
       <h1 class="h1">목적층을 고르면, 어떤 엘리베이터가 배정될까?</h1>
       <p class="lead" style="margin-bottom:6px;">병원이나 보안이 필요한 건물에서는 승객이 목적지를 먼저 선택하면 컴퓨터가 가장 빠른 엘리베이터를 안내해 준다. 아래 목적층 버튼을 눌러, 3대의 엘리베이터 중 어떤 것이 배정되는지 확인해 보자.</p>
-      <div class="elev-row" id="elevRow"></div>
-      <div class="elev-target-row" id="elevTargets"></div>
-      <div class="insight-strip" id="elevMsg" style="margin-top:14px;display:none;"></div>
+      <div class="ev-stage">
+        <div class="ev-building" id="evBuilding" aria-label="엘리베이터 3대가 있는 10층 건물"></div>
+        <div class="ev-panel">
+          <div class="elev-target-row" id="elevTargets"></div>
+          <div class="ev-calc" id="evCalc"></div>
+          <div class="insight-strip" id="elevMsg">👆 목적층 버튼을 눌러 보세요. 컴퓨터가 엘리베이터마다 거리를 계산하는 과정이 보여요.</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2367,7 +2779,52 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         <div class="card"><span class="num">②</span><h3>반복과 재귀</h3><p>1차원 반복은 수행 횟수에 비례, 2차원 이상 반복은 제곱에 비례해 복잡도가 증가한다.</p></div>
         <div class="card"><span class="num">③</span><h3>입력 데이터의 특성</h3><p>입력 데이터의 개수나 정렬 상태에 따라 결과가 다르게 나올 수 있다.</p></div>
       </div>
-      <div class="insight-strip" style="margin-top:14px;">✨ 다음 두 슬라이드에서 ②, ③을 직접 비교해 본다.</div>
+      <div class="insight-strip" style="margin-top:14px;">✨ 다음 슬라이드에서 ①~③을 코드로 확인한 뒤, 이어지는 실습에서 ②, ③을 직접 비교해 본다.</div>
+    </div>
+  </section>
+
+  <!-- 예시 코드 : 기본 단위 작업 / 반복과 재귀 / 입력 데이터의 특성 -->
+  <section class="slide" data-kind="example" data-title="시간 복잡도 예시 코드" data-tag="예시">
+    <div class="topbar"><span class="breadcrumb">01. 알고리즘과 성능</span><span class="kind-tag">✨ 예시 코드</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Example · 시간 복잡도를 따질 때 보는 세 가지</span>
+      <h1 class="h1" style="margin-bottom:10px;">코드에서 실행 횟수를 직접 세어 보자</h1>
+      <div class="ex-tabs" role="tablist">
+        <button class="ex-tab active" type="button" data-ex="0">① 기본 단위 작업</button>
+        <button class="ex-tab" type="button" data-ex="1">② 반복과 재귀</button>
+        <button class="ex-tab" type="button" data-ex="2">③ 입력 데이터의 특성</button>
+      </div>
+
+      <div class="ex-panel active" data-ex="0">
+        <div class="ex-codewrap"><div class="code-block ex-code" id="ex1Code"></div></div>
+        <div class="ex-side">
+          <div class="ex-chiprow"><span class="lbl">입력값 바꿔 보기</span><button class="chip selected" type="button" data-p="0">a=7, b=3</button><button class="chip" type="button" data-p="1">a=1, b=2</button></div>
+          <div class="ex-explain">값 저장, 산술 연산, 비교, 출력처럼 <b>한 번에 끝나는 작업 하나</b>가 기본 단위 작업이에요. 반복이 없으면 입력값이 바뀌어도 작업 수가 거의 그대로예요.</div>
+          <div class="ex-result" id="ex1Result"></div>
+          <div class="ex-cmp">입력값과 상관없이 작업 수가 최대 5개로 일정해요 → <b>O(1)</b></div>
+        </div>
+      </div>
+
+      <div class="ex-panel" data-ex="1">
+        <div class="ex-codewrap"><div class="code-block ex-code" id="ex2Code"></div></div>
+        <div class="ex-side">
+          <div class="ex-chiprow"><span class="lbl">종류</span><button class="chip selected" type="button" data-t="one">1차원 반복</button><button class="chip" type="button" data-t="two">2차원 반복</button><button class="chip" type="button" data-t="rec">재귀</button></div>
+          <div class="ex-chiprow"><span class="lbl">n =</span><button class="chip" type="button" data-n="3">3</button><button class="chip selected" type="button" data-n="5">5</button><button class="chip" type="button" data-n="10">10</button></div>
+          <div class="ex-result" id="ex2Result"></div>
+          <div class="ex-explain" id="ex2Explain"></div>
+          <div class="ex-cmp" id="ex2Cmp"></div>
+        </div>
+      </div>
+
+      <div class="ex-panel" data-ex="2">
+        <div class="ex-codewrap"><div class="code-block ex-code" id="ex3Code"></div></div>
+        <div class="ex-side">
+          <div class="ex-chiprow"><span class="lbl">찾는 값 target</span><button class="chip selected" type="button" data-g="7">7 (맨 앞)</button><button class="chip" type="button" data-g="1">1 (맨 뒤)</button><button class="chip" type="button" data-g="8">8 (없음)</button></div>
+          <div class="ex-cells" id="ex3Cells"></div>
+          <div class="ex-result" id="ex3Result"></div>
+          <div class="ex-explain">데이터 개수는 5개로 똑같아도, 찾는 값이 어디 있느냐에 따라 비교 횟수가 <b>1번부터 5번까지</b> 달라져요. 그래서 시간 복잡도는 최선과 최악을 나누어 생각하기도 해요.</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2413,6 +2870,29 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   </section>
 
   <!-- 8 : 공간복잡도란? -->
+  <!-- 참고 영상 : 시간복잡도 (YouTube 링크 카드) -->
+  <section class="slide" data-kind="reading" data-title="참고 영상 — 시간복잡도" data-tag="참고 영상">
+    <div class="topbar"><span class="breadcrumb">01. 알고리즘과 성능</span><span class="kind-tag">참고 영상</span></div>
+    <div class="slide-inner">
+      <span class="kicker">Video · 시간 복잡도 더 알아보기</span>
+      <h1 class="h1">영상으로 한 번 더, 시간복잡도</h1>
+      <div class="vid-layout">
+        <a class="vid-card" href="https://www.youtube.com/watch?v=GHClo7yu_20" target="_blank" rel="noopener noreferrer" aria-label="YouTube에서 영상 보기: 시간복잡도 | 자료구조 3강 | 코딩테스트 준비">
+          <span class="vid-grid"></span>
+          <span class="vid-badge">YOUTUBE</span>
+          <span class="vid-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+          <span class="vid-dur">7:07</span>
+        </a>
+        <div class="vid-info">
+          <div class="vid-title">시간복잡도 | 자료구조 3강 | 코딩테스트 준비</div>
+          <div class="vid-meta"><b>채널</b> 개발남노씨<br><b>길이</b> 7분 7초</div>
+          <a class="vid-open" href="https://www.youtube.com/watch?v=GHClo7yu_20" target="_blank" rel="noopener noreferrer">YouTube에서 보기 ↗</a>
+          <div class="insight-strip" style="margin-top:6px;">💡 영상을 본 뒤, 앞에서 배운 시간 복잡도의 뜻을 내 말로 한 문장으로 정리해 보자.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="slide" data-kind="concept" data-title="공간 복잡도란?" data-tag="개념">
     <div class="topbar"><span class="breadcrumb">01. 알고리즘과 성능</span><span class="kind-tag">개념</span></div>
     <div class="slide-inner">
@@ -2505,7 +2985,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   <!-- 13 : 삽입정렬 vs 퀵정렬 (그림 II-23, flagship interactive) -->
   <section class="slide" data-kind="interactive" data-title="삽입 정렬과 퀵 정렬의 속도 비교" data-tag="실습">
     <div class="topbar"><span class="breadcrumb">02. 알고리즘 성능 측정</span><span class="kind-tag">✨ 인터랙티브 · 경우별 비교</span></div>
-    <div class="slide-inner">
+    <div class="slide-inner" style="justify-content:flex-start;">
       <span class="kicker">Try it · 최선 · 평균 · 최악의 경우를 골라 비교해 보기</span>
       <h1 class="h1">경우에 따라 두 정렬 알고리즘의 성능은 어떻게 다를까?</h1>
       <div class="case-bar" id="g2Cases">
@@ -2513,11 +2993,16 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         <button class="case-btn active" data-case="avg">평균의 경우</button>
         <button class="case-btn" data-case="worst">최악의 경우</button>
       </div>
-      <div class="growth-wrap" style="margin-top:10px;">
+      <div class="case-layout">
+      <div class="growth-wrap">
         <div class="growth-slider-row"><input type="range" id="g2Slider" min="5" max="50" value="20"><span class="growth-n-badge" id="g2N">n = 20</span></div>
         <div class="bar-row"><div class="bar-label"><span>삽입 정렬</span><span id="g2InsVal">400회</span></div><div class="bar-track"><div class="bar-fill" id="g2InsFill" style="background:var(--amber);"></div></div></div>
         <div class="bar-row"><div class="bar-label"><span>퀵 정렬</span><span id="g2QFill_label">86회</span></div><div class="bar-track"><div class="bar-fill" id="g2QFill" style="background:var(--teal);"></div></div></div>
+        <div class="case-note">막대 길이는 각 경우의 시간 복잡도 식(n, n log n, n²)에 n을 넣어 계산한 값이에요.</div>
       </div>
+        <div class="case-explain" id="g2Explain" aria-live="polite"></div>
+      </div>
+      <div class="insight-strip" style="margin-top:12px;"><span>💡 알고리즘의 성능은 보통 <b>최악의 경우</b>를 기준으로 말해요. 뒤에서 배울 빅 오 표기법이 바로 이 기준이에요.</span></div>
     </div>
   </section>
 
@@ -2548,6 +3033,24 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         <div class="acc-item" data-idx="3"><div class="acc-head"><span class="an">O(n)</span><h3>선형 시간 복잡도</h3><span class="acc-chevron">▾</span></div><div class="acc-body"><p>입력 크기에 정비례하여 실행 시간이 증가하는 알고리즘이다. 예) 배열의 모든 요소 합산</p></div></div>
         <div class="acc-item" data-idx="4"><div class="acc-head"><span class="an">O(n log n)</span><h3>선형 로그 시간 복잡도</h3><span class="acc-chevron">▾</span></div><div class="acc-body"><p>실행 시간이 n과 log n의 곱으로 증가하는 알고리즘이다. 예) 퀵 정렬, 병합 정렬</p></div></div>
         <div class="acc-item" data-idx="5"><div class="acc-head"><span class="an">O(n²)</span><h3>이차 시간 복잡도</h3><span class="acc-chevron">▾</span></div><div class="acc-body"><p>입력 크기의 제곱에 비례하여 실행 시간이 증가하는 알고리즘이다. 예) 이중 반복문을 사용하는 정렬 알고리즘</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 시간 복잡도 그래프 (interactive) -->
+  <section class="slide" data-kind="interactive" data-title="시간 복잡도 그래프" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">02. 알고리즘 성능 측정</span><span class="kind-tag">✨ 인터랙티브 · 그래프</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Graph · 시간 복잡도의 증가 속도</span>
+      <h1 class="h1" style="margin-bottom:10px;">입력 개수 n이 커지면 실행 횟수는 얼마나 늘어날까?</h1>
+      <div class="gc-layout">
+        <div class="gc-chart"><svg id="gcSvg" viewBox="0 0 640 390" role="img" aria-label="입력 개수 n에 따른 시간 복잡도별 실행 횟수 그래프"></svg></div>
+        <div class="gc-side">
+          <div class="gc-slider"><label for="gcRange">입력 개수 n = <span id="gcN">20</span></label><input type="range" id="gcRange" min="1" max="50" value="20"></div>
+          <div class="gc-legend" id="gcLegend"></div>
+          <div class="insight-strip gc-note" id="gcNote"></div>
+          <div class="gc-foot">log는 밑이 2인 로그예요. 선을 눌러 켜고 끄면 y축이 맞춰져서, O(n²)를 끄면 아래쪽 선들의 차이를 자세히 볼 수 있어요.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -3170,17 +3673,17 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     <div class="slide-inner">
       <span class="kicker">Think · 1부터 100 사이, 컴퓨터가 정한 숫자를 맞혀 보자</span>
       <h1 class="h1">"더 크다 / 더 작다" 힌트만으로 몇 번 만에 맞힐 수 있을까?</h1>
-      <p class="lead" style="margin-bottom:2px;">컴퓨터를 활용한 작업에서는 원하는 정보를 검색하거나 파일에서 특정 값을 찾는 등 탐색이 끊임없이 일어난다. 숫자를 입력하면 더 큰지 작은지 알려 준다. <b>최소한의 횟수</b>로 정답을 맞혀 보자.</p>
+      <p class="lead" style="margin-bottom:2px;max-width:none;">컴퓨터를 활용한 작업에서는 원하는 정보를 검색하거나 파일에서 특정 값을 찾는 등 탐색이 끊임없이 일어난다. 숫자를 입력하면 더 큰지 작은지 알려 준다. <b>최소한의 횟수</b>로 정답을 맞혀 보자.</p>
       <div class="guess-wrap">
         <div class="guess-range">탐색 범위: <b id="guessLow">1</b> ~ <b id="guessHigh">100</b></div>
         <div class="guess-input-row">
           <input type="number" id="guessInput" min="1" max="100" placeholder="숫자 입력">
-          <button class="sim-btn primary" id="guessBtn" style="max-width:110px;">확인</button>
+          <button class="sim-btn primary" id="guessBtn" style="font-size:18px;padding:0 28px;">확인</button>
         </div>
         <div class="guess-feedback" id="guessFeedback"></div>
         <div class="guess-count">시도 횟수: <b id="guessTries">0</b>회 · 최적 시도 횟수 약 <b id="guessOptimal">7</b>회 (log₂100)</div>
         <div class="guess-log" id="guessLog"></div>
-        <button class="sim-btn" id="guessResetBtn" style="max-width:140px;">새 숫자로 다시 ⟲</button>
+        <button class="sim-btn" id="guessResetBtn" style="font-size:14.5px;padding:10px 18px;">새 숫자로 다시 ⟲</button>
       </div>
     </div>
   </section>
@@ -3382,6 +3885,30 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       </div>
       <div class="hash-table-wrap" id="hashTableWrap"></div>
       <div class="stepper-log" id="hashLog">시작하려면 다음 삽입을 눌러 보세요.</div>
+    </div>
+  </section>
+
+  <!-- 13-2 : 버킷에 직접 넣어 보기 (interactive) -->
+  <section class="slide" data-kind="interactive" data-title="버킷에 직접 넣어 보기" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">03. 해시 탐색</span><span class="kind-tag">✨ 인터랙티브 · 직접 해 보기</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker" id="hpKicker">Try it · 나머지 연산 해시 함수로 직접 해 보기</span>
+      <h1 class="h1" id="hpTitle" style="margin-bottom:10px;">키를 직접 계산해서 알맞은 버킷에 넣어 보자</h1>
+      <div class="hp-layout">
+        <div class="hp-side">
+          <div class="hp-steps"><span class="hp-step on" id="hpStep1">① 버킷에 넣기</span><span class="hp-arrow">→</span><span class="hp-step" id="hpStep2">② 키 찾기</span></div>
+          <div class="hp-pool-label" id="hpPoolLabel">키를 눌러 선택한 뒤, 알맞은 버킷을 누르거나 끌어다 놓으세요</div>
+          <div class="hp-pool" id="hpPool"></div>
+          <div class="hp-calc" id="hpCalc">넣을 키를 하나 골라 보세요.</div>
+          <div class="hp-log" id="hpLog">h(k) = k mod 7 → 키를 7로 나눈 <b>나머지</b>가 버킷 번호예요.</div>
+          <div class="hp-btnrow">
+            <button class="sim-btn" id="hpHintBtn" type="button">힌트 보기</button>
+            <button class="sim-btn primary" id="hpGoBtn" type="button" style="display:none;">찾기 단계로 ▶</button>
+            <button class="sim-btn" id="hpResetBtn" type="button">처음부터 ⟲</button>
+          </div>
+        </div>
+        <div class="hp-table" id="hpTable"></div>
+      </div>
     </div>
   </section>
 
@@ -4366,23 +4893,310 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   /* ================= unit 02 : 문제 분해와 모델링 (specific interactions) ================= */
   function initU22(){
 
-  /* ================= slide 1 : 클러터 정리 ================= */
-  var clutterItems = ['옷가지','책','게임기','전자 제품','쓰레기','잡동사니'];
-  var clutterField = document.getElementById('clutterField');
-  var clutterDone = 0;
-  clutterItems.forEach(function(t){
-    var el = document.createElement('div');
-    el.className = 'clutter-tag';
-    el.textContent = t;
-    el.addEventListener('click', function(){
-      if(el.classList.contains('done')) return;
-      el.classList.add('done');
-      clutterDone++;
-      document.getElementById('clutterProgress').textContent = clutterDone + ' / 6 정리 완료';
-      if(clutterDone === clutterItems.length){ document.getElementById('clutterMsg').style.display = 'flex'; }
+  /* ================= slide 1 : 지저분한 방 청소 — 손에 잡히는 대로 vs 종류별로 나누어 ================= */
+  (function(){
+    var svg = document.getElementById('rmScene');
+    if(!svg) return;
+    var NS = 'http://www.w3.org/2000/svg';
+    var $ = function(id){ return document.getElementById(id); };
+    var destLayer = $('rmDests'), itemLayer = $('rmItems'), trailLayer = $('rmTrails'), personG = $('rmPerson');
+    var stage = $('rm2Stage'), cmpEl = $('rm2Compare'), catsEl = $('rm2Cats'), hintEl = $('rm2Hint');
+    var stepsEl = $('rm2Steps'), tripsEl = $('rm2Trips'), nextBtn = $('rm2Next'), s1 = $('rm2S1'), s2 = $('rm2S2');
+    var BASE = 185, DS = .86, DROP_Y = 200, START = {x:480, y:262}, SPEED = 0.75, STEP = 40;
+    var ART = {
+      cloth:'<path class="rm-c5 rm-out" d="M-13,-24 L-4,-28 Q0,-21 4,-28 L13,-24 L28,-11 L19,-2 L15,-7 L15,24 L-15,24 L-15,-7 L-19,-2 L-28,-11 Z"/>',
+      book:'<rect class="rm-c1 rm-out" x="-24" y="6" width="48" height="12" rx="2"/><rect class="rm-c2 rm-out" x="-20" y="-7" width="42" height="12" rx="2" transform="rotate(-6)"/><rect class="rm-c3 rm-out" x="-22" y="-20" width="44" height="12" rx="2" transform="rotate(4)"/>',
+      game:'<path class="rm-ink" d="M-28,-6 Q-28,-17 -15,-17 L15,-17 Q28,-17 28,-6 L30,10 Q31,19 22,19 Q16,19 12,10 L-12,10 Q-16,19 -22,19 Q-31,19 -30,10 Z"/><rect class="rm-cs" x="-20" y="-6" width="12" height="4"/><rect class="rm-cs" x="-16" y="-10" width="4" height="12"/><circle class="rm-c4" cx="13" cy="-7" r="3.2"/><circle class="rm-c2" cx="20" cy="-1" r="3.2"/>',
+      elec:'<rect class="rm-ink" x="-22" y="-24" width="44" height="30" rx="3"/><rect class="rm-screen" x="-18" y="-20" width="36" height="22" rx="2"/><path class="rm-cs rm-out" d="M-28,6 L28,6 L33,14 L-33,14 Z"/>',
+      trash:'<path class="rm-cs rm-out" d="M-20,-10 L-8,-18 L4,-14 L14,-20 L20,-6 L16,10 L4,16 L-10,14 L-20,4 Z"/><path class="rm-out" d="M-8,-10 L0,0 L10,-6 M-6,6 L4,2" fill="none"/>',
+      toy:'<circle class="rm-c4 rm-out" cx="-9" cy="6" r="14"/><path class="rm-out" d="M-22,2 Q-9,12 4,2" fill="none"/><rect class="rm-c3 rm-out" x="4" y="-18" width="20" height="20" rx="3"/>'
+    };
+    var DESTS = [
+      {key:'cloth', name:'옷가지', place:'옷장', x:80, art:'<rect class="rm-wood" x="-54" y="-168" width="108" height="10" rx="3"/><rect class="rm-wood" x="-50" y="-158" width="100" height="152" rx="5"/><line class="rm-line" x1="0" y1="-152" x2="0" y2="-12"/><rect class="rm-wood" x="-11" y="-96" width="5" height="20" rx="2"/><rect class="rm-wood" x="6" y="-96" width="5" height="20" rx="2"/>'},
+      {key:'book', name:'책', place:'책장', x:240, art:'<rect class="rm-wood" x="-54" y="-150" width="108" height="150" rx="4"/><rect class="rm-wood" x="-48" y="-108" width="96" height="5"/><rect class="rm-wood" x="-48" y="-66" width="96" height="5"/><rect class="rm-wood" x="-48" y="-24" width="96" height="5"/><rect class="rm-c1" x="-42" y="-140" width="9" height="32"/><rect class="rm-c4" x="-31" y="-136" width="9" height="28"/>'},
+      {key:'game', name:'게임기', place:'TV 선반', x:400, art:'<rect class="rm-wood" x="-62" y="-44" width="124" height="44" rx="4"/><line class="rm-line" x1="0" y1="-38" x2="0" y2="-6"/><rect class="rm-wood" x="-9" y="-54" width="18" height="10"/><rect class="rm-ink" x="-52" y="-122" width="104" height="70" rx="6"/><rect class="rm-screen" x="-46" y="-116" width="92" height="58" rx="3"/>'},
+      {key:'elec', name:'전자 제품', place:'책상', x:560, art:'<rect class="rm-wood" x="-64" y="-82" width="128" height="11" rx="3"/><rect class="rm-wood" x="-58" y="-71" width="9" height="71"/><rect class="rm-wood" x="49" y="-71" width="9" height="71"/><rect class="rm-wood" x="8" y="-71" width="41" height="30"/><ellipse class="rm-c5" cx="-36" cy="-85" rx="12" ry="4"/><line class="rm-out" x1="-36" y1="-86" x2="-28" y2="-118"/><path class="rm-c3 rm-out" d="M-40,-114 L-16,-126 L-10,-110 Z"/>'},
+      {key:'trash', name:'쓰레기', place:'휴지통', x:720, art:'<path class="rm-c2 rm-out" d="M-26,-66 L26,-66 L20,0 L-20,0 Z" style="fill-opacity:.35"/><rect class="rm-c2 rm-out" x="-31" y="-74" width="62" height="10" rx="4"/><line class="rm-out" x1="-10" y1="-56" x2="-8" y2="-10"/><line class="rm-out" x1="10" y1="-56" x2="8" y2="-10"/>'},
+      {key:'toy', name:'잡동사니', place:'정리 상자', x:880, art:'<rect class="rm-wood" x="-42" y="-58" width="84" height="58" rx="3"/><rect class="rm-wood" x="-46" y="-68" width="92" height="14" rx="3"/><rect class="rm-cs rm-out" x="-15" y="-40" width="30" height="13" rx="2"/>'}
+    ];
+    /* 물건 18개 — 같은 종류가 방 곳곳에 흩어져 있다 */
+    var POS = [['cloth',451,284],['cloth',200,248],['cloth',344,284],['book',292,228],['book',777,228],['book',829,228],
+               ['game',156,284],['game',640,284],['game',64,284],['elec',104,268],['elec',679,228],['elec',536,284],
+               ['trash',874,268],['trash',497,268],['trash',737,284],['toy',591,284],['toy',251,268],['toy',388,268]];
+    var destBy = {};
+    var items = [], mode, pos, dist, trips, busy, raf = 0, r1 = null, curTrail = null;
+
+    function mk(tag, attrs, html){ var e = document.createElementNS(NS, tag); for(var a in attrs) e.setAttribute(a, attrs[a]); if(html) e.innerHTML = html; return e; }
+    function len(a, b){ return Math.hypot(a.x - b.x, a.y - b.y); }
+
+    DESTS.forEach(function(d){
+      var g = mk('g', {transform:'translate(' + d.x + ',' + BASE + ') scale(' + DS + ')'},
+        d.art + '<text class="rm-lbl" x="0" y="22">' + d.place + '</text>');
+      var cnt = mk('g', {'class':'rm-cnt', transform:'translate(46,-150)'}, '<circle r="15"/><text y="6">0</text>');
+      g.appendChild(cnt);
+      d.cnt = cnt; d.n = 0; destBy[d.key] = d;
+      destLayer.appendChild(g);
     });
-    clutterField.appendChild(el);
-  });
+    POS.forEach(function(p, i){
+      var it = {key:p[0], x:p[1], y:p[2]};
+      var g = mk('g', {'class':'rm-item2', tabindex:'0', role:'button', 'aria-label':destBy[p[0]].name,
+        transform:'translate(' + it.x + ',' + it.y + ') rotate(' + ((i * 37) % 30 - 15) + ') scale(.6)'},
+        '<circle class="rm-ring" r="38"/>' + ART[p[0]]);
+      g.addEventListener('click', function(){ pickOne(it); });
+      g.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); e.stopPropagation(); pickOne(it); } });
+      it.g = g; items.push(it); itemLayer.appendChild(g);
+    });
+    personG.innerHTML = '<rect class="body" x="-11" y="-30" width="22" height="30" rx="9"/><circle class="head" cx="0" cy="-40" r="10"/>' +
+      '<g class="carry" transform="translate(0,-64)"><circle r="12"/><text y="5">1</text></g>';
+    var carryTxt = personG.querySelector('.carry text');
+    ['touchstart','touchend'].forEach(function(t){ stage.addEventListener(t, function(e){ e.stopPropagation(); }, {passive:true}); });
+
+    DESTS.forEach(function(d){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'rm2-cat';
+      b.innerHTML = '<svg viewBox="-34 -34 68 68" aria-hidden="true">' + ART[d.key] + '</svg>' + d.name;
+      b.addEventListener('click', function(){ pickGroup(d, b); });
+      d.btn = b; catsEl.appendChild(b);
+    });
+
+    function setPerson(p, carrying){
+      personG.setAttribute('transform', 'translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')');
+      personG.classList.toggle('carrying', carrying > 0);
+      carryTxt.textContent = carrying;
+    }
+    function meter(){ stepsEl.textContent = Math.round(dist / STEP); tripsEl.textContent = trips; }
+
+    /* 경로(points)를 따라 걷기. stops[i] 지점에 도착하면 onStop(i) 호출 */
+    function walk(points, onStop, done){
+      busy = true;
+      stage.classList.add('rm2-locked');
+      curTrail = mk('polyline', {'class':'rm-trail ' + (mode === 1 ? 'r1' : 'r2'), points:points[0].x + ',' + points[0].y});
+      trailLayer.appendChild(curTrail);
+      var seg = 1, from = points[0], t0 = null, done_pts = [points[0]], carrying = 0;
+      function frame(ts){
+        if(t0 === null) t0 = ts;
+        var to = points[seg], L = len(from, to), dur = L / SPEED;
+        var k = Math.min(1, (ts - t0) / (dur || 1));
+        var p = {x:from.x + (to.x - from.x) * k, y:from.y + (to.y - from.y) * k};
+        curTrail.setAttribute('points', done_pts.concat([p]).map(function(q){ return q.x.toFixed(1) + ',' + q.y.toFixed(1); }).join(' '));
+        dist += 0; setPerson(p, carrying);
+        if(k >= 1){
+          dist += L; meter();
+          done_pts.push(to);
+          carrying = onStop(seg, carrying);
+          from = to; seg++; t0 = ts;
+          if(seg >= points.length){ busy = false; stage.classList.remove('rm2-locked'); setPerson(to, 0); done(); return; }
+        }
+        raf = requestAnimationFrame(frame);
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    function dropAt(d, n){ d.n += n; d.cnt.querySelector('text').textContent = d.n; d.cnt.classList.add('on'); }
+
+    /* ① 손에 잡히는 대로: 하나 집어서 그 자리에 갖다 두기 */
+    function pickOne(it, after){
+      if(mode !== 1 || busy || it.done) return;
+      it.done = true;
+      var d = destBy[it.key], target = {x:d.x, y:DROP_Y};
+      walk([pos, {x:it.x, y:it.y}, target], function(i, c){
+        if(i === 1){ it.g.classList.add('gone'); return c + 1; }
+        dropAt(d, c); return 0;
+      }, function(){
+        pos = target; trips++; meter();
+        if(items.every(function(x){ return x.done; })){
+          s1.className = 'rm2-step done';
+          hintEl.textContent = '';
+          nextBtn.style.display = '';
+        }
+        if(after) after();
+      });
+    }
+
+    /* ② 종류별로 나누어: 같은 종류를 모두 모은 뒤 한 번에 갖다 두기 */
+    function pickGroup(d, btn){
+      if(mode !== 2 || busy || btn.disabled) return;
+      btn.disabled = true;
+      var left = items.filter(function(x){ return x.key === d.key && !x.done; });
+      var pts = [pos], cur = pos, order = [];
+      while(left.length){
+        left.sort(function(a, b){ return len(cur, a) - len(cur, b); });
+        var n = left.shift(); order.push(n); cur = {x:n.x, y:n.y}; pts.push(cur);
+      }
+      var target = {x:d.x, y:DROP_Y};
+      pts.push(target);
+      walk(pts, function(i, c){
+        if(i <= order.length){ order[i - 1].done = true; order[i - 1].g.classList.add('gone'); return c + 1; }
+        dropAt(d, c); return 0;
+      }, function(){
+        pos = target; trips++; meter();
+        if(items.every(function(x){ return x.done; })) showCompare();
+      });
+    }
+
+    function snapshot(){
+      return '<svg viewBox="0 0 960 300" aria-hidden="true">' + $('rmBg').outerHTML.replace('id="rmBg"', '').replace('id="rmDests"', '') + trailLayer.innerHTML + '</svg>';
+    }
+    function col(cls, title, s, steps, tripN, max){
+      return '<div class="rm2-col ' + cls + '"><h4>' + title + '</h4>' + s +
+        '<div class="rm2-num"><span>걸음 ' + steps + '</span><span>왕복 ' + tripN + '번</span></div>' +
+        '<div class="rm2-track"><div class="rm2-fill" data-w="' + (steps / max * 100).toFixed(1) + '"></div></div></div>';
+    }
+    function showCompare(){
+      s2.className = 'rm2-step done';
+      catsEl.style.display = 'none'; hintEl.textContent = '';
+      var r2 = {svg:snapshot(), steps:Math.round(dist / STEP), trips:trips};
+      var max = Math.max(r1.steps, r2.steps);
+      cmpEl.innerHTML = col('a', '① 손에 잡히는 대로', r1.svg, r1.steps, r1.trips, max) + col('b', '② 종류별로 나누어', r2.svg, r2.steps, r2.trips, max);
+      cmpEl.classList.add('on');
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        Array.prototype.forEach.call(cmpEl.querySelectorAll('.rm2-fill'), function(f){ f.style.width = f.dataset.w + '%'; });
+      }); });
+    }
+
+    function resetScene(){
+      cancelAnimationFrame(raf); busy = false; stage.classList.remove('rm2-locked');
+      items.forEach(function(it){ it.done = false; it.g.classList.remove('gone'); });
+      DESTS.forEach(function(d){ d.n = 0; d.cnt.classList.remove('on'); d.btn.disabled = false; });
+      trailLayer.textContent = '';
+      pos = START; dist = 0; trips = 0; meter(); setPerson(START, 0);
+    }
+    function startRound1(){
+      resetScene(); mode = 1; r1 = null;
+      cmpEl.classList.remove('on'); cmpEl.innerHTML = '';
+      s1.className = 'rm2-step on'; s2.className = 'rm2-step';
+      catsEl.style.display = 'none'; nextBtn.style.display = 'none';
+      hintEl.textContent = '아무 물건이나 눌러 하나씩 치우세요.';
+    }
+    /* ② 버튼: 1번 방법을 다 끝내지 않았으면 남은 물건을 빠르게 마저 치운 뒤 시작 */
+    function fastFinish(cb){
+      var old = SPEED, rest = items.filter(function(x){ return !x.done; });
+      SPEED = 3; hintEl.textContent = '남은 물건을 빠르게 마저 치우는 중…';
+      (function nxt(){
+        if(!rest.length){ SPEED = old; cb(); return; }
+        pickOne(rest.shift(), nxt);
+      })();
+    }
+    s1.addEventListener('click', function(){ if(mode === 2 && !busy) startRound1(); });
+    s2.addEventListener('click', function(){
+      if(mode === 2 || busy) return;
+      if(items.every(function(x){ return x.done; })) goRound2();
+      else fastFinish(goRound2);
+    });
+    nextBtn.addEventListener('click', goRound2);
+    function goRound2(){
+      r1 = {svg:snapshot(), steps:Math.round(dist / STEP), trips:trips};
+      resetScene(); mode = 2;
+      nextBtn.style.display = 'none';
+      s2.className = 'rm2-step on';
+      catsEl.style.display = '';
+      hintEl.textContent = '종류를 골라 한 번에 모아 치우세요.';
+    }
+    $('rmReset').addEventListener('click', startRound1);
+    startRound1();
+  })();
+
+  /* ================= 분할 정복 — 생활 속 예시 ================= */
+  (function(){
+    var tabsEl = document.getElementById('dlTabs');
+    var treeEl = document.getElementById('dlTree');
+    if(!tabsEl || !treeEl) return;
+    var EX = [
+      {tab:'📊 조별 발표 준비', root:'10분짜리 "플라스틱 줄이기" 조별 발표 만들기',
+       sub:[['부분 1','지금 상황 (얼마나 버려질까?)'],['부분 2','왜 늘어났을까 (원인)'],['부분 3','다른 나라·학교의 해결 사례'],['부분 4','우리 반이 할 수 있는 일']],
+       done:[['민서','자료 찾고 슬라이드 2장'],['도윤','원인 정리, 슬라이드 2장'],['하은','사례 2개 조사, 슬라이드 2장'],['준호','실천 방법, 슬라이드 2장']],
+       final:'4명의 슬라이드를 순서대로 합치고 연결 문장을 다듬어 발표 1편 완성',
+       desc:['발표 전체를 한 번에 만들기는 막막하니, 내용별로 4부분으로 나눠요.','각자 맡은 한 부분만 조사하고 슬라이드를 만들어요. 작은 문제라 금방 끝나요.','완성된 부분들을 순서대로 이어 붙여 하나의 발표로 만들어요.']},
+      {tab:'📚 시험 공부', root:'정보 시험 범위 전체(3개 단원) 공부하기',
+       sub:[['단원 1','문제 분해와 모델링'],['단원 2','알고리즘 설계'],['단원 3','알고리즘 성능 분석'],['오답','지난 퀴즈에서 틀린 문제']],
+       done:[['월·화','개념 정리 + 예제 풀기'],['수·목','순서도·코드 따라 쓰기'],['금','빅 오 표기 연습 문제'],['토','틀린 문제 다시 풀기']],
+       final:'단원별 정리를 한 장 요약 노트로 합치고, 전체 범위 모의 문제로 점검',
+       desc:['"전 범위 공부"라는 큰 일을 단원별, 오답처럼 작은 덩어리로 나눠요.','하루에 한 덩어리씩만 끝내요. 범위가 작아서 집중하기 쉬워요.','나눠서 공부한 내용을 요약 노트 한 장으로 합치고, 전체를 다시 확인해요.']},
+      {tab:'🎪 학급 축제 부스', root:'학교 축제에서 우리 반 간식 부스 운영하기',
+       sub:[['메뉴','무엇을 팔지, 재료 목록'],['홍보','포스터와 SNS 안내'],['꾸미기','부스 장식과 메뉴판'],['운영','시간대별 당번과 계산']],
+       done:[['메뉴팀','재료 구입 계획 완성'],['홍보팀','포스터 3장 제작'],['꾸미기팀','장식·메뉴판 완성'],['운영팀','당번표·거스름돈 준비']],
+       final:'축제 당일, 네 팀의 결과물이 합쳐져 하나의 부스로 운영',
+       desc:['부스 운영이라는 큰 일을 성격이 다른 4가지 일로 나눠요.','팀마다 자기 일만 책임지고 끝내요. 서로 기다리지 않고 동시에 할 수 있어요.','각 팀의 결과를 모아 축제 날 하나의 부스로 완성해요.']}
+    ];
+    var STAGES = ['분할 (divide)', '정복 (conquer)', '결합 (combine)'];
+    var cur = 0, stage = 1;
+    var dlNum = document.getElementById('dlNum'), dlTitle = document.getElementById('dlTitle'), dlDesc = document.getElementById('dlDesc');
+    var prev = document.getElementById('dlPrev'), next = document.getElementById('dlNext');
+    function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+    function render(){
+      var e = EX[cur];
+      treeEl.innerHTML =
+        '<div class="dl-root">' + esc(e.root) + '</div><div class="dl-arrow">▼ 나누기</div>' +
+        '<div class="dl-row">' + e.sub.map(function(s){ return '<div class="dl-card dl-sub' + (stage < 1 ? ' dl-hide' : '') + '"><small>' + esc(s[0]) + '</small>' + esc(s[1]) + '</div>'; }).join('') + '</div>' +
+        '<div class="dl-arrow' + (stage < 2 ? ' dl-hide' : '') + '">▼ 하나씩 해결</div>' +
+        '<div class="dl-row">' + e.done.map(function(s){ return '<div class="dl-card dl-done' + (stage < 2 ? ' dl-hide' : '') + '"><small>' + esc(s[0]) + '</small>✓ ' + esc(s[1]) + '</div>'; }).join('') + '</div>' +
+        '<div class="dl-arrow' + (stage < 3 ? ' dl-hide' : '') + '">▼ 합치기</div>' +
+        '<div class="dl-final' + (stage < 3 ? ' dl-hide' : '') + '">' + esc(e.final) + '</div>';
+      dlNum.textContent = stage;
+      dlTitle.textContent = STAGES[stage - 1];
+      dlDesc.textContent = e.desc[stage - 1];
+      prev.disabled = stage <= 1;
+      next.disabled = stage >= 3;
+      Array.prototype.forEach.call(tabsEl.children, function(b, i){ b.classList.toggle('active', i === cur); });
+    }
+    EX.forEach(function(e, i){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'dl-tab'; b.textContent = e.tab;
+      b.addEventListener('click', function(){ cur = i; stage = 1; render(); });
+      tabsEl.appendChild(b);
+    });
+    prev.addEventListener('click', function(){ if(stage > 1){ stage--; render(); } });
+    next.addEventListener('click', function(){ if(stage < 3){ stage++; render(); } });
+    render();
+  })();
+
+  /* ================= 클래스 · 객체 · 속성 · 메서드 ================= */
+  (function(){
+    var objsEl = document.getElementById('ooObjs');
+    var termsEl = document.getElementById('ooTerms');
+    if(!objsEl || !termsEl) return;
+    var INIT = [{v:'student1', name:'홍길동', age:20, grade:3.5, stamina:50}, {v:'student2', name:'김영희', age:19, grade:3.8, stamina:70}];
+    var objs;
+    function fmt(k, x){ return k === 'grade' ? x.toFixed(1) : String(x); }
+    function render(changed){
+      objsEl.innerHTML = '';
+      objs.forEach(function(o, i){
+        var box = document.createElement('div');
+        box.className = 'oo-obj'; box.dataset.role = 'object';
+        var rows = ['name','age','grade','stamina'].map(function(k){
+          var cls = changed && changed.i === i && changed[k] ? ' class="' + changed[k] + '"' : '';
+          var val = k === 'name' ? '"' + o.name + '"' : fmt(k, o[k]);
+          return '<dt>' + k + '</dt><dd' + cls + '>' + val + '</dd>';
+        }).join('');
+        box.innerHTML = '<div class="oo-oname"><span class="oo-tag">객체</span>' + o.v + '</div>' +
+          '<dl class="oo-vals" data-role="attr" style="margin:0;">' + rows + '</dl>' +
+          '<div class="oo-btns" data-role="method"><button class="sim-btn" type="button" data-m="study">.study(0.5)</button><button class="sim-btn" type="button" data-m="exercise">.exercise(20)</button></div>';
+        box.querySelector('[data-m="study"]').addEventListener('click', function(){
+          o.grade += 0.5; o.stamina -= 10;               /* grade += d, stamina -= 10 */
+          render({i:i, grade:'up', stamina:'down'});
+        });
+        box.querySelector('[data-m="exercise"]').addEventListener('click', function(){
+          o.stamina += 20; o.grade -= 0.1;               /* stamina += e, grade -= 0.1 */
+          render({i:i, grade:'down', stamina:'up'});
+        });
+        objsEl.appendChild(box);
+      });
+      applyHL();
+    }
+    var role = null;
+    function applyHL(){
+      var root = termsEl.parentElement;
+      Array.prototype.forEach.call(root.querySelectorAll('[data-role]'), function(el){
+        if(el.classList.contains('oo-term')) el.classList.toggle('on', el.dataset.role === role);
+        else el.classList.toggle('hl', el.dataset.role === role);
+      });
+    }
+    Array.prototype.forEach.call(termsEl.querySelectorAll('.oo-term'), function(t){
+      t.addEventListener('click', function(){ role = role === t.dataset.role ? null : t.dataset.role; applyHL(); });
+    });
+    function reset(){ objs = INIT.map(function(o){ return Object.assign({}, o); }); render(null); }
+    document.getElementById('ooReset').addEventListener('click', reset);
+    reset();
+  })();
 
   /* ================= slide 5 : 불필요한 정보 골라내기 ================= */
   var sentenceData = [
@@ -5048,39 +5862,387 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
 
   /* ================= unit 04 : 알고리즘 성능 분석 (specific interactions) ================= */
   function initU24(){
+    /* ===== 시간 복잡도 예시 코드 슬라이드 ===== */
+    (function(){
+      var tabs = document.querySelectorAll('.ex-tab');
+      var panels = document.querySelectorAll('.ex-panel');
+      if(!tabs.length) return;
+      function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+      var KW = {def:1, 'for':1, 'in':1, 'if':1, 'return':1, range:1, print:1, len:1};
+      function hl(line){
+        var ci = line.indexOf('#');
+        var code = ci >= 0 ? line.slice(0, ci) : line;
+        var cm = ci >= 0 ? line.slice(ci) : '';
+        var out = code.replace(/("[^"]*")|(\b\d+\b)|(\b[A-Za-z_]\w*\b)|([\s\S])/g, function(m, s, n, w, o){
+          if(s) return '<span class="str">' + esc(s) + '</span>';
+          if(n) return '<span class="num">' + n + '</span>';
+          if(w) return KW[w] ? '<span class="kw">' + w + '</span>' : w;
+          return esc(o);
+        });
+        if(cm) out += '<span class="cm">' + esc(cm) + '</span>';
+        return out;
+      }
+      function pad(s, n){ while(s.length < n) s += ' '; return s; }
+      function draw(el, lines, active, skip){
+        el.innerHTML = lines.map(function(l, i){
+          var cls = 'cline' + (active.indexOf(i) >= 0 ? ' active' : '') + (skip.indexOf(i) >= 0 ? ' skip' : '');
+          return '<span class="' + cls + '"><span class="ln">' + (i + 1) + '</span>' + hl(l) + '</span>';
+        }).join('');
+      }
+      function selectChip(group, btn){
+        Array.prototype.forEach.call(group, function(b){ b.classList.toggle('selected', b === btn); });
+      }
 
-  /* ================= slide 1 : 버튼 없는 엘리베이터 ================= */
+      /* 탭 전환 */
+      tabs.forEach(function(t){
+        t.addEventListener('click', function(){
+          tabs.forEach(function(x){ x.classList.toggle('active', x === t); });
+          panels.forEach(function(p){ p.classList.toggle('active', p.dataset.ex === t.dataset.ex); });
+        });
+      });
+
+      /* ① 기본 단위 작업 */
+      var P1 = [{a:7, b:3}, {a:1, b:2}];
+      var p1 = 0;
+      var ex1Code = document.getElementById('ex1Code');
+      var ex1Result = document.getElementById('ex1Result');
+      var chips1 = document.querySelectorAll('.ex-panel[data-ex="0"] .chip');
+      function render1(){
+        var p = P1[p1];
+        var total = p.a + p.b;
+        var codes = ['a = ' + p.a, 'b = ' + p.b, 'total = a + b', 'if total > 5:', '    print("큼")'];
+        var cmts = ['① 변숫값 저장', '② 변숫값 저장', '③ 산술 연산 + 저장', '④ 비교', '⑤ 조건이 참일 때만 출력'];
+        var lines = codes.map(function(c, i){ return pad(c, 18) + '# ' + cmts[i]; });
+        var ran = total > 5;
+        var act = ran ? [0,1,2,3,4] : [0,1,2,3];
+        draw(ex1Code, lines, act, ran ? [] : [4]);
+        ex1Result.innerHTML = '<span class="big">' + act.length + '개</span>실행된 기본 단위 작업' +
+          (ran ? '' : '<br>total이 ' + total + '이라 ④가 거짓이 되어 ⑤는 건너뛰었어요.');
+      }
+      chips1.forEach(function(b){
+        b.addEventListener('click', function(){ p1 = +b.dataset.p; selectChip(chips1, b); render1(); });
+      });
+      render1();
+
+      /* ② 반복과 재귀 */
+      var TYPES = {
+        one: {
+          lines: ['def count_one(n):', '    cnt = 0', '    for i in range(n):      # n번 반복', '        cnt += 1            # 반복할 때마다 1번', '    return cnt'],
+          act: [2, 3], label: 'cnt += 1이 실행된 횟수',
+          fn: function(n){ var c = 0; for(var i = 0; i < n; i++) c++; return c; },
+          why: 'for문이 n번 돌고 한 번 돌 때마다 작업이 1번이라 <b>총 n번</b>이에요. 반복 횟수에 비례해서 늘어나요 → <b>O(n)</b>'
+        },
+        two: {
+          lines: ['def count_two(n):', '    cnt = 0', '    for i in range(n):          # 바깥 반복: n번', '        for j in range(n):      # 안쪽 반복: n번씩', '            cnt += 1            # 총 n × n번', '    return cnt'],
+          act: [2, 3, 4], label: 'cnt += 1이 실행된 횟수',
+          fn: function(n){ var c = 0; for(var i = 0; i < n; i++) for(var j = 0; j < n; j++) c++; return c; },
+          why: '바깥 n번 × 안쪽 n번이라 <b>총 n × n번</b>이에요. n이 2배가 되면 실행 횟수는 4배가 돼요 → <b>O(n²)</b>'
+        },
+        rec: {
+          lines: ['def fact(n):', '    if n <= 1:                  # 종료 조건', '        return 1', '    return n * fact(n - 1)      # 자기 자신 호출'],
+          act: [3], label: 'fact 함수가 호출된 횟수',
+          fn: function(n){ var calls = 0; (function f(k){ calls++; if(k <= 1) return 1; return k * f(k - 1); })(n); return calls; },
+          why: 'fact(n)은 fact(n-1)을 부르고, n이 1이 될 때까지 이어져요. 호출은 <b>총 n번</b>이에요 → <b>O(n)</b>'
+        }
+      };
+      var tKey = 'one', nVal = 5;
+      var ex2Code = document.getElementById('ex2Code');
+      var ex2Result = document.getElementById('ex2Result');
+      var ex2Explain = document.getElementById('ex2Explain');
+      var ex2Cmp = document.getElementById('ex2Cmp');
+      var chipsT = document.querySelectorAll('.ex-panel[data-ex="1"] .chip[data-t]');
+      var chipsN = document.querySelectorAll('.ex-panel[data-ex="1"] .chip[data-n]');
+      function render2(){
+        var t = TYPES[tKey];
+        draw(ex2Code, t.lines, t.act, []);
+        ex2Result.innerHTML = '<span class="big">' + t.fn(nVal) + '번</span>n = ' + nVal + '일 때 ' + t.label;
+        ex2Explain.innerHTML = t.why;
+        ex2Cmp.innerHTML = 'n = ' + nVal + '일 때 비교: 1차원 반복 <b>' + TYPES.one.fn(nVal) + '번</b> · 2차원 반복 <b>' + TYPES.two.fn(nVal) + '번</b> · 재귀 호출 <b>' + TYPES.rec.fn(nVal) + '번</b>';
+      }
+      chipsT.forEach(function(b){ b.addEventListener('click', function(){ tKey = b.dataset.t; selectChip(chipsT, b); render2(); }); });
+      chipsN.forEach(function(b){ b.addEventListener('click', function(){ nVal = +b.dataset.n; selectChip(chipsN, b); render2(); }); });
+      render2();
+
+      /* ③ 입력 데이터의 특성 (선형 탐색) */
+      var DATA = [7, 2, 9, 4, 1];
+      var target = 7;
+      var ex3Code = document.getElementById('ex3Code');
+      var ex3Cells = document.getElementById('ex3Cells');
+      var ex3Result = document.getElementById('ex3Result');
+      var chipsG = document.querySelectorAll('.ex-panel[data-ex="2"] .chip');
+      function find(data, tg){
+        var c = 0;
+        for(var i = 0; i < data.length; i++){ c++; if(data[i] === tg) return {idx:i, cmp:c}; }
+        return {idx:-1, cmp:c};
+      }
+      function render3(){
+        var lines = ['def find(data, target):', '    for i in range(len(data)):', '        if data[i] == target:   # 비교 1번', '            return i            # 찾으면 바로 끝', '    return -1                   # 끝까지 없으면 -1', '', 'data = [7, 2, 9, 4, 1]', 'find(data, ' + target + ')'];
+        draw(ex3Code, lines, [2, 3], []);
+        var r = find(DATA, target);
+        ex3Cells.innerHTML = '';
+        DATA.forEach(function(v, i){
+          var c = document.createElement('div');
+          c.className = 'ex-cell' + (i < r.cmp ? (i === r.idx ? ' hit' : ' cmp') : '');
+          c.textContent = v;
+          ex3Cells.appendChild(c);
+        });
+        ex3Result.innerHTML = '<span class="big">' + r.cmp + '번</span>비교' + (r.idx >= 0 ? ' · ' + r.idx + '번 칸에서 찾았어요' : ' · 끝까지 확인했지만 없어요');
+      }
+      chipsG.forEach(function(b){ b.addEventListener('click', function(){ target = +b.dataset.g; selectChip(chipsG, b); render3(); }); });
+      render3();
+    })();
+
+    /* ===== 시간 복잡도 그래프 슬라이드 ===== */
+    (function(){
+      var svg = document.getElementById('gcSvg');
+      var range = document.getElementById('gcRange');
+      if(!svg || !range) return;
+      var legendEl = document.getElementById('gcLegend');
+      var nLabel = document.getElementById('gcN');
+      var noteEl = document.getElementById('gcNote');
+      var NMAX = 50;
+      var W = 640, H = 390, L = 54, R = 16, T = 22, B = 40;
+      var CURVES = [
+        {k:'c1', name:'O(1)',       f:function(n){ return 1; }},
+        {k:'c2', name:'O(log n)',   f:function(n){ return Math.log2(n); }},
+        {k:'c3', name:'O(n)',       f:function(n){ return n; }},
+        {k:'c4', name:'O(n log n)', f:function(n){ return n * Math.log2(n); }},
+        {k:'c5', name:'O(n²)',      f:function(n){ return n * n; }}
+      ];
+      var visible = {c1:true, c2:true, c3:true, c4:true, c5:true};
+      var NS = 'http://www.w3.org/2000/svg';
+      function el(tag, attrs, text){
+        var e = document.createElementNS(NS, tag);
+        for(var a in attrs) e.setAttribute(a, attrs[a]);
+        if(text != null) e.textContent = text;
+        return e;
+      }
+      function fmt(v){
+        if(Math.abs(v - Math.round(v)) < 1e-9) return Math.round(v).toLocaleString('en-US');
+        return '약 ' + (v < 10 ? v.toFixed(1) : Math.round(v).toLocaleString('en-US'));
+      }
+      function niceStep(max){
+        var raw = max / 5;
+        var mag = Math.pow(10, Math.floor(Math.log10(raw)));
+        var r = raw / mag;
+        return (r <= 1 ? 1 : r <= 2 ? 2 : r <= 5 ? 5 : 10) * mag;
+      }
+      function draw(){
+        var n = +range.value;
+        nLabel.textContent = n;
+        var vis = CURVES.filter(function(c){ return visible[c.k]; });
+        var maxY = Math.max.apply(null, vis.map(function(c){ return c.f(NMAX); }));
+        var step = niceStep(maxY);
+        var yTop = Math.ceil(maxY / step) * step;
+        function X(v){ return L + (v - 1) / (NMAX - 1) * (W - L - R); }
+        function Y(v){ return H - B - v / yTop * (H - B - T); }
+        svg.textContent = '';
+        /* y 눈금 + 격자 */
+        for(var t = 0; t <= yTop + 1e-9; t += step){
+          svg.appendChild(el('line', {x1:L, x2:W - R, y1:Y(t), y2:Y(t), 'class':'gc-grid'}));
+          svg.appendChild(el('text', {x:L - 7, y:Y(t) + 4, 'text-anchor':'end', 'class':'gc-tick'}, t.toLocaleString('en-US')));
+        }
+        /* x 눈금 */
+        [1, 10, 20, 30, 40, 50].forEach(function(v){
+          svg.appendChild(el('line', {x1:X(v), x2:X(v), y1:H - B, y2:H - B + 5, 'class':'gc-axis'}));
+          svg.appendChild(el('text', {x:X(v), y:H - B + 19, 'text-anchor':'middle', 'class':'gc-tick'}, v));
+        });
+        svg.appendChild(el('line', {x1:L, x2:W - R, y1:H - B, y2:H - B, 'class':'gc-axis'}));
+        svg.appendChild(el('line', {x1:L, x2:L, y1:T, y2:H - B, 'class':'gc-axis'}));
+        svg.appendChild(el('text', {x:L, y:12, 'class':'gc-axname'}, '실행 횟수'));
+        svg.appendChild(el('text', {x:W - R, y:H - 6, 'text-anchor':'end', 'class':'gc-axname'}, '입력 개수 n'));
+        /* 곡선 */
+        vis.forEach(function(c){
+          var pts = [];
+          for(var i = 1; i <= NMAX; i++) pts.push(X(i).toFixed(2) + ',' + Y(c.f(i)).toFixed(2));
+          svg.appendChild(el('polyline', {points:pts.join(' '), 'class':'gc-line gc-' + c.k}));
+        });
+        /* 현재 n 표시 */
+        svg.appendChild(el('line', {x1:X(n), x2:X(n), y1:T, y2:H - B, 'class':'gc-marker'}));
+        vis.forEach(function(c){
+          svg.appendChild(el('circle', {cx:X(n), cy:Y(c.f(n)), r:5, 'class':'gc-dot gc-' + c.k}));
+        });
+        /* 범례 + 값 */
+        legendEl.textContent = '';
+        CURVES.forEach(function(c){
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'gc-row' + (visible[c.k] ? '' : ' off');
+          b.setAttribute('aria-pressed', visible[c.k] ? 'true' : 'false');
+          var sw = document.createElement('span'); sw.className = 'gc-sw'; sw.style.background = 'var(--' + ({c1:'teal', c2:'violet', c3:'accent', c4:'amber', c5:'danger'})[c.k] + ')';
+          var nm = document.createElement('span'); nm.className = 'gc-name'; nm.textContent = c.name;
+          var vl = document.createElement('span'); vl.className = 'gc-val'; vl.textContent = fmt(c.f(n)) + '번';
+          b.appendChild(sw); b.appendChild(nm); b.appendChild(vl);
+          b.addEventListener('click', function(){
+            var count = CURVES.filter(function(x){ return visible[x.k]; }).length;
+            if(visible[c.k] && count === 1) return;
+            visible[c.k] = !visible[c.k];
+            draw();
+          });
+          legendEl.appendChild(b);
+        });
+        /* 해설 */
+        if(n >= 2){
+          var ratio = (n * n) / (n * Math.log2(n));
+          noteEl.textContent = 'n = ' + n + '일 때 O(n²)의 실행 횟수는 O(n log n)의 약 ' + ratio.toFixed(1) + '배예요.';
+        } else {
+          noteEl.textContent = 'n을 오른쪽으로 움직여 보세요. n이 커질수록 선들의 간격이 벌어져요.';
+        }
+      }
+      range.addEventListener('input', draw);
+      draw();
+    })();
+
+
+  /* ================= slide 1 : 버튼 없는 엘리베이터 (애니메이션) ================= */
   (function(){
     var elevators = [{id:'A', floor:1}, {id:'B', floor:5}, {id:'C', floor:9}];
-    var elevRow = document.getElementById('elevRow');
     var targets = [3, 6, 10];
+    var FH = 26, FLOORS = 10;
+    var bld = document.getElementById('evBuilding');
     var targetRow = document.getElementById('elevTargets');
-    var resultMsg = document.getElementById('elevMsg');
+    var calcEl = document.getElementById('evCalc');
+    var msg = document.getElementById('elevMsg');
+    if(!bld || !targetRow) return;
+    var cars = {}, dists = {}, rows = {}, heads = {};
+    var run = 0;
+
+    function bottomOf(f){ return (f - 1) * FH; }
+    /* 건물 만들기 */
+    var colLabels = document.createElement('div');
+    colLabels.className = 'ev-col';
+    for(var f = 1; f <= FLOORS; f++){
+      var fl = document.createElement('div');
+      fl.className = 'ev-flabel';
+      fl.style.bottom = bottomOf(f) + 'px';
+      fl.textContent = f + '층';
+      colLabels.appendChild(fl);
+    }
+    bld.appendChild(colLabels);
     elevators.forEach(function(e){
-      var card = document.createElement('div');
-      card.className = 'elev-card';
-      card.id = 'elevCard_' + e.id;
-      card.innerHTML = '<div class="ec-id">' + e.id + '</div><div class="ec-floor">현재 ' + e.floor + '층</div><div class="ec-dist" id="elevDist_' + e.id + '"></div>';
-      elevRow.appendChild(card);
+      var col = document.createElement('div');
+      col.className = 'ev-col shaft';
+      var head = document.createElement('div');
+      head.className = 'ev-head';
+      head.innerHTML = '<b>' + e.id + '</b><span>현재 ' + e.floor + '층</span>';
+      heads[e.id] = head.querySelector('span');
+      col.appendChild(head);
+      var dist = document.createElement('div');
+      dist.className = 'ev-dist';
+      dist.innerHTML = '<span></span>';
+      col.appendChild(dist);
+      var car = document.createElement('div');
+      car.className = 'ev-car';
+      car.style.bottom = bottomOf(e.floor) + 'px';
+      car.innerHTML = '<div class="in"></div><div class="dl"></div><div class="dr"></div>';
+      col.appendChild(car);
+      cars[e.id] = car; dists[e.id] = dist;
+      bld.appendChild(col);
     });
+    var waitCol = document.createElement('div');
+    waitCol.className = 'ev-col';
+    var tline = document.createElement('div');
+    tline.className = 'ev-tline';
+    bld.appendChild(tline);
+    var pax = document.createElement('div');
+    pax.className = 'ev-pax';
+    pax.innerHTML = '<i></i><span>승객</span>';
+    waitCol.appendChild(pax);
+    bld.appendChild(waitCol);
+    /* tline 은 건물 전체 기준 위치 → 건물 padding-top(38px) 고려 */
+    function placeTline(t){ tline.style.top = (38 + (FLOORS - t) * FH + FH / 2) + 'px'; }
+
+    /* 계산 패널 */
+    elevators.forEach(function(e){
+      var r = document.createElement('div');
+      r.className = 'ev-row';
+      r.innerHTML = '<b>' + e.id + '</b><span>현재 ' + e.floor + '층</span><span class="calc">거리: 계산 전</span>';
+      rows[e.id] = r;
+      calcEl.appendChild(r);
+    });
+
+    function wait(ms, my){
+      return new Promise(function(res){ setTimeout(function(){ res(my === run); }, ms); });
+    }
+    function resetVisual(){
+      var moved = false;
+      elevators.forEach(function(e){
+        var car = cars[e.id];
+        if(car.style.bottom !== bottomOf(e.floor) + 'px') moved = true;
+        car.style.bottom = bottomOf(e.floor) + 'px';
+        car.className = 'ev-car';
+        dists[e.id].className = 'ev-dist';
+        heads[e.id].textContent = '현재 ' + e.floor + '층';
+        rows[e.id].className = 'ev-row';
+        rows[e.id].querySelector('.calc').textContent = '거리: 계산 전';
+      });
+      pax.className = 'ev-pax';
+      tline.className = 'ev-tline';
+      return moved;
+    }
+
+    async function play(t, btn){
+      var my = ++run;
+      Array.prototype.forEach.call(targetRow.children, function(b){ b.classList.toggle('active', b === btn); });
+      var moved = resetVisual();
+      if(moved && !(await wait(1200, my))) return;
+      /* 1) 승객이 목적층을 선택 */
+      pax.style.bottom = bottomOf(t) + 'px';
+      pax.className = 'ev-pax on';
+      placeTline(t);
+      tline.className = 'ev-tline on';
+      msg.textContent = '🧍 승객이 ' + t + '층을 선택했어요. 컴퓨터가 엘리베이터마다 거리를 계산해요.';
+      if(!(await wait(800, my))) return;
+      /* 2) 엘리베이터별 거리 계산 */
+      var best = null, bestDist = Infinity, ds = {};
+      for(var i = 0; i < elevators.length; i++){
+        var e = elevators[i];
+        var d = Math.abs(e.floor - t);
+        ds[e.id] = d;
+        cars[e.id].classList.add('check');
+        rows[e.id].classList.add('now');
+        rows[e.id].querySelector('.calc').textContent = '|' + e.floor + ' − ' + t + '| = ' + d + '층 차이';
+        var dl = dists[e.id];
+        var lo = Math.min(e.floor, t), hi = Math.max(e.floor, t);
+        dl.style.bottom = (bottomOf(lo) + FH / 2) + 'px';
+        dl.style.height = ((hi - lo) * FH) + 'px';
+        dl.querySelector('span').textContent = d + '층';
+        dl.classList.add('on');
+        if(!(await wait(900, my))) return;
+        cars[e.id].classList.remove('check');
+        rows[e.id].classList.remove('now');
+        rows[e.id].classList.add('done');
+        if(d < bestDist){ bestDist = d; best = e; }
+      }
+      /* 3) 가장 가까운 엘리베이터 결정 */
+      var ties = elevators.filter(function(x){ return x !== best && ds[x.id] === bestDist; });
+      elevators.forEach(function(x){
+        if(x === best){ cars[x.id].classList.add('win'); rows[x.id].classList.add('winner'); }
+        else { cars[x.id].classList.add('dim'); dists[x.id].classList.remove('on'); }
+      });
+      msg.textContent = '✅ ' + best.id + ' 엘리베이터가 ' + bestDist + '층 차이로 가장 가까워요.' +
+        (ties.length ? ' (' + ties.map(function(x){ return x.id; }).join('·') + '도 같은 거리라서, 먼저 확인한 ' + best.id + '를 배정해요.)' : '');
+      if(!(await wait(1000, my))) return;
+      /* 4) 배정된 엘리베이터가 이동 */
+      dists[best.id].classList.remove('on');
+      cars[best.id].style.bottom = bottomOf(t) + 'px';
+      if(!(await wait(300 + 1100 + 150 * bestDist, my))) return;
+      heads[best.id].textContent = '현재 ' + t + '층';
+      cars[best.id].classList.add('open');
+      if(!(await wait(650, my))) return;
+      pax.classList.remove('on');
+      cars[best.id].classList.add('occupied');
+      if(!(await wait(500, my))) return;
+      cars[best.id].classList.remove('open');
+      msg.textContent = '💡 ' + t + '층 승객에게는 ' + best.id + ' 엘리베이터(출발 ' + best.floor + '층)가 배정돼요 — 여러 엘리베이터의 거리를 계산해 가장 빠른 것을 고르는 것도 알고리즘! 이 알고리즘이 얼마나 효율적인지 평가하는 방법을 오늘 배워보자.';
+    }
+
     targets.forEach(function(t){
       var btn = document.createElement('button');
       btn.className = 'elev-target-btn';
+      btn.type = 'button';
       btn.textContent = t + '층으로 가기';
-      btn.addEventListener('click', function(){
-        Array.prototype.forEach.call(targetRow.children, function(b){ b.classList.remove('active'); });
-        btn.classList.add('active');
-        var best = null, bestDist = Infinity;
-        elevators.forEach(function(e){
-          var d = Math.abs(e.floor - t);
-          document.getElementById('elevDist_' + e.id).textContent = d + '개 층 차이';
-          document.getElementById('elevCard_' + e.id).classList.remove('winner');
-          if(d < bestDist){ bestDist = d; best = e; }
-        });
-        document.getElementById('elevCard_' + best.id).classList.add('winner');
-        resultMsg.style.display = 'flex';
-        resultMsg.textContent = '💡 ' + t + '층 승객에게는 ' + best.id + ' 엘리베이터(현재 ' + best.floor + '층)가 배정돼요 — 여러 엘리베이터의 거리를 계산해 가장 빠른 것을 고르는 것도 알고리즘! 이 알고리즘이 얼마나 효율적인지 평가하는 방법을 오늘 배워보자.';
-      });
+      btn.addEventListener('click', function(){ play(t, btn); });
       targetRow.appendChild(btn);
     });
   })();
@@ -5137,6 +6299,25 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     var qVal = document.getElementById('g2QFill_label');
     var caseBtns = Array.prototype.slice.call(document.querySelectorAll('#g2Cases .case-btn'));
     var currentCase = 'avg';
+    var explainEl = document.getElementById('g2Explain');
+    var CASES = {
+      best: {name:'최선의 경우', def:'실행 시간이 가장 짧게 걸리는, 가장 유리한 입력',
+        ins:['O(n)', '이미 정렬된 데이터 <code>[1, 2, 3, 4, 5]</code>: 각 원소가 바로 앞 원소와 한 번만 비교하고 끝나요. 약 n번이면 정렬이 끝나요.'],
+        qk:['O(n log n)', '피벗이 매번 가운데 값이라 데이터가 반씩 고르게 나뉘는 경우예요. 반으로 나누는 단계가 log n번, 단계마다 약 n번 비교해요.']},
+      avg: {name:'평균의 경우', def:'무작위로 섞인, 일반적으로 만나는 입력',
+        ins:['O(n²)', '섞인 데이터 <code>[3, 1, 5, 2, 4]</code>: 원소를 끼워 넣을 때마다 앞쪽 원소들과 여러 번 비교해야 해서 n²에 비례해요.'],
+        qk:['O(n log n)', '피벗이 대체로 적당히 가운데 쪽에 걸려 데이터가 고르게 나뉘므로 n log n에 가까워요.']},
+      worst: {name:'최악의 경우', def:'실행 시간이 가장 오래 걸리는, 가장 불리한 입력',
+        ins:['O(n²)', '거꾸로 정렬된 데이터 <code>[5, 4, 3, 2, 1]</code>: 새 원소마다 앞에 있는 모든 원소와 비교하고 자리를 옮겨야 해요.'],
+        qk:['O(n²)', '피벗이 매번 가장 작거나 큰 값인 경우예요. 예를 들어 이미 정렬된 데이터에서 첫 원소를 피벗으로 고르면 한쪽으로만 나뉘어 n번 가까이 나누게 돼요.']}
+    };
+    function renderExplain(){
+      if(!explainEl) return;
+      var c = CASES[currentCase];
+      explainEl.innerHTML = '<div class="ce-head"><span class="ce-name">' + c.name + '</span><span class="ce-def">' + c.def + '</span></div>' +
+        '<div class="ce-item ins"><h4>삽입 정렬 <span>' + c.ins[0] + '</span></h4><p>' + c.ins[1] + '</p></div>' +
+        '<div class="ce-item qk"><h4>퀵 정렬 <span>' + c.qk[0] + '</span></h4><p>' + c.qk[1] + '</p></div>';
+    }
     caseBtns.forEach(function(b){
       b.addEventListener('click', function(){
         caseBtns.forEach(function(x){ x.classList.remove('active'); });
@@ -5157,6 +6338,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       qFill.style.width = Math.min(100, q/max*100) + '%';
       insVal.textContent = ins + '회';
       qVal.textContent = q + '회';
+      renderExplain();
     }
     slider.addEventListener('input', update);
     update();
@@ -5947,6 +7129,348 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       idx++;
       render();
     });
+    resetBtn.addEventListener('click', init);
+    init();
+  })();
+
+  /* ================= slide 13-2 : 버킷에 직접 넣어 보기 (넣기 → 찾기) ================= */
+  (function(){
+    var KEYS = [10, 17, 8, 15, 23, 24, 6];
+    var TARGETS = [24, 8, 31];
+    var M = 7;
+    var poolEl = document.getElementById('hpPool');
+    var tableEl = document.getElementById('hpTable');
+    var calcEl = document.getElementById('hpCalc');
+    var logEl = document.getElementById('hpLog');
+    var hintBtn = document.getElementById('hpHintBtn');
+    var goBtn = document.getElementById('hpGoBtn');
+    var resetBtn = document.getElementById('hpResetBtn');
+    var step1 = document.getElementById('hpStep1');
+    var step2 = document.getElementById('hpStep2');
+    var poolLabel = document.getElementById('hpPoolLabel');
+    var titleEl = document.getElementById('hpTitle');
+    if(!poolEl || !tableEl) return;
+
+    var phase, buckets, placed, selected, wrong, hintOn, collisions;
+    var tIdx, tResults, busy, searchDone;
+    var timers = [];
+
+    function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
+    function say(html, cls, sub){
+      logEl.className = 'hp-log' + (cls ? ' ' + cls : '');
+      logEl.textContent = '';
+      var main = document.createElement('span');
+      main.textContent = html;
+      logEl.appendChild(main);
+      if(sub){
+        var s = document.createElement('span');
+        s.className = 'hp-sub';
+        s.textContent = sub;
+        logEl.appendChild(s);
+      }
+    }
+    function curKey(){ return phase === 'insert' ? selected : TARGETS[tIdx]; }
+    function divText(k){ return k + ' ÷ ' + M + ' = ' + Math.floor(k / M) + ' … 나머지 ' + (k % M); }
+
+    function renderCalc(){
+      var k = curKey();
+      calcEl.textContent = '';
+      if(k == null){
+        calcEl.textContent = phase === 'insert' ? '넣을 키를 하나 골라 보세요.' : '';
+        hintBtn.disabled = true;
+        return;
+      }
+      hintBtn.disabled = false;
+      var line = document.createElement('span');
+      line.appendChild(document.createTextNode('h(' + k + ') = ' + k + ' mod ' + M + ' = '));
+      var q = document.createElement('span');
+      q.className = 'q';
+      q.textContent = '?';
+      line.appendChild(q);
+      calcEl.appendChild(line);
+      if(hintOn[k]){
+        var h = document.createElement('span');
+        h.className = 'hint';
+        h.textContent = '힌트: ' + divText(k);
+        calcEl.appendChild(h);
+      }
+    }
+
+    function renderPool(){
+      poolEl.textContent = '';
+      if(phase === 'insert'){
+        KEYS.forEach(function(k){
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'hp-key' + (placed[k] ? ' placed' : '') + (selected === k ? ' selected' : '');
+          b.textContent = k;
+          b.disabled = !!placed[k];
+          b.setAttribute('aria-label', '키 ' + k + (placed[k] ? ' (넣음)' : ''));
+          if(!placed[k]){
+            b.draggable = true;
+            b.addEventListener('click', function(){ selectKey(k); });
+            b.addEventListener('dragstart', function(e){
+              selectKey(k, true);
+              try{ e.dataTransfer.setData('text/plain', String(k)); e.dataTransfer.effectAllowed = 'move'; }catch(err){}
+            });
+          }
+          poolEl.appendChild(b);
+        });
+      } else {
+        TARGETS.forEach(function(k, i){
+          var b = document.createElement('span');
+          var r = tResults[i];
+          var cls = 'hp-key target ';
+          if(r) cls += r.found ? 't-done' : 't-miss';
+          else if(i === tIdx && !searchDone) cls += 't-now';
+          else cls += 't-wait';
+          b.className = cls;
+          b.textContent = k;
+          poolEl.appendChild(b);
+        });
+      }
+    }
+
+    function renderTable(hl){
+      tableEl.textContent = '';
+      for(var b = 0; b < M; b++){
+        (function(b){
+          var row = document.createElement('div');
+          row.className = 'hp-row' + (phase === 'search' && (busy || searchDone) ? ' locked' : '');
+          row.setAttribute('role', 'button');
+          row.setAttribute('tabindex', '0');
+          row.setAttribute('aria-label', '버킷 ' + b);
+          row.dataset.b = b;
+          var addr = document.createElement('div');
+          addr.className = 'hp-addr';
+          addr.textContent = '버킷 ' + b;
+          row.appendChild(addr);
+          var chain = document.createElement('div');
+          chain.className = 'hp-chain';
+          buckets[b].forEach(function(item, i){
+            if(i > 0){
+              var lk = document.createElement('span');
+              lk.className = 'hp-link';
+              lk.textContent = '→';
+              chain.appendChild(lk);
+            }
+            var n = document.createElement('div');
+            n.className = 'hp-node';
+            if(item.fresh) n.classList.add(item.collide ? 'collide' : 'new');
+            if(hl && hl.row === b){
+              if(i === hl.node) n.classList.add(hl.state);
+              else if(i < hl.node) n.classList.add('skip');
+            }
+            n.textContent = item.k;
+            chain.appendChild(n);
+          });
+          row.appendChild(chain);
+          var cnt = document.createElement('div');
+          cnt.className = 'hp-cnt';
+          cnt.textContent = buckets[b].length ? buckets[b].length + '개' : '';
+          row.appendChild(cnt);
+          row.addEventListener('click', function(){ onRow(b, row); });
+          row.addEventListener('keydown', function(e){
+            if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); e.stopPropagation(); onRow(b, row); }
+          });
+          row.addEventListener('dragover', function(e){ if(phase === 'insert'){ e.preventDefault(); row.classList.add('over'); } });
+          row.addEventListener('dragleave', function(){ row.classList.remove('over'); });
+          row.addEventListener('drop', function(e){
+            e.preventDefault();
+            row.classList.remove('over');
+            if(phase !== 'insert') return;
+            var k = NaN;
+            try{ k = parseInt(e.dataTransfer.getData('text/plain'), 10); }catch(err){}
+            if(KEYS.indexOf(k) >= 0 && !placed[k]) selected = k;
+            onRow(b, row);
+          });
+          tableEl.appendChild(row);
+        })(b);
+      }
+    }
+
+    function flash(row, cls){
+      if(!row) return;
+      row.classList.add(cls);
+      setTimeout(function(){ row.classList.remove(cls); }, 600);
+    }
+    function selectKey(k, keepPool){
+      if(phase !== 'insert' || placed[k]) return;
+      selected = k;
+      if(keepPool){
+        /* 끌기 시작 중에는 키 버튼을 다시 그리지 않는다(드래그가 취소되기 때문) */
+        Array.prototype.forEach.call(poolEl.children, function(el){ el.classList.toggle('selected', el.textContent === String(k)); });
+      } else renderPool();
+      renderCalc();
+      say('키 ' + k + ' 선택! ' + k + ' mod ' + M + '을 계산해서 알맞은 버킷을 눌러 보세요.');
+    }
+
+    function onRow(b, row){
+      if(busy) return;
+      if(phase === 'insert') tryPlace(b, row);
+      else if(!searchDone) trySearch(b, row);
+    }
+
+    function tryPlace(b, row){
+      var k = selected;
+      if(k == null){ say('먼저 넣을 키를 골라 주세요. 위의 키 중 하나를 눌러 보세요.', 'bad'); return; }
+      if(k % M !== b){
+        wrong[k] = (wrong[k] || 0) + 1;
+        flash(row, 'wrong');
+        if(wrong[k] >= 2) hintOn[k] = true;
+        say('앗, 버킷 ' + b + '번은 아니에요. ' + k + ' mod ' + M + '을 다시 계산해 보세요.', 'bad',
+            wrong[k] >= 2 ? '힌트를 열어 두었어요. 나머지가 곧 버킷 번호예요.' : '모르겠다면 "힌트 보기"를 눌러 보세요.');
+        renderCalc();
+        return;
+      }
+      var collided = buckets[b].length > 0;
+      buckets.forEach(function(arr){ arr.forEach(function(it){ it.fresh = false; }); });
+      buckets[b].push({k:k, fresh:true, collide:collided});
+      placed[k] = true;
+      if(collided) collisions++;
+      selected = null;
+      var left = KEYS.filter(function(x){ return !placed[x]; }).length;
+      var msg = '정답! ' + k + ' mod ' + M + ' = ' + b + ' → 버킷 ' + b + '에 저장했어요.';
+      var sub = collided ? '충돌! 버킷 ' + b + '에는 이미 다른 키가 있어서, 체이닝으로 뒤에 연결했어요.' : '';
+      renderPool();
+      renderTable();
+      renderCalc();
+      if(left === 0){
+        say('모두 넣었어요! 충돌은 ' + collisions + '번 일어났어요.', 'ok', '이제 저장한 키를 해시 함수로 찾아볼까요?');
+        goBtn.style.display = '';
+        hintBtn.style.display = 'none';
+        step1.className = 'hp-step done';
+        poolLabel.textContent = '모든 키를 버킷에 넣었어요 ✓';
+      } else {
+        say(msg, 'ok', sub || ('남은 키 ' + left + '개'));
+      }
+    }
+
+    function startSearch(){
+      phase = 'search';
+      tIdx = 0; tResults = []; searchDone = false; busy = false;
+      goBtn.style.display = 'none';
+      hintBtn.style.display = '';
+      hintBtn.disabled = false;
+      step1.className = 'hp-step done';
+      step2.className = 'hp-step on';
+      poolLabel.textContent = '찾을 키 (차례대로 하나씩)';
+      titleEl.textContent = '해시 함수로 계산해서 키가 있을 버킷을 찾아가 보자';
+      nextTarget();
+    }
+    function nextTarget(){
+      busy = false;
+      renderPool();
+      renderTable();
+      renderCalc();
+      var t = TARGETS[tIdx];
+      say('찾을 키: ' + t + '. ' + t + ' mod ' + M + '을 계산해서, 그 버킷을 눌러 보세요.');
+    }
+
+    function trySearch(b, row){
+      var t = TARGETS[tIdx];
+      if(t % M !== b){
+        wrong[t] = (wrong[t] || 0) + 1;
+        flash(row, 'wrong');
+        if(wrong[t] >= 2) hintOn[t] = true;
+        say('버킷 ' + b + '번은 아니에요. ' + t + ' mod ' + M + '을 다시 계산해 보세요.', 'bad',
+            wrong[t] >= 2 ? '힌트를 열어 두었어요.' : '해시 함수가 알려 주는 버킷 하나만 확인하면 돼요.');
+        renderCalc();
+        return;
+      }
+      busy = true;
+      renderTable();
+      var chain = buckets[b];
+      if(chain.length === 0){
+        say('버킷 ' + b + '번이 비어 있어요. 비교 0번 만에 "없음"을 알았어요.', 'bad');
+        finishTarget(t, 0, false);
+        return;
+      }
+      say('맞아요! 버킷 ' + b + '의 체인을 앞에서부터 하나씩 비교해요.', 'ok');
+      var i = 0;
+      (function step(){
+        var node = chain[i];
+        var isHit = node.k === t;
+        renderTable({row:b, node:i, state: isHit ? 'hit' : 'cmp'});
+        say('비교 ' + (i + 1) + '번째: ' + node.k + ' = ' + t + ' ? ' + (isHit ? '같아요! 찾았다 🎉' : '아니요 → 다음 칸으로'), isHit ? 'ok' : '');
+        if(isHit){ timers.push(setTimeout(function(){ finishTarget(t, i + 1, true); }, 700)); return; }
+        i++;
+        if(i >= chain.length){
+          timers.push(setTimeout(function(){
+            say('체인 끝까지 비교했지만 키(' + t + ')는 없어요. 비교 ' + chain.length + '번 만에 "없음"을 알았어요.', 'bad');
+            finishTarget(t, chain.length, false);
+          }, 800));
+          return;
+        }
+        timers.push(setTimeout(step, 800));
+      })();
+    }
+
+    function finishTarget(t, cmp, found){
+      tResults[tIdx] = {k:t, cmp:cmp, found:found};
+      renderPool();
+      var last = tIdx >= TARGETS.length - 1;
+      var base = found ? '키 ' + t + ': 비교 ' + cmp + '번 만에 찾았어요.' : '키 ' + t + ': 비교 ' + cmp + '번 만에 "없음"을 확인했어요.';
+      if(!last){
+        busy = false;
+        say(base, found ? 'ok' : 'bad', '아래 버튼으로 다음 키를 찾아보세요.');
+        renderTable();
+        goBtn.textContent = '다음 키 찾기 ▶';
+        goBtn.style.display = '';
+        goBtn.dataset.mode = 'next';
+        return;
+      }
+      searchDone = true;
+      busy = false;
+      renderTable();
+      step2.className = 'hp-step done';
+      var total = tResults.reduce(function(s, r){ return s + r.cmp; }, 0);
+      var parts = tResults.map(function(r){ return r.k + '(' + r.cmp + '번' + (r.found ? '' : ', 없음') + ')'; }).join(', ');
+      var miss = tResults.filter(function(r){ return !r.found; })[0];
+      say('실습 끝! 비교 횟수: ' + parts + ' → 합계 ' + total + '번.', 'ok',
+          (miss ? '참고: 없는 키(' + miss.k + ')를 선형 탐색으로 확인하려면 저장된 ' + KEYS.length + '개를 모두 비교해야 해서 ' + KEYS.length + '번이에요. 해시 탐색은 한 버킷만 확인했어요. ' : '') + '"처음부터"를 눌러 다른 순서로 넣어 보면 체인 안의 순서와 비교 횟수가 달라져요.');
+      hintBtn.disabled = true;
+      calcEl.textContent = '모든 키를 찾아봤어요 ✓';
+    }
+
+    goBtn.addEventListener('click', function(){
+      if(goBtn.dataset.mode === 'next'){
+        goBtn.dataset.mode = '';
+        goBtn.style.display = 'none';
+        tIdx++;
+        nextTarget();
+      } else {
+        startSearch();
+      }
+    });
+    hintBtn.addEventListener('click', function(){
+      var k = curKey();
+      if(k == null) return;
+      hintOn[k] = true;
+      renderCalc();
+    });
+
+    function init(){
+      clearTimers();
+      phase = 'insert'; selected = null; wrong = {}; hintOn = {}; collisions = 0;
+      tIdx = 0; tResults = []; busy = false; searchDone = false;
+      placed = {};
+      buckets = [];
+      for(var i = 0; i < M; i++) buckets.push([]);
+      goBtn.style.display = 'none';
+      goBtn.dataset.mode = '';
+      goBtn.textContent = '찾기 단계로 ▶';
+      hintBtn.style.display = '';
+      hintBtn.disabled = true;
+      step1.className = 'hp-step on';
+      step2.className = 'hp-step';
+      poolLabel.textContent = '키를 눌러 선택한 뒤, 알맞은 버킷을 누르거나 끌어다 놓으세요';
+      titleEl.textContent = '키를 직접 계산해서 알맞은 버킷에 넣어 보자';
+      renderPool();
+      renderTable();
+      renderCalc();
+      say('h(k) = k mod 7 → 키를 7로 나눈 나머지가 버킷 번호예요.');
+    }
     resetBtn.addEventListener('click', init);
     init();
   })();
