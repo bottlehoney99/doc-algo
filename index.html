@@ -1554,7 +1554,7 @@
         <div class="hu-top"><span class="hu-num">2-3</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>알고리즘 설계</h2>
         <p>순차·선택·반복 구조로 알고리즘을 설계하고, 순서도와 Python 코드로 표현하는 방법을 배운다.</p>
-        <div class="hu-foot"><span>총 24장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 23장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u24">
         <div class="hu-top"><span class="hu-num">2-4</span><span class="hu-badge">✨ 인터랙티브</span></div>
@@ -1620,7 +1620,7 @@
     <div class="slide-inner" style="justify-content:flex-start;">
       <span class="kicker">Think · 지저분한 방 청소</span>
       <h1 class="h1">두 가지 방법으로 방을 치워 보자</h1>
-      <p class="lead" style="margin-bottom:10px;max-width:none;">철수는 오랜만에 지저분한 방을 대청소하려 한다. 옷가지, 책, 게임기, 전자 제품, 쓰레기 등 온갖 잡동사니가 널브러져 있어 무엇부터 시작해야 할지 막막하다. </p>
+      <p class="lead" style="margin-bottom:10px;max-width:none;">홍강이는 오랜만에 지저분한 방을 대청소하려 한다. 옷가지, 책, 게임기, 전자 제품, 쓰레기 등 온갖 잡동사니가 널브러져 있어 무엇부터 시작해야 할지 막막하다. </p>
       <div class="rm2-stage" id="rm2Stage">
         <svg class="rm-scene" id="rmScene" viewBox="0 0 960 300" role="group" aria-label="지저분한 방 그림">
           <g id="rmBg">
@@ -2438,21 +2438,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 12 : 순서도 작성하기 활동 -->
-  <section class="slide" data-kind="interactive" data-title="순서도 작성하기 — 생각해 보기" data-tag="활동">
-    <div class="topbar"><span class="breadcrumb">02. 선택 구조</span><span class="kind-tag">생각해 보기</span></div>
-    <div class="slide-inner">
-      <span class="kicker">Activity · 순서도 작성하기</span>
-      <h1 class="h1">거리가 아닌 나이를 먼저 분류한다면?</h1>
-      <p class="lead" style="margin-bottom:16px;">[그림 Ⅱ-16]의 순서도는 <b>거리를 기준으로</b> 나이에 따른 요금을 계산하는 과정을 보여 준다. 이를 <b>거리가 아닌 나이를 우선으로</b> 분류하는 순서도는 어떤 모습일지 직접 작성해 보자.</p>
-      <div class="card-grid cols-2">
-        <div class="card"><h3 style="color:var(--accent);">지금까지 본 순서 (거리 우선)</h3><p>이동 거리(≤5 / 5~10 / &gt;10) → 각 구간 안에서 나이(어린이·노인 / 일반인) 판단</p></div>
-        <div class="card" id="hintCard" style="background:var(--surface-2);cursor:pointer;"><h3 style="color:var(--teal);">나이 우선으로 바꾸면? <span style="font-size:11px;color:var(--ink-faint);font-weight:700;">(클릭해서 힌트 보기)</span></h3><p id="hintText">카드를 클릭하면 힌트가 나타납니다.</p></div>
-      </div>
-      <div class="insight-strip" style="margin-top:14px;">✏️ 조건의 순서를 바꾸어도 최종 결과(요금)는 같아야 한다 — 단, 판단 횟수와 순서도의 모양은 달라진다.</div>
     </div>
   </section>
 
@@ -5101,16 +5086,16 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     var treeEl = document.getElementById('dlTree');
     if(!tabsEl || !treeEl) return;
     var EX = [
-      {tab:'📊 조별 발표 준비', root:'10분짜리 "플라스틱 줄이기" 조별 발표 만들기',
-       sub:[['부분 1','지금 상황 (얼마나 버려질까?)'],['부분 2','왜 늘어났을까 (원인)'],['부분 3','다른 나라·학교의 해결 사례'],['부분 4','우리 반이 할 수 있는 일']],
-       done:[['민서','자료 찾고 슬라이드 2장'],['도윤','원인 정리, 슬라이드 2장'],['하은','사례 2개 조사, 슬라이드 2장'],['준호','실천 방법, 슬라이드 2장']],
-       final:'4명의 슬라이드를 순서대로 합치고 연결 문장을 다듬어 발표 1편 완성',
-       desc:['발표 전체를 한 번에 만들기는 막막하니, 내용별로 4부분으로 나눠요.','각자 맡은 한 부분만 조사하고 슬라이드를 만들어요. 작은 문제라 금방 끝나요.','완성된 부분들을 순서대로 이어 붙여 하나의 발표로 만들어요.']},
-      {tab:'📚 시험 공부', root:'정보 시험 범위 전체(3개 단원) 공부하기',
-       sub:[['단원 1','문제 분해와 모델링'],['단원 2','알고리즘 설계'],['단원 3','알고리즘 성능 분석'],['오답','지난 퀴즈에서 틀린 문제']],
-       done:[['월·화','개념 정리 + 예제 풀기'],['수·목','순서도·코드 따라 쓰기'],['금','빅 오 표기 연습 문제'],['토','틀린 문제 다시 풀기']],
-       final:'단원별 정리를 한 장 요약 노트로 합치고, 전체 범위 모의 문제로 점검',
-       desc:['"전 범위 공부"라는 큰 일을 단원별, 오답처럼 작은 덩어리로 나눠요.','하루에 한 덩어리씩만 끝내요. 범위가 작아서 집중하기 쉬워요.','나눠서 공부한 내용을 요약 노트 한 장으로 합치고, 전체를 다시 확인해요.']},
+      {tab:'🎮 조별 프로젝트', root:'조별 프로젝트: 게임 개발하기',
+       sub:[['부분 1','화면 디자인'],['부분 2','물리 엔진 구현'],['부분 3','테스트'],['부분 4','스토리 구상']],
+       done:[['태윤','캐릭터·배경·버튼 화면 완성'],['승언','점프·중력·충돌 동작 구현'],['재석이','직접 플레이하며 버그 찾아 정리'],['세민','세계관·등장인물·스테이지 줄거리 작성']],
+       final:'네 부분을 하나로 합쳐 게임을 완성하고, 다 함께 플레이해 보기',
+       desc:['게임 개발이라는 큰 일을 화면, 물리 엔진, 테스트, 스토리의 4부분으로 나눠요.','각자 맡은 한 부분만 책임지고 만들어요. 작은 문제라 집중하기 쉬워요.','완성된 부분들을 하나로 합쳐 게임 1편을 완성해요.']},
+      {tab:'📚 시험 공부', root:'알고리즘 설계 시험 범위 전체 공부하기',
+       sub:[['범위 1','순차 구조'],['범위 2','선택 구조'],['범위 3','반복 구조'],['오답','지난 퀴즈에서 틀린 문제']],
+       done:[['월·화','의사 코드·순서도로 순서 표현하기'],['수·목','if 조건 나누기 문제 풀기'],['금','반복문 실행 과정 따라가기'],['토','틀린 문제 다시 풀기']],
+       final:'범위별 정리를 한 장 요약 노트로 합치고, 전체 범위 모의 문제로 점검',
+       desc:['"알고리즘 설계 시험 공부"라는 큰 일을 순차·선택·반복 구조와 오답처럼 작은 덩어리로 나눠요.','하루에 한 덩어리씩만 끝내요. 범위가 작아서 집중하기 쉬워요.','나눠서 공부한 내용을 요약 노트 한 장으로 합치고, 전체를 다시 확인해요.']},
       {tab:'🎪 학급 축제 부스', root:'학교 축제에서 우리 반 간식 부스 운영하기',
        sub:[['메뉴','무엇을 팔지, 재료 목록'],['홍보','포스터와 SNS 안내'],['꾸미기','부스 장식과 메뉴판'],['운영','시간대별 당번과 계산']],
        done:[['메뉴팀','재료 구입 계획 완성'],['홍보팀','포스터 3장 제작'],['꾸미기팀','장식·메뉴판 완성'],['운영팀','당번표·거스름돈 준비']],
@@ -5330,7 +5315,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   var builderData = {
     student: [
       {t:'이름', v:1}, {t:'학번', v:1}, {t:'나이', v:1}, {t:'공부하기', v:1}, {t:'운동하기', v:1},
-      {t:'아르바이트하기', v:0, note:'모든 학생이 하지 않아요'}, {t:'잠자기', v:0, note:'학생만의 특징이 아니에요'}, {t:'좋아하는 연예인', v:0, note:'사람마다 다르고 목적과 무관해요'}
+      {t:'아르바이트하기', v:0, note:'모든 학생이 하지 않아요'}, {t:'잠자기', v:1}, {t:'좋아하는 연예인', v:0, note:'사람마다 다르고 목적과 무관해요'}
     ],
     dog: [
       {t:'이름', v:1}, {t:'품종', v:1}, {t:'나이', v:1}, {t:'짖기', v:1}, {t:'산책하기', v:1},
@@ -5711,14 +5696,6 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   document.getElementById('fareCalc').addEventListener('click', calcFare);
   calcFare(); // show a worked example at rest
 
-  /* ================= slide 12 : 힌트 카드 ================= */
-  var hintShown = false;
-  document.getElementById('hintCard').addEventListener('click', function(){
-    hintShown = !hintShown;
-    document.getElementById('hintText').textContent = hintShown
-      ? '나이(어린이·노인 / 일반인)를 먼저 판단한 뒤, 각 경우 안에서 다시 거리(≤5 / 5~10 / >10)에 따라 요금을 나누는 순서도가 된다. 판단 순서만 바뀌었을 뿐 최종 요금표는 동일하다.'
-      : '카드를 클릭하면 힌트가 나타납니다.';
-  });
 
   /* ================= slide 16 : 반복 구조 트레이서 ================= */
   var loopSums = [0];
