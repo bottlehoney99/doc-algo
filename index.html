@@ -321,6 +321,86 @@
   @media (max-width:760px){.pg-grid{grid-template-columns:1fr;}}
   /* ===== 반복 트레이서 코드 ===== */
   .loop-code{flex:none;font-size:13px;line-height:1.55;white-space:pre;padding:10px 12px;}
+  /* ===== 생활 속 그래프 예시 ===== */
+  .gx-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .gx-tab{appearance:none;font-family:inherit;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:13px;padding:8px 14px;border-radius:9px;cursor:pointer;}
+  .gx-tab:hover{border-color:var(--accent);color:var(--accent);}
+  .gx-tab.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .gx-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;flex:1;min-height:0;align-items:start;}
+  .gx-chart{background:var(--surface-2);border-radius:14px;padding:6px;min-width:0;}
+  .gx-chart svg{display:block;width:100%;height:auto;}
+  .gx-edge{stroke:var(--ink-faint);stroke-width:2.6;fill:none;transition:stroke .2s,stroke-width .2s;}
+  .gx-edge.on{stroke:var(--amber);stroke-width:4;}
+  .gx-arrow{fill:var(--ink-faint);} .gx-arrow-on{fill:var(--amber);}
+  .gx-w{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:800;fill:var(--ink-soft);paint-order:stroke;stroke:var(--surface-2);stroke-width:5px;stroke-linejoin:round;}
+  .gx-node{cursor:pointer;outline:none;}
+  .gx-node circle{fill:var(--surface);stroke:var(--accent);stroke-width:2.6;transition:fill .2s;}
+  .gx-node text{font-size:13px;font-weight:800;fill:var(--ink);text-anchor:middle;pointer-events:none;}
+  .gx-node:hover circle,.gx-node:focus-visible circle{fill:var(--accent-soft);}
+  .gx-node.on circle{fill:var(--accent);} .gx-node.on text{fill:var(--accent-ink);}
+  .gx-node.nb circle{fill:var(--amber-soft);stroke:var(--amber);}
+  .gx-side{display:flex;flex-direction:column;gap:9px;min-width:0;}
+  .gx-map{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;background:var(--surface-2);border-radius:12px;padding:11px 13px;font-size:13.6px;line-height:1.5;color:var(--ink-soft);}
+  .gx-map b{color:var(--accent);font-weight:900;white-space:nowrap;}
+  .gx-sets{font-family:"JetBrains Mono",monospace;font-size:12.4px;line-height:1.6;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 12px;word-break:keep-all;overflow-wrap:anywhere;}
+  .gx-sel{background:var(--amber-soft);color:var(--ink);border-radius:12px;padding:10px 13px;font-size:13.4px;font-weight:700;line-height:1.55;min-height:44px;}
+  .gx-sel b{color:var(--amber);}
+  @media (max-width:760px){.gx-layout{grid-template-columns:1fr;}}
+  /* ===== 그래프의 종류 — 예시 그림 ===== */
+  .gt-svg{display:block;width:100%;max-width:200px;height:auto;margin:4px auto 0;}
+  .gtn circle{fill:var(--surface);stroke:var(--accent);stroke-width:2;}
+  .gtn text{font-size:10px;font-weight:800;fill:var(--ink);text-anchor:middle;}
+  .gtn.faint circle{stroke:var(--ink-faint);opacity:.45;} .gtn.faint text{opacity:.45;}
+  .gtn.on circle{fill:var(--accent-soft);}
+  .gte{stroke:var(--ink-faint);stroke-width:2;}
+  .gte.on{stroke:var(--accent);stroke-width:3;} .gte.faint{stroke-dasharray:3 3;opacity:.4;}
+  .gta{fill:var(--ink-faint);}
+  .gtw{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:800;fill:var(--amber);text-anchor:middle;paint-order:stroke;stroke:var(--surface-2);stroke-width:4px;}
+  .gtl{font-size:10px;font-weight:800;fill:var(--ink-soft);text-anchor:middle;}
+  .gt-ex{margin-top:4px;background:var(--surface);border:1px dashed var(--border);border-radius:9px;padding:7px 9px;font-size:12px;line-height:1.5;color:var(--ink-soft);}
+  .gt-ex b{display:block;font-size:11px;color:var(--teal);}
+  /* ===== DFS·BFS / 다익스트라 직접 해 보기 ===== */
+  .tp-bar{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;}
+  .tp-group{display:flex;gap:6px;flex-wrap:wrap;}
+  .tp-pill{appearance:none;font-family:inherit;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:12.8px;padding:7px 13px;border-radius:9px;cursor:pointer;}
+  .tp-pill:hover{border-color:var(--accent);color:var(--accent);}
+  .tp-pill.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .tp-pill.mode.active{background:var(--teal);}
+  .tp-layout,.dk-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;flex:1;min-height:0;align-items:start;}
+  .tp-chart{background:var(--surface-2);border-radius:14px;padding:6px;min-width:0;}
+  .tp-chart svg{display:block;width:100%;height:auto;}
+  .tp-edge{stroke:var(--ink-faint);stroke-width:2.6;}
+  .tp-edge.on{stroke:var(--teal);stroke-width:4;}
+  .tp-w{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:800;fill:var(--ink-soft);text-anchor:middle;paint-order:stroke;stroke:var(--surface-2);stroke-width:5px;stroke-linejoin:round;}
+  .tp-node{cursor:pointer;outline:none;}
+  .tp-node circle{fill:var(--surface);stroke:var(--accent);stroke-width:2.6;transition:fill .2s;}
+  .tp-node text{font-size:15px;font-weight:900;fill:var(--ink);text-anchor:middle;pointer-events:none;}
+  .tp-node:hover circle,.tp-node:focus-visible circle{fill:var(--accent-soft);}
+  .tp-node.done circle{fill:var(--teal);stroke:var(--teal);} .tp-node.done text{fill:#fff;}
+  .tp-node.cur circle{stroke:var(--amber);stroke-width:4;}
+  .tp-node.wrong circle{fill:var(--danger-soft);stroke:var(--danger);}
+  .tp-node .tp-badge circle{fill:var(--amber);stroke:none;} .tp-node .tp-badge text{fill:#fff;font-size:11px;}
+  .dk-node text{font-size:13px;}
+  .tp-side{display:flex;flex-direction:column;gap:9px;min-width:0;}
+  .tp-ds,.tp-order{background:var(--surface-2);border-radius:12px;padding:9px 12px;display:flex;flex-direction:column;gap:6px;}
+  .tp-dsl{font-size:11.5px;font-weight:800;color:var(--ink-faint);}
+  .tp-dsrow{display:flex;gap:6px;flex-wrap:wrap;min-height:32px;align-items:center;}
+  .tp-cell{font-family:"JetBrains Mono",monospace;font-weight:900;font-size:15px;min-width:32px;text-align:center;padding:4px 8px;border-radius:8px;background:var(--surface);border:1.5px solid var(--border);color:var(--ink);}
+  .tp-cell.top{border-color:var(--amber);background:var(--amber-soft);}
+  .tp-cell.vis{border-color:var(--teal);background:var(--teal-soft);color:var(--teal);}
+  .tp-empty{font-size:12.5px;color:var(--ink-faint);font-weight:700;}
+  .tp-msg{border-radius:12px;padding:10px 12px;font-size:13.4px;font-weight:700;line-height:1.55;background:var(--accent-soft);color:var(--accent);min-height:44px;}
+  .tp-msg.ok{background:var(--teal-soft);color:var(--teal);} .tp-msg.bad{background:var(--danger-soft);color:var(--danger);}
+  .dk-table{width:100%;border-collapse:collapse;font-size:13.4px;}
+  .dk-table th,.dk-table td{border:1px solid var(--border);padding:6px 9px;text-align:left;}
+  .dk-table th{background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:800;}
+  .dk-table td{color:var(--ink-soft);font-weight:700;}
+  .dk-table td.num{font-family:"JetBrains Mono",monospace;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .dk-table tr.fixed td{background:var(--teal-soft);color:var(--teal);}
+  .dk-table td.upd{animation:dkFlash 1.2s;}
+  @keyframes dkFlash{0%{background:var(--amber-soft);}100%{background:transparent;}}
+  @media (prefers-reduced-motion: reduce){.dk-table td.upd{animation:none;}}
+  @media (max-width:760px){.tp-layout,.dk-layout{grid-template-columns:1fr;}}
   @media (max-width:760px){.rc-flow{grid-template-columns:1fr;}.rc-arrow{transform:rotate(90deg);justify-content:center;}}
   /* ===== 클래스 · 객체 · 속성 · 메서드 ===== */
   .oo-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);gap:18px;flex:1;min-height:0;}
@@ -1611,7 +1691,7 @@
         <div class="hu-top"><span class="hu-num">3-3</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>그래프 알고리즘</h2>
         <p>그래프의 표현 방법과 DFS·BFS·다익스트라 알고리즘의 원리를 그래프를 직접 조작하며 익힌다.</p>
-        <div class="hu-foot"><span>총 20장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 23장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u34">
         <div class="hu-top"><span class="hu-num">3-4</span><span class="hu-badge">✨ 인터랙티브</span></div>
@@ -4170,6 +4250,25 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     </div>
   </section>
 
+  <!-- 생활 속 그래프 예시 -->
+  <section class="slide" data-kind="interactive" data-title="생활 속 그래프 예시" data-tag="예시">
+    <div class="topbar"><span class="breadcrumb">01. 그래프의 이해</span><span class="kind-tag">✨ 정점을 눌러 보세요</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Example · 우리 주변의 그래프</span>
+      <h1 class="h1" style="margin-bottom:10px;">무엇이 정점이고, 무엇이 간선일까?</h1>
+      <div class="gx-tabs" id="gxTabs"></div>
+      <div class="gx-layout">
+        <div class="gx-chart"><svg id="gxSvg" viewBox="0 0 520 300" role="img" aria-label="예시 그래프 그림"></svg></div>
+        <div class="gx-side">
+          <div class="gx-map" id="gxMap"></div>
+          <div class="gx-sets" id="gxSets"></div>
+          <div class="gx-sel" id="gxSel"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- 5 : 그래프의 종류 -->
   <section class="slide" data-kind="concept" data-title="그래프의 종류" data-tag="개념">
     <div class="topbar"><span class="breadcrumb">01. 그래프의 이해</span><span class="kind-tag">개념</span></div>
@@ -4177,10 +4276,10 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       <span class="kicker">Concept · 그래프의 종류</span>
       <h1 class="h1">방향성과 가중치, 연결 정도에 따른 분류</h1>
       <div class="card-grid cols-4">
-        <div class="card"><span class="num">①</span><h3>방향/무방향</h3><p>간선에 방향이 있으면 방향 그래프, 없으면 무방향 그래프이다.</p></div>
-        <div class="card"><span class="num">②</span><h3>가중 그래프</h3><p>간선에 가중치(weight)를 할당한 그래프로, 네트워크라고도 한다.</p></div>
-        <div class="card"><span class="num">③</span><h3>완전 그래프</h3><p>모든 정점 사이에 간선이 존재. 무방향 완전 그래프의 간선 수는 n×(n-1)/2이다.</p></div>
-        <div class="card"><span class="num">④</span><h3>부분 그래프</h3><p>원래 그래프에서 정점과 간선의 일부로 이루어진 그래프이다.</p></div>
+        <div class="card"><span class="num">①</span><h3>방향/무방향</h3><p>간선에 방향이 있으면 방향 그래프, 없으면 무방향 그래프이다.</p><svg class="gt-svg" viewBox="0 0 160 100" aria-hidden="true"><defs><marker id="gtArr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="gta"/></marker></defs><line class="gte" x1="33.0" y1="22.0" x2="53.0" y2="22.0"/><line class="gte" x1="59.3" y1="31.9" x2="47.7" y2="56.1"/><line class="gte" x1="26.7" y1="31.9" x2="38.3" y2="56.1"/><line class="gte" x1="109.0" y1="22.0" x2="126.0" y2="22.0" marker-end="url(#gtArr1)"/><line class="gte" x1="135.3" y1="31.9" x2="125.0" y2="53.4" marker-end="url(#gtArr1)"/><line class="gte" x1="114.3" y1="56.1" x2="104.0" y2="34.6" marker-end="url(#gtArr1)"/><g class="gtn"><circle cx="22" cy="22" r="11"/><text x="22" y="25.6">A</text></g><g class="gtn"><circle cx="64" cy="22" r="11"/><text x="64" y="25.6">B</text></g><g class="gtn"><circle cx="43" cy="66" r="11"/><text x="43" y="69.6">C</text></g><g class="gtn"><circle cx="98" cy="22" r="11"/><text x="98" y="25.6">A</text></g><g class="gtn"><circle cx="140" cy="22" r="11"/><text x="140" y="25.6">B</text></g><g class="gtn"><circle cx="119" cy="66" r="11"/><text x="119" y="69.6">C</text></g><text class="gtl" x="43" y="95">무방향</text><text class="gtl" x="119" y="95">방향</text></svg><div class="gt-ex"><b>예시</b>친구 관계는 서로 맺으니 무방향, SNS 팔로우나 일방통행 도로는 한쪽으로만 향하니 방향 그래프</div></div>
+        <div class="card"><span class="num">②</span><h3>가중 그래프</h3><p>간선에 가중치(weight)를 할당한 그래프로, 네트워크라고도 한다.</p><svg class="gt-svg" viewBox="0 0 160 100" aria-hidden="true"><line class="gte" x1="41.0" y1="24.0" x2="119.0" y2="24.0"/><line class="gte" x1="122.5" y1="32.1" x2="87.5" y2="69.9"/><line class="gte" x1="37.5" y1="32.1" x2="72.5" y2="69.9"/><text class="gtw" x="80.0" y="28.0">5km</text><text class="gtw" x="105.0" y="55.0">3km</text><text class="gtw" x="55.0" y="55.0">4km</text><g class="gtn"><circle cx="30" cy="24" r="11"/><text x="30" y="27.6">집</text></g><g class="gtn"><circle cx="130" cy="24" r="11"/><text x="130" y="27.6">역</text></g><g class="gtn"><circle cx="80" cy="78" r="11"/><text x="80" y="81.6">학</text></g></svg><div class="gt-ex"><b>예시</b>집·역·학교 사이 거리(km)를 간선에 적은 지도. 길 찾기 앱이 가장 짧은 길을 찾을 때 쓴다</div></div>
+        <div class="card"><span class="num">③</span><h3>완전 그래프</h3><p>모든 정점 사이에 간선이 존재. 무방향 완전 그래프의 간선 수는 n×(n-1)/2이다.</p><svg class="gt-svg" viewBox="0 0 160 100" aria-hidden="true"><line class="gte" x1="46.0" y1="20.0" x2="114.0" y2="20.0"/><line class="gte" x1="35.0" y1="31.0" x2="35.0" y2="69.0"/><line class="gte" x1="44.2" y1="26.1" x2="115.8" y2="73.9"/><line class="gte" x1="115.8" y1="26.1" x2="44.2" y2="73.9"/><line class="gte" x1="125.0" y1="31.0" x2="125.0" y2="69.0"/><line class="gte" x1="46.0" y1="80.0" x2="114.0" y2="80.0"/><g class="gtn"><circle cx="35" cy="20" r="11"/><text x="35" y="23.6">A</text></g><g class="gtn"><circle cx="125" cy="20" r="11"/><text x="125" y="23.6">B</text></g><g class="gtn"><circle cx="35" cy="80" r="11"/><text x="35" y="83.6">C</text></g><g class="gtn"><circle cx="125" cy="80" r="11"/><text x="125" y="83.6">D</text></g></svg><div class="gt-ex"><b>예시</b>친구 4명이 모두 서로 한 번씩 악수하면 악수 횟수 = 4×3/2 = 6번 (간선 6개)</div></div>
+        <div class="card"><span class="num">④</span><h3>부분 그래프</h3><p>원래 그래프에서 정점과 간선의 일부로 이루어진 그래프이다.</p><svg class="gt-svg" viewBox="0 0 160 100" aria-hidden="true"><line class="gte on" x1="35.9" y1="23.6" x2="69.1" y2="19.4"/><line class="gte faint" x1="90.8" y1="20.0" x2="124.2" y2="26.0"/><line class="gte on" x1="28.9" y1="35.3" x2="41.1" y2="67.7"/><line class="gte on" x1="74.5" y1="27.5" x2="50.5" y2="68.5"/><line class="gte faint" x1="85.5" y1="27.5" x2="109.5" y2="68.5"/><line class="gte faint" x1="130.9" y1="38.2" x2="119.1" y2="67.8"/><line class="gte faint" x1="56.0" y1="78.0" x2="104.0" y2="78.0"/><g class="gtn on"><circle cx="25" cy="25" r="11"/><text x="25" y="28.6">A</text></g><g class="gtn on"><circle cx="80" cy="18" r="11"/><text x="80" y="21.6">B</text></g><g class="gtn faint"><circle cx="135" cy="28" r="11"/><text x="135" y="31.6">C</text></g><g class="gtn on"><circle cx="45" cy="78" r="11"/><text x="45" y="81.6">D</text></g><g class="gtn faint"><circle cx="115" cy="78" r="11"/><text x="115" y="81.6">E</text></g></svg><div class="gt-ex"><b>예시</b>전체 지하철 노선도에서 우리 동네 역(A·B·D)과 그 사이 구간만 떼어 낸 지도</div></div>
       </div>
       <div class="insight-strip" style="margin-top:14px;">💡 그래프는 1736년 수학자 레온하르트 오일러(Leonhard Euler)가 쾨니히스베르크의 다리 문제를 정점과 간선으로 간략화하며 처음 사용되었다.</div>
     </div>
@@ -4249,6 +4348,28 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       <div class="ctrl-row">
         <button class="sim-btn primary" id="gsNextBtn">다음 단계 ▶</button>
         <button class="sim-btn" id="gsResetBtn">처음부터 ⟲</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DFS/BFS 직접 해 보기 -->
+  <section class="slide" data-kind="interactive" data-title="직접 해 보기 — DFS·BFS 방문 순서" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">02. 그래프 탐색</span><span class="kind-tag">✨ 실습 · 방문 순서 맞히기</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Practice · 정점 1에서 출발, 이웃이 여럿이면 작은 번호부터</span>
+      <h1 class="h1" style="margin-bottom:10px;">다음에 방문할 정점을 직접 눌러 보자</h1>
+      <div class="tp-bar">
+        <div class="tp-group" id="tpProbs"></div>
+        <div class="tp-group" id="tpModes"></div>
+      </div>
+      <div class="tp-layout">
+        <div class="tp-chart"><svg id="tpSvg" viewBox="0 0 450 280" role="group" aria-label="탐색 연습 그래프"></svg></div>
+        <div class="tp-side">
+          <div class="tp-ds"><span class="tp-dsl" id="tpDsLabel">스택</span><div class="tp-dsrow" id="tpDs"></div></div>
+          <div class="tp-order"><span class="tp-dsl">방문 순서</span><div class="tp-dsrow" id="tpOrder"></div></div>
+          <div class="tp-msg" id="tpMsg"></div>
+          <div class="ctrl-row"><button class="sim-btn" type="button" id="tpHint">힌트: 한 칸 보기</button><button class="sim-btn" type="button" id="tpReset">처음부터 ⟲</button></div>
+        </div>
       </div>
     </div>
   </section>
@@ -4336,6 +4457,24 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       </div>
     </div>
   </section>
+
+  <!-- 다익스트라 직접 해 보기 -->
+  <section class="slide" data-kind="interactive" data-title="직접 해 보기 — 등굣길 최단 경로" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">03. 최단 경로 알고리즘</span><span class="kind-tag">✨ 실습 · 다음 정점 고르기</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Practice · 집에서 학교까지 가장 빨리 가는 길은?</span>
+      <h1 class="h1" style="margin-bottom:10px;">확정할 정점을 직접 골라 최단 경로를 찾아보자</h1>
+      <div class="dk-layout">
+        <div class="tp-chart"><svg id="dkSvg" viewBox="0 0 470 280" role="group" aria-label="등굣길 지도 그래프 (간선 숫자는 걸리는 시간, 분)"></svg></div>
+        <div class="tp-side">
+          <table class="dk-table"><thead><tr><th>정점</th><th>현재 거리 d</th><th>상태</th></tr></thead><tbody id="dkBody"></tbody></table>
+          <div class="tp-msg" id="dkMsg"></div>
+          <div class="ctrl-row"><button class="sim-btn" type="button" id="dkHint">힌트: 한 칸 보기</button><button class="sim-btn" type="button" id="dkReset">처음부터 ⟲</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- 14 : 다익스트라 코드 -->
   <section class="slide" data-kind="concept" data-title="다익스트라 알고리즘 구현" data-tag="코드">
@@ -7750,6 +7889,283 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
 
   /* ================= 단원 3-3 : 그래프 알고리즘 (specific interactions) ================= */
   function initU33(){
+  /* ================= DFS·BFS 직접 해 보기 ================= */
+  (function(){
+    var svg = document.getElementById('tpSvg');
+    if(!svg) return;
+    var NS = 'http://www.w3.org/2000/svg', R = 20;
+    var PROBS = [
+      {name:'문제 1', pos:{1:[225,32],2:[120,105],3:[330,105],4:[65,180],5:[180,180],6:[330,180],7:[65,250]}, edges:[[1,2],[1,3],[2,4],[2,5],[3,6],[5,6],[4,7]]},
+      {name:'문제 2', pos:{1:[60,70],2:[170,70],3:[280,70],4:[390,70],5:[60,200],6:[170,200],7:[280,200],8:[390,200]}, edges:[[1,2],[1,5],[2,3],[2,6],[3,4],[5,6],[6,7],[7,8],[4,8]]}
+    ];
+    var pi = 0, mode = 'dfs', steps, k, wrong;
+    function el(t, a, txt){ var e = document.createElementNS(NS, t); for(var x in a) e.setAttribute(x, a[x]); if(txt != null) e.textContent = txt; return e; }
+    function adjOf(p){
+      var adj = {};
+      Object.keys(p.pos).forEach(function(v){ adj[v] = []; });
+      p.edges.forEach(function(e){ adj[e[0]].push(e[1]); adj[e[1]].push(e[0]); });
+      Object.keys(adj).forEach(function(v){ adj[v].sort(function(a, b){ return a - b; }); });
+      return adj;
+    }
+    /* 정답 순서와 각 방문 직후의 스택/큐 상태를 미리 계산 */
+    function solve(){
+      var p = PROBS[pi], adj = adjOf(p), out = [];
+      if(mode === 'dfs'){
+        var vis = {}, path = [];
+        (function dfs(v){
+          vis[v] = true; path.push(v);
+          out.push({v:v, ds:path.slice(), from:path.length > 1 ? path[path.length - 2] : null});
+          adj[v].forEach(function(w){ if(!vis[w]) dfs(w); });
+          path.pop();
+        })(1);
+      } else {
+        var seen = {1:true}, q = [1];
+        while(q.length){
+          var v = q.shift();
+          adj[v].forEach(function(w){ if(!seen[w]){ seen[w] = true; q.push(w); } });
+          out.push({v:v, ds:q.slice()});
+        }
+      }
+      return out;
+    }
+    function draw(){
+      var p = PROBS[pi];
+      svg.textContent = '';
+      var visited = steps.slice(0, k).map(function(s){ return s.v; });
+      var treeEdges = {};
+      if(mode === 'dfs') steps.slice(0, k).forEach(function(s){ if(s.from) treeEdges[Math.min(s.from, s.v) + '-' + Math.max(s.from, s.v)] = 1; });
+      p.edges.forEach(function(e){
+        var a = p.pos[e[0]], b = p.pos[e[1]];
+        var on = treeEdges[Math.min(e[0], e[1]) + '-' + Math.max(e[0], e[1])];
+        svg.appendChild(el('line', {x1:a[0], y1:a[1], x2:b[0], y2:b[1], 'class':'tp-edge' + (on ? ' on' : '')}));
+      });
+      Object.keys(p.pos).forEach(function(v){
+        v = +v;
+        var idx = visited.indexOf(v), xy = p.pos[v];
+        var g = el('g', {'class':'tp-node' + (idx >= 0 ? ' done' : '') + (idx === k - 1 ? ' cur' : ''), tabindex:'0', role:'button', 'aria-label':'정점 ' + v});
+        g.appendChild(el('circle', {cx:xy[0], cy:xy[1], r:R}));
+        g.appendChild(el('text', {x:xy[0], y:xy[1] + 5}, v));
+        if(idx >= 0){
+          var bg = el('g', {'class':'tp-badge'});
+          bg.appendChild(el('circle', {cx:xy[0] + 17, cy:xy[1] - 17, r:9}));
+          bg.appendChild(el('text', {x:xy[0] + 17, y:xy[1] - 13.5}, idx + 1));
+          g.appendChild(bg);
+        }
+        g.addEventListener('click', function(){ pick(v, g); });
+        g.addEventListener('keydown', function(ev){ if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); ev.stopPropagation(); pick(v, g); } });
+        svg.appendChild(g);
+      });
+      document.getElementById('tpDsLabel').textContent = mode === 'dfs' ? '스택 (지금 지나온 길, 오른쪽이 맨 위)' : '큐 (왼쪽이 맨 앞, 다음에 꺼낼 정점)';
+      var ds = k > 0 ? steps[k - 1].ds : [];
+      var dsEl = document.getElementById('tpDs');
+      dsEl.innerHTML = ds.length ? ds.map(function(v, i){ var top = mode === 'dfs' ? i === ds.length - 1 : i === 0; return '<span class="tp-cell' + (top ? ' top' : '') + '">' + v + '</span>'; }).join('') : '<span class="tp-empty">' + (k === 0 ? '아직 시작 전' : '비어 있음') + '</span>';
+      document.getElementById('tpOrder').innerHTML = visited.length ? visited.map(function(v){ return '<span class="tp-cell vis">' + v + '</span>'; }).join('') : '<span class="tp-empty">-</span>';
+    }
+    function msg(t, cls){ var m = document.getElementById('tpMsg'); m.textContent = t; m.className = 'tp-msg' + (cls ? ' ' + cls : ''); }
+    function pick(v, g){
+      if(k >= steps.length) return;
+      var visited = steps.slice(0, k).map(function(s){ return s.v; });
+      if(visited.indexOf(v) >= 0){ msg(v + '번은 이미 방문했어요. 아직 방문하지 않은 정점을 골라 보세요.', 'bad'); return; }
+      if(v !== steps[k].v){
+        wrong++;
+        g.classList.add('wrong'); setTimeout(function(){ g.classList.remove('wrong'); }, 500);
+        msg(mode === 'dfs'
+          ? '아니에요. 지금 정점에서 아직 안 간 이웃 중 번호가 가장 작은 곳으로 깊이 들어가요. 갈 곳이 없으면 스택을 따라 되돌아가요.'
+          : '아니에요. 큐의 맨 앞에 있는 정점을 먼저 방문해요. 방문하면서 그 이웃들을 큐 뒤에 넣어요.', 'bad');
+        return;
+      }
+      k++;
+      draw();
+      if(k === steps.length){
+        msg('완성! ' + (mode === 'dfs' ? 'DFS' : 'BFS') + ' 방문 순서: ' + steps.map(function(s){ return s.v; }).join(' → ') + ' (틀린 횟수 ' + wrong + '번). ' + (mode === 'dfs' ? '이번엔 BFS로도 해 보세요.' : '이번엔 DFS로도 해 보세요.'), 'ok');
+      } else {
+        msg(k === 1 ? '정점 1에서 출발! 다음에 방문할 정점은?' : v + '번 방문! 다음에 방문할 정점은?', '');
+      }
+    }
+    function reset(){ steps = solve(); k = 0; wrong = 0; draw(); msg('정점 1부터 눌러 시작하세요. ' + (mode === 'dfs' ? 'DFS는 깊이 먼저, 막히면 되돌아가요.' : 'BFS는 가까운 정점부터 넓게 방문해요.')); }
+    var probsEl = document.getElementById('tpProbs'), modesEl = document.getElementById('tpModes');
+    PROBS.forEach(function(p, i){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'tp-pill' + (i === 0 ? ' active' : ''); b.textContent = p.name;
+      b.addEventListener('click', function(){ pi = i; Array.prototype.forEach.call(probsEl.children, function(x){ x.classList.toggle('active', x === b); }); reset(); });
+      probsEl.appendChild(b);
+    });
+    [['dfs','깊이 우선(DFS)'],['bfs','너비 우선(BFS)']].forEach(function(m, i){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'tp-pill mode' + (i === 0 ? ' active' : ''); b.textContent = m[1];
+      b.addEventListener('click', function(){ mode = m[0]; Array.prototype.forEach.call(modesEl.children, function(x){ x.classList.toggle('active', x === b); }); reset(); });
+      modesEl.appendChild(b);
+    });
+    document.getElementById('tpHint').addEventListener('click', function(){
+      if(k >= steps.length) return;
+      var v = steps[k].v, g = svg.querySelector('[aria-label="정점 ' + v + '"]');
+      wrong++;
+      pick(v, g);
+      if(k < steps.length) msg('힌트로 ' + v + '번을 방문했어요. 다음 정점은 직접 골라 보세요.', '');
+    });
+    document.getElementById('tpReset').addEventListener('click', reset);
+    reset();
+  })();
+
+  /* ================= 다익스트라 직접 해 보기 ================= */
+  (function(){
+    var svg = document.getElementById('dkSvg');
+    if(!svg) return;
+    var NS = 'http://www.w3.org/2000/svg', R = 26;
+    var NODES = {'집':[60,140],'놀이터':[170,230],'편의점':[170,55],'문구점':[300,55],'도서관':[300,230],'학교':[415,140]};
+    var EDGES = [['집','편의점',4],['집','놀이터',2],['놀이터','편의점',1],['편의점','문구점',5],['놀이터','도서관',9],['문구점','도서관',2],['문구점','학교',6],['도서관','학교',3]];
+    var START = '집', GOAL = '학교', names = Object.keys(NODES);
+    var d, prev, fixed, upd, wrong;
+    function el(t, a, txt){ var e = document.createElementNS(NS, t); for(var x in a) e.setAttribute(x, a[x]); if(txt != null) e.textContent = txt; return e; }
+    function nbrs(v){ return EDGES.filter(function(e){ return e[0] === v || e[1] === v; }).map(function(e){ return [e[0] === v ? e[1] : e[0], e[2]]; }); }
+    function minCands(){
+      var m = Infinity;
+      names.forEach(function(v){ if(!fixed[v] && d[v] < m) m = d[v]; });
+      return names.filter(function(v){ return !fixed[v] && d[v] === m && m < Infinity; });
+    }
+    function pathTo(v){ var p = []; while(v){ p.unshift(v); v = prev[v]; } return p; }
+    function draw(){
+      svg.textContent = '';
+      var done = names.every(function(v){ return fixed[v]; });
+      var pathEdges = {};
+      if(done){ var p = pathTo(GOAL); for(var i = 1; i < p.length; i++) pathEdges[p[i - 1] + '|' + p[i]] = pathEdges[p[i] + '|' + p[i - 1]] = 1; }
+      EDGES.forEach(function(e){
+        var a = NODES[e[0]], b = NODES[e[1]];
+        svg.appendChild(el('line', {x1:a[0], y1:a[1], x2:b[0], y2:b[1], 'class':'tp-edge' + (pathEdges[e[0] + '|' + e[1]] ? ' on' : '')}));
+        svg.appendChild(el('text', {x:(a[0] + b[0]) / 2, y:(a[1] + b[1]) / 2 + 5, 'class':'tp-w'}, e[2] + '분'));
+      });
+      names.forEach(function(v){
+        var xy = NODES[v];
+        var g = el('g', {'class':'tp-node dk-node' + (fixed[v] ? ' done' : ''), tabindex:'0', role:'button', 'aria-label':v});
+        g.appendChild(el('circle', {cx:xy[0], cy:xy[1], r:R}));
+        g.appendChild(el('text', {x:xy[0], y:xy[1] + 4.5}, v));
+        g.addEventListener('click', function(){ pick(v, g); });
+        g.addEventListener('keydown', function(ev){ if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); ev.stopPropagation(); pick(v, g); } });
+        svg.appendChild(g);
+      });
+      document.getElementById('dkBody').innerHTML = names.map(function(v){
+        return '<tr class="' + (fixed[v] ? 'fixed' : '') + '"><td>' + v + '</td><td class="num' + (upd[v] ? ' upd' : '') + '">' + (d[v] === Infinity ? '∞' : d[v] + '분') + '</td><td>' + (fixed[v] ? '확정 ✓' : '') + '</td></tr>';
+      }).join('');
+    }
+    function msg(t, cls){ var m = document.getElementById('dkMsg'); m.textContent = t; m.className = 'tp-msg' + (cls ? ' ' + cls : ''); }
+    function pick(v, g){
+      if(names.every(function(x){ return fixed[x]; })) return;
+      if(fixed[v]){ msg('이미 확정한 정점이에요. 다른 정점을 골라 보세요.', 'bad'); return; }
+      var c = minCands();
+      if(c.indexOf(v) < 0){
+        wrong++;
+        g.classList.add('wrong'); setTimeout(function(){ g.classList.remove('wrong'); }, 500);
+        msg('아니에요. 아직 확정하지 않은 정점 중 표에서 현재 거리 d가 가장 작은 곳을 골라야 해요.' + (d[v] === Infinity ? ' (이 정점은 아직 거리가 ∞예요)' : ''), 'bad');
+        return;
+      }
+      fixed[v] = true; upd = {};
+      var changes = [];
+      nbrs(v).forEach(function(n){
+        var w = n[0], nd = d[v] + n[1];
+        if(!fixed[w] && nd < d[w]){ changes.push(w + ' ' + (d[w] === Infinity ? '∞' : d[w]) + '→' + nd); d[w] = nd; prev[w] = v; upd[w] = true; }
+      });
+      draw();
+      if(names.every(function(x){ return fixed[x]; })){
+        msg('완성! 집 → 학교 최단 경로: ' + pathTo(GOAL).join(' → ') + ' = ' + d[GOAL] + '분 (틀린 횟수 ' + wrong + '번). 집에서 편의점으로 바로 가는 4분보다 놀이터를 거치는 3분이 더 빨랐죠?', 'ok');
+      } else {
+        msg(v + ' 확정 (' + d[v] + '분). ' + (changes.length ? '거리 갱신: ' + changes.join(', ') : '갱신된 거리 없음') + '. 다음에 확정할 정점은?', 'ok');
+      }
+    }
+    function reset(){
+      d = {}; prev = {}; fixed = {}; upd = {}; wrong = 0;
+      names.forEach(function(v){ d[v] = Infinity; });
+      d[START] = 0;
+      draw();
+      msg('출발점 집의 거리는 0, 나머지는 ∞에서 시작해요. 아직 확정하지 않은 정점 중 거리가 가장 작은 정점을 눌러 확정하세요.');
+    }
+    document.getElementById('dkHint').addEventListener('click', function(){
+      var c = minCands(); if(!c.length) return;
+      wrong++;
+      var g = svg.querySelector('[aria-label="' + c[0] + '"]');
+      pick(c[0], g);
+    });
+    document.getElementById('dkReset').addEventListener('click', reset);
+    reset();
+  })();
+
+  /* ================= 생활 속 그래프 예시 ================= */
+  (function(){
+    var svg = document.getElementById('gxSvg'), tabsEl = document.getElementById('gxTabs');
+    if(!svg || !tabsEl) return;
+    var mapEl = document.getElementById('gxMap'), setsEl = document.getElementById('gxSets'), selEl = document.getElementById('gxSel');
+    var EX = [
+      {tab:'🚇 지하철 노선도', name:'G1', directed:false, weighted:true,
+       map:[['정점','역'],['간선','두 역을 잇는 구간'],['가중치','구간을 가는 데 걸리는 시간(분)'],['특징','방향 없음 · 가중치 있음']],
+       nodes:[{id:'학교앞',x:70,y:70},{id:'시청',x:220,y:70},{id:'도서관',x:400,y:70},{id:'공원',x:150,y:230},{id:'시장',x:330,y:230},{id:'역사관',x:460,y:220}],
+       edges:[['학교앞','시청',3],['시청','도서관',4],['시청','공원',2],['공원','시장',3],['시장','도서관',2],['도서관','역사관',5]],
+       unit:'분', degLabel:'연결된 구간 수'},
+      {tab:'📱 SNS 팔로우', name:'G2', directed:true, weighted:false,
+       map:[['정점','사용자'],['간선','A → B : A가 B를 팔로우'],['특징','방향 있음 · 가중치 없음']],
+       nodes:[{id:'지우',x:90,y:80},{id:'하준',x:260,y:50},{id:'서아',x:430,y:90},{id:'민호',x:130,y:240},{id:'유나',x:370,y:240}],
+       edges:[['지우','하준'],['민호','하준'],['서아','하준'],['하준','서아'],['유나','서아'],['지우','민호'],['유나','민호']],
+       degLabel:''},
+      {tab:'🗺️ 등굣길 지도', name:'G3', directed:false, weighted:true,
+       map:[['정점','장소'],['간선','두 장소를 잇는 길'],['가중치','길의 거리(m)'],['특징','방향 없음 · 가중치 있음 → 가장 짧은 길 찾기에 활용']],
+       nodes:[{id:'집',x:70,y:150},{id:'편의점',x:210,y:60},{id:'놀이터',x:210,y:240},{id:'문구점',x:350,y:120},{id:'학교',x:460,y:180}],
+       edges:[['집','편의점',300],['집','놀이터',250],['편의점','문구점',200],['놀이터','문구점',400],['놀이터','학교',600],['문구점','학교',150]],
+       unit:'m', degLabel:'연결된 길 수'}
+    ];
+    var NS = 'http://www.w3.org/2000/svg', cur = 0, sel = null, R = 24;
+    function el(t, a, txt){ var e = document.createElementNS(NS, t); for(var k in a) e.setAttribute(k, a[k]); if(txt != null) e.textContent = txt; return e; }
+    function node(ex, id){ return ex.nodes.filter(function(n){ return n.id === id; })[0]; }
+    function draw(){
+      var ex = EX[cur];
+      Array.prototype.forEach.call(tabsEl.children, function(b, i){ b.classList.toggle('active', i === cur); });
+      svg.textContent = '';
+      var defs = el('defs', {});
+      ['', '-on'].forEach(function(s){
+        var m = el('marker', {id:'gxArr' + s, viewBox:'0 0 10 10', refX:'9', refY:'5', markerWidth:'7', markerHeight:'7', orient:'auto-start-reverse'});
+        m.appendChild(el('path', {d:'M0,0 L10,5 L0,10 z', 'class':'gx-arrow' + s}));
+        defs.appendChild(m);
+      });
+      svg.appendChild(defs);
+      ex.edges.forEach(function(e){
+        var a = node(ex, e[0]), b = node(ex, e[1]);
+        var dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L;
+        var two = ex.directed && ex.edges.some(function(f){ return f[0] === e[1] && f[1] === e[0]; });
+        var ox = two ? -uy * 7 : 0, oy = two ? ux * 7 : 0;
+        var on = sel && (e[0] === sel || (!ex.directed || true) && e[1] === sel);
+        var line = el('line', {x1:a.x + ux * R + ox, y1:a.y + uy * R + oy, x2:b.x - ux * (R + (ex.directed ? 3 : 0)) + ox, y2:b.y - uy * (R + (ex.directed ? 3 : 0)) + oy, 'class':'gx-edge' + (on ? ' on' : '')});
+        if(ex.directed) line.setAttribute('marker-end', 'url(#gxArr' + (on ? '-on' : '') + ')');
+        svg.appendChild(line);
+        if(ex.weighted) svg.appendChild(el('text', {x:(a.x + b.x) / 2, y:(a.y + b.y) / 2 + 4, 'text-anchor':'middle', 'class':'gx-w'}, e[2] + ex.unit));
+      });
+      ex.nodes.forEach(function(n){
+        var nb = sel && sel !== n.id && ex.edges.some(function(e){ return (e[0] === sel && e[1] === n.id) || (e[1] === sel && e[0] === n.id); });
+        var g = el('g', {'class':'gx-node' + (sel === n.id ? ' on' : (nb ? ' nb' : '')), tabindex:'0', role:'button', 'aria-label':n.id});
+        g.appendChild(el('circle', {cx:n.x, cy:n.y, r:R}));
+        g.appendChild(el('text', {x:n.x, y:n.y + 4.5}, n.id));
+        g.addEventListener('click', function(){ sel = sel === n.id ? null : n.id; draw(); });
+        g.addEventListener('keydown', function(ev){ if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); ev.stopPropagation(); sel = sel === n.id ? null : n.id; draw(); } });
+        svg.appendChild(g);
+      });
+      mapEl.innerHTML = ex.map.map(function(m){ return '<b>' + m[0] + '</b><span>' + m[1] + '</span>'; }).join('');
+      var V = ex.nodes.map(function(n){ return n.id; }).join(', ');
+      var E = ex.edges.map(function(e){ return ex.directed ? '<' + e[0] + ',' + e[1] + '>' : '(' + e[0] + ',' + e[1] + ')'; }).join(', ');
+      setsEl.textContent = 'V(' + ex.name + ') = {' + V + '}\nE(' + ex.name + ') = {' + E + '}';
+      setsEl.style.whiteSpace = 'pre-line';
+      if(!sel){ selEl.textContent = '정점을 눌러 보세요. 연결된 간선과 차수가 표시돼요.'; return; }
+      if(ex.directed){
+        var inn = ex.edges.filter(function(e){ return e[1] === sel; }).map(function(e){ return e[0]; });
+        var out = ex.edges.filter(function(e){ return e[0] === sel; }).map(function(e){ return e[1]; });
+        selEl.innerHTML = '<b>' + sel + '</b> · 진입 차수 <b>' + inn.length + '</b> (팔로워: ' + (inn.join(', ') || '없음') + ')<br>진출 차수 <b>' + out.length + '</b> (팔로우하는 사람: ' + (out.join(', ') || '없음') + ')';
+      } else {
+        var adj = ex.edges.filter(function(e){ return e[0] === sel || e[1] === sel; });
+        selEl.innerHTML = '<b>' + sel + '</b> · 차수 <b>' + adj.length + '</b> (' + ex.degLabel + ')<br>연결: ' + adj.map(function(e){ var o = e[0] === sel ? e[1] : e[0]; return o + ' ' + e[2] + ex.unit; }).join(', ');
+      }
+    }
+    EX.forEach(function(ex, i){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'gx-tab'; b.textContent = ex.tab;
+      b.addEventListener('click', function(){ cur = i; sel = null; draw(); });
+      tabsEl.appendChild(b);
+    });
+    draw();
+  })();
+
 
   /* ================= shared: SVG graph drawing helper ================= */
   var SVG_NS = 'http://www.w3.org/2000/svg';
