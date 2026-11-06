@@ -757,6 +757,17 @@
   .flow-node{width:200px;text-align:center;padding:8px 10px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border-soft);font-size:12.2px;font-weight:700;color:var(--ink-faint);transition:.25s;}
   .flow-node.start-end{border-radius:999px;}
   .flow-node.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;transform:scale(1.04);box-shadow:var(--shadow-sm);}
+  /* 순서도 기호 모양 (기호는 SVG로 그림) */
+  #flowVertical .flow-node{position:relative;background:none;border:none;box-shadow:none;height:36px;padding:0 18px;display:flex;align-items:center;justify-content:center;}
+  #flowVertical .flow-node .fn-shape{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
+  #flowVertical .flow-node .fn-shape rect,#flowVertical .flow-node .fn-shape polygon{fill:var(--surface-2);stroke:var(--ink-faint);stroke-width:1.6;vector-effect:non-scaling-stroke;transition:fill .25s,stroke .25s;}
+  #flowVertical .flow-node .fn-label{position:relative;}
+  #flowVertical .flow-node.active{background:none;box-shadow:none;}
+  #flowVertical .flow-node.active .fn-shape rect,#flowVertical .flow-node.active .fn-shape polygon{fill:var(--accent);stroke:var(--accent);}
+  .fn-legend{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px;font-size:11.5px;font-weight:700;color:var(--ink-faint);}
+  .fn-legend span{display:inline-flex;align-items:center;gap:5px;}
+  .fn-legend svg{width:30px;height:14px;}
+  .fn-legend rect,.fn-legend polygon{fill:var(--surface-2);stroke:var(--ink-faint);stroke-width:1.3;}
   .flow-chevron{color:var(--ink-faint);font-size:13px;line-height:1;}
   .flowsim-side{display:flex;flex-direction:column;gap:12px;min-height:0;}
   .io-row{display:flex;gap:10px;}
@@ -1457,6 +1468,30 @@
   .hp-log .hp-sub{display:block;margin-top:3px;font-weight:600;color:var(--ink-soft);}
   .hp-btnrow{display:flex;gap:8px;flex-wrap:wrap;}
   .hp-btnrow .sim-btn{flex:1;min-width:110px;}
+  /* ===== 시간 복잡도 실전 문제 ===== */
+  .tcp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center;}
+  .tcp-tab{appearance:none;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:12.8px;padding:8px 15px;border-radius:9px;cursor:pointer;}
+  .tcp-tab:hover{border-color:var(--accent);color:var(--accent);}
+  .tcp-tab.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .tcp-tab.hard{border-color:var(--danger);}
+  .tcp-tab.hard.active{background:var(--danger);color:#fff;}
+  .tcp-tab.solved::after{content:" ✓";}
+  .tcp-score{margin-left:auto;font-size:12.6px;font-weight:800;color:var(--ink-soft);}
+  .tcp-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;flex:1;min-height:0;}
+  .tcp-code{font-size:15px;line-height:1.9;white-space:pre;flex:none;align-self:start;}
+  .tcp-side{display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .tcp-q{font-size:15px;font-weight:800;color:var(--ink);line-height:1.6;}
+  .tcp-hint{font-size:13px;color:var(--ink-soft);background:var(--amber-soft);border-radius:10px;padding:8px 12px;line-height:1.6;}
+  .tcp-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .tcp-choice{appearance:none;border:1.5px solid var(--border);background:var(--surface);color:var(--ink);font-family:"JetBrains Mono",monospace;font-weight:800;font-size:15px;padding:12px 10px;border-radius:11px;cursor:pointer;transition:.15s;}
+  .tcp-choice:hover{border-color:var(--accent);color:var(--accent);}
+  .tcp-choice.correct{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);}
+  .tcp-choice.wrong{background:var(--danger-soft);border-color:var(--danger);color:var(--danger);}
+  .tcp-fb{font-size:14px;line-height:1.7;color:var(--ink-soft);border-radius:12px;padding:11px 14px;background:var(--surface-2);min-height:48px;}
+  .tcp-fb b{color:var(--ink);}
+  .tcp-fb.ok{background:var(--teal-soft);}
+  .tcp-fb.no{background:var(--danger-soft);}
+  @media (max-width:760px){.tcp-body{grid-template-columns:1fr;}}
   .hp-table{display:flex;flex-direction:column;gap:5px;min-height:0;overflow-y:auto;}
   .hp-row{display:flex;align-items:center;gap:8px;padding:4px 8px;border-radius:10px;border:1.5px solid var(--border-soft);background:var(--surface-2);cursor:pointer;transition:background .15s,border-color .15s;min-height:36px;}
   .hp-row:hover,.hp-row:focus-visible{border-color:var(--accent);outline:none;}
@@ -1827,7 +1862,7 @@
         <div class="hu-top"><span class="hu-num">2-4</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>알고리즘 성능 분석</h2>
         <p>시간·공간 복잡도의 개념과 빅 오·오메가·세타 표기법으로 알고리즘의 성능을 분석하는 방법을 익힌다.</p>
-        <div class="hu-foot"><span>총 25장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 27장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u31">
         <div class="hu-top"><span class="hu-num">3-1</span><span class="hu-badge">✨ 인터랙티브</span></div>
@@ -4416,6 +4451,14 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     </div>
   </section>
 
+  <!-- 1-2 : 질문 — 좋은 알고리즘이란? -->
+  <section class="slide" data-kind="divider" data-title="좋은 알고리즘이란?" data-tag="질문">
+    <div class="topbar"><span class="breadcrumb">04. 알고리즘 성능 분석</span><span class="kind-tag">생각 열기 · 질문</span></div>
+    <div class="slide-inner" style="align-items:center;text-align:center;">
+      <h1 style="font-family:'Black Han Sans',sans-serif;font-weight:400;font-size:clamp(48px,7.4vw,92px);line-height:1.2;color:var(--ink);margin:0;letter-spacing:-0.01em;word-break:keep-all;">좋은 <span style="color:var(--accent);">알고리즘</span>이란?</h1>
+    </div>
+  </section>
+
   <!-- 2 : 단원 학습 안내 -->
   <section class="slide" data-kind="overview" data-title="단원 학습 안내" data-tag="개관">
     <div class="topbar"><span class="breadcrumb">04. 알고리즘 성능 분석</span><span class="kind-tag">단원 학습 안내</span></div>
@@ -4508,10 +4551,11 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       <div class="ex-panel" data-ex="2">
         <div class="ex-codewrap"><div class="code-block ex-code" id="ex3Code"></div></div>
         <div class="ex-side">
-          <div class="ex-chiprow"><span class="lbl">찾는 값 target</span><button class="chip selected" type="button" data-g="7">7 (맨 앞)</button><button class="chip" type="button" data-g="1">1 (맨 뒤)</button><button class="chip" type="button" data-g="8">8 (없음)</button></div>
+          <div class="ex-chiprow"><span class="lbl">입력 상태</span><button class="chip selected" type="button" data-g="0">정렬됨</button><button class="chip" type="button" data-g="1">역순</button><button class="chip" type="button" data-g="2">섞임</button></div>
           <div class="ex-cells" id="ex3Cells"></div>
           <div class="ex-result" id="ex3Result"></div>
-          <div class="ex-explain">데이터 개수는 5개로 똑같아도, 찾는 값이 어디 있느냐에 따라 비교 횟수가 <b>1번부터 5번까지</b> 달라져요. 그래서 시간 복잡도는 최선과 최악을 나누어 생각하기도 해요.</div>
+          <div class="ex-cmp" id="ex3Trace"></div>
+          <div class="ex-explain">데이터는 똑같이 5개지만 <b>교환 횟수</b>는 입력이 어떤 상태로 들어오느냐에 따라 달라져요. 선택 정렬에서 비교 횟수는 항상 n(n−1)/2번이라 같지만, 다른 알고리즘은 입력 상태에 따라 비교 횟수까지 달라지기도 해요.</div>
         </div>
       </div>
     </div>
@@ -4522,12 +4566,12 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     <div class="topbar"><span class="breadcrumb">01. 알고리즘과 성능</span><span class="kind-tag">✨ 인터랙티브 · 슬라이더로 비교</span></div>
     <div class="slide-inner">
       <span class="kicker">Try it · 입력 데이터의 개수에 따른 알고리즘의 성능</span>
-      <h1 class="h1">입력 개수 n이 커지면, 버블 정렬과 퀵 정렬의 차이는?</h1>
+      <h1 class="h1">입력 개수 n이 커지면, 1차원 반복과 2차원 반복의 차이는?</h1>
       <div class="growth-wrap">
         <div class="growth-slider-row"><input type="range" id="g1Slider" min="5" max="50" value="20"><span class="growth-n-badge" id="g1N">n = 20</span></div>
-        <div class="bar-row"><div class="bar-label"><span>버블 정렬 · y = n²</span><span id="g1BubbleVal">400회</span></div><div class="bar-track"><div class="bar-fill" id="g1BubbleFill" style="background:var(--danger);"></div></div></div>
-        <div class="bar-row"><div class="bar-label"><span>퀵 정렬 · y = n log n</span><span id="g1QuickVal">86회</span></div><div class="bar-track"><div class="bar-fill" id="g1QuickFill" style="background:var(--teal);"></div></div></div>
-        <div class="insight-strip">💡 입력 개수가 적을 땐 차이가 작지만, n이 커질수록 두 알고리즘의 실행 횟수 차이는 급격히 벌어진다.</div>
+        <div class="bar-row"><div class="bar-label"><span>2차원 반복(이중 for문) · y = n × n</span><span id="g1BubbleVal">400회</span></div><div class="bar-track"><div class="bar-fill" id="g1BubbleFill" style="background:var(--danger);"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>1차원 반복(for문 하나) · y = n</span><span id="g1QuickVal">20회</span></div><div class="bar-track"><div class="bar-fill" id="g1QuickFill" style="background:var(--teal);"></div></div></div>
+        <div class="insight-strip"><span>💡 앞에서 본 count_one과 count_two 코드예요. n이 작을 땐 차이가 작지만, n이 커질수록 실행 횟수 차이가 급격히 벌어져요. (n = 50이면 50회와 2,500회)</span></div>
       </div>
     </div>
   </section>
@@ -4545,16 +4589,16 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       <div class="tab-panel active" data-panel="asc" style="flex-direction:column;">
         <div class="card-grid cols-2">
           <div class="card" style="background:var(--danger-soft);"><h3 style="color:var(--danger);">버블 정렬</h3><p>45번 값을 비교, <b>0번 교환</b></p></div>
-          <div class="card" style="background:var(--teal-soft);"><h3 style="color:var(--teal);">퀵 정렬</h3><p>최대 45번 비교·9번 교환 ~ 최소 9번 비교·0번 교환</p></div>
+          <div class="card" style="background:var(--teal-soft);"><h3 style="color:var(--teal);">선택 정렬</h3><p>45번 값을 비교, <b>0번 교환</b></p></div>
         </div>
       </div>
       <div class="tab-panel" data-panel="desc" style="flex-direction:column;">
         <div class="card-grid cols-2">
           <div class="card" style="background:var(--danger-soft);"><h3 style="color:var(--danger);">버블 정렬</h3><p>45번 값을 비교, <b>45번 교환</b></p></div>
-          <div class="card" style="background:var(--teal-soft);"><h3 style="color:var(--teal);">퀵 정렬</h3><p>최대 45번 비교·9번 교환 ~ 최소 9번 비교·0번 교환</p></div>
+          <div class="card" style="background:var(--teal-soft);"><h3 style="color:var(--teal);">선택 정렬</h3><p>45번 값을 비교, <b>5번 교환</b></p></div>
         </div>
       </div>
-      <div class="insight-strip" style="margin-top:12px;">💡 역순일 때 버블 정렬은 모든 인접 쌍을 교환해야 해 교환 횟수가 크게 늘어난다 — 같은 알고리즘도 입력 상태에 따라 성능이 달라진다.</div>
+      <div class="insight-strip" style="margin-top:12px;"><span>💡 두 정렬 모두 비교는 45번으로 같지만, 역순일 때 버블 정렬은 이웃한 모든 쌍을 바꾸느라 <b>45번</b>, 선택 정렬은 가장 작은 값을 한 번에 제자리로 보내 <b>5번</b>만 교환해요. 같은 데이터라도 입력 상태와 알고리즘에 따라 작업량이 달라져요.</span></div>
     </div>
   </section>
 
@@ -4601,9 +4645,9 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   <section class="slide" data-kind="interactive" data-title="함께 알아두기 — 핵심 용어" data-tag="실습">
     <div class="topbar"><span class="breadcrumb">01. 알고리즘과 성능</span><span class="kind-tag">✨ 카드를 눌러 뜻 확인하기</span></div>
     <div class="slide-inner">
-      <span class="kicker">Try it · 정적 할당 · 동적 할당 · 재귀 호출 · 퀵 정렬</span>
+      <span class="kicker">Try it · 정적 할당 · 동적 할당 · 재귀 호출</span>
       <h1 class="h1">카드를 눌러서 용어의 뜻을 확인해 보자</h1>
-      <div class="card-grid cols-2">
+      <div class="card-grid cols-3">
         <div class="flip-card" id="flip1"><div class="flip-inner">
           <div class="flip-face flip-front"><h3>정적 할당</h3><p>Static Allocation · 클릭해서 뜻 보기</p></div>
           <div class="flip-face flip-back"><p>프로그램이 컴파일(프로그램 코드를 기계어로 변역)되는 시점에 메모리가 할당되는 방식으로, 할당된 메모리는 프로그램이 종료될 때까지 유지된다.</p></div>
@@ -4615,10 +4659,6 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         <div class="flip-card" id="flip3"><div class="flip-inner">
           <div class="flip-face flip-front"><h3>재귀 호출</h3><p>Recursion · 클릭해서 뜻 보기</p></div>
           <div class="flip-face flip-back"><p>함수가 자기 자신을 호출하는 프로그래밍 기법이다. 함수를 무한히 호출하지 않도록 종료 조건에 주의해야 한다.</p></div>
-        </div></div>
-        <div class="flip-card" id="flip4"><div class="flip-inner">
-          <div class="flip-face flip-front"><h3>퀵 정렬의 피벗</h3><p>Pivot · 클릭해서 뜻 보기</p></div>
-          <div class="flip-face flip-back"><p>기준값(pivot)을 선택해 작은 값은 왼쪽, 큰 값은 오른쪽에 오도록 배치하기를 반복하고, 더 나눌 수 없으면 합쳐서 정렬을 완성하는 기법이다.</p></div>
         </div></div>
       </div>
     </div>
@@ -4836,6 +4876,29 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
           <div class="qs-num" id="quizFinalScore">0 / 6</div>
           <p class="lead" style="max-width:50ch;">수고했어요! 틀린 문제는 다시 한번 개념을 떠올려 보세요.</p>
           <button class="sim-btn primary" id="quizRetry" style="max-width:160px;">다시 풀기 ⟲</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 시간 복잡도 실전 문제 (쉬움 3 + 도전 1) -->
+  <section class="slide" data-kind="interactive" data-title="실전 문제 — 시간 복잡도 구하기" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">04. 알고리즘 성능 분석</span><span class="kind-tag">✨ 인터랙티브 · 실전 문제</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Practice · 코드를 보고 시간 복잡도 구하기</span>
+      <h1 class="h1" style="margin-bottom:10px;">이 코드의 시간 복잡도는 무엇일까?</h1>
+      <div class="tcp-tabs" id="tcpTabs">
+        <button class="tcp-tab active" type="button" data-q="0">쉬움 1</button>
+        <button class="tcp-tab" type="button" data-q="1">쉬움 2</button>
+        <button class="tcp-tab" type="button" data-q="2">쉬움 3</button>
+        <button class="tcp-tab hard" type="button" data-q="3">🔥 도전</button>
+      </div>
+      <div class="tcp-body">
+        <div class="code-block tcp-code" id="tcpCode"></div>
+        <div class="tcp-side">
+          <div class="tcp-q" id="tcpQ"></div>
+          <div class="tcp-hint" id="tcpHint"></div>
+          <div class="tcp-fb">✏️ 시간 복잡도를 직접 구해 보고, 왜 그렇게 생각했는지 설명해 보세요.</div>
         </div>
       </div>
     </div>
@@ -8890,10 +8953,10 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   /* ================= slide 7 : 코드 실행 시뮬레이터 ================= */
   var flowNodes = [
     {label:'시작', cls:'start-end', line:-1},
-    {label:'num1 입력', cls:'', line:0},
-    {label:'num2 입력', cls:'', line:1},
-    {label:'sum = num1 + num2', cls:'', line:2},
-    {label:'sum 출력', cls:'', line:3},
+    {label:'num1 입력', cls:'io', line:0},
+    {label:'num2 입력', cls:'io', line:1},
+    {label:'sum = num1 + num2', cls:'proc', line:2},
+    {label:'sum 출력', cls:'io', line:3},
     {label:'종료', cls:'start-end', line:-1}
   ];
   var codeLines = [
@@ -8908,10 +8971,19 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     if(i>0){ var ch = document.createElement('div'); ch.className='flow-chevron'; ch.textContent='↓'; flowVertical.appendChild(ch); }
     var el = document.createElement('div');
     el.className = 'flow-node' + (n.cls? ' '+n.cls : '');
-    el.textContent = n.label;
+    /* 순서도 기호: 단말(시작·종료)=둥근 모서리, 입출력=평행사변형, 처리=직사각형 */
+    var shape = n.cls === 'io' ? '<polygon points="14,1 199,1 186,35 1,35"/>' : (n.cls === 'proc' ? '<rect x="1" y="1" width="198" height="34"/>' : '<rect x="1" y="1" width="198" height="34" rx="17"/>');
+    el.innerHTML = '<svg class="fn-shape" viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true">' + shape + '</svg><span class="fn-label"></span>';
+    el.querySelector('.fn-label').textContent = n.label;
     el.dataset.idx = i;
     flowVertical.appendChild(el);
   });
+  (function(){
+    var lg = document.createElement('div');
+    lg.className = 'fn-legend';
+    lg.innerHTML = '<span><svg viewBox="0 0 30 14"><rect x="1" y="1" width="28" height="12" rx="6"/></svg>시작·종료</span><span><svg viewBox="0 0 30 14"><polygon points="5,1 29,1 25,13 1,13"/></svg>입력·출력</span><span><svg viewBox="0 0 30 14"><rect x="1" y="1" width="28" height="12"/></svg>처리</span>';
+    flowVertical.appendChild(lg);
+  })();
   codeLines.forEach(function(html,i){
     var d = document.createElement('span');
     d.className = 'cline';
@@ -9147,6 +9219,48 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
 
   /* ================= unit 04 : 알고리즘 성능 분석 (specific interactions) ================= */
   function initU24(){
+    /* ===== 시간 복잡도 실전 문제 ===== */
+    (function(){
+      var tabsEl = document.getElementById('tcpTabs');
+      if(!tabsEl) return;
+      var codeEl = document.getElementById('tcpCode');
+      var qEl = document.getElementById('tcpQ');
+      var hintEl = document.getElementById('tcpHint');
+      var tabs = tabsEl.querySelectorAll('.tcp-tab');
+      var QS = [
+        { code:['def total(data):', '    s = 0', '    for x in data:', '        s += x', '    return s'],
+          q:'리스트 data에 들어 있는 값 n개를 모두 더하는 함수예요. 시간 복잡도는?',
+          hint:'💡 힌트: for문이 몇 번 반복될까요?' },
+        { code:['def first(data):', '    return data[0]'],
+          q:'리스트 data의 첫 번째 값을 꺼내는 함수예요. 데이터가 n개일 때 시간 복잡도는?',
+          hint:'💡 힌트: 데이터가 10개일 때와 100만 개일 때, 하는 일이 달라질까요?' },
+        { code:['def count_pairs(n):', '    cnt = 0', '    for i in range(n):', '        for j in range(n):', '            cnt += 1', '    return cnt'],
+          q:'for문 안에 for문이 들어 있는 함수예요. 시간 복잡도는?',
+          hint:'💡 힌트: 바깥 for문 1번마다 안쪽 for문은 몇 번 돌까요?' },
+        { code:['def halve(n):', '    cnt = 0', '    while n > 1:', '        n = n // 2', '        cnt += 1', '    return cnt'],
+          q:'🔥 도전! n을 계속 2로 나누는 함수예요. 시간 복잡도는?',
+          hint:'💡 힌트: n = 16일 때 while문이 몇 번 도는지 직접 세어 보세요. (// 는 몫을 구하는 연산)' }
+      ];
+      var KW = {def:1, return:1, for:1, in:1, while:1, range:1};
+      function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+      function hl(line){
+        return line.replace(/(\b\d+\b)|(\b[A-Za-z_]\w*\b)|([\s\S])/g, function(m, n, w, o){
+          if(n) return '<span class="num">' + n + '</span>';
+          if(w) return KW[w] ? '<span class="kw">' + w + '</span>' : w;
+          return esc(o);
+        });
+      }
+      var cur = 0;
+      function render(){
+        var Q = QS[cur];
+        tabs.forEach(function(t){ t.classList.toggle('active', +t.dataset.q === cur); });
+        codeEl.innerHTML = Q.code.map(function(l){ return '<span class="cline">' + hl(l) + '</span>'; }).join('');
+        qEl.textContent = Q.q;
+        hintEl.textContent = Q.hint;
+      }
+      tabs.forEach(function(t){ t.addEventListener('click', function(){ cur = +t.dataset.q; render(); }); });
+      render();
+    })();
     /* ===== 시간 복잡도 예시 코드 슬라이드 ===== */
     (function(){
       var tabs = document.querySelectorAll('.ex-tab');
@@ -9248,32 +9362,44 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       chipsN.forEach(function(b){ b.addEventListener('click', function(){ nVal = +b.dataset.n; selectChip(chipsN, b); render2(); }); });
       render2();
 
-      /* ③ 입력 데이터의 특성 (선형 탐색) */
-      var DATA = [7, 2, 9, 4, 1];
-      var target = 7;
+      /* ③ 입력 데이터의 특성 (선택 정렬) */
+      var INPUTS = [[1, 2, 3, 4, 5], [5, 4, 3, 2, 1], [2, 3, 4, 5, 1]];
+      var gIdx = 0;
       var ex3Code = document.getElementById('ex3Code');
       var ex3Cells = document.getElementById('ex3Cells');
       var ex3Result = document.getElementById('ex3Result');
+      var ex3Trace = document.getElementById('ex3Trace');
       var chipsG = document.querySelectorAll('.ex-panel[data-ex="2"] .chip');
-      function find(data, tg){
-        var c = 0;
-        for(var i = 0; i < data.length; i++){ c++; if(data[i] === tg) return {idx:i, cmp:c}; }
-        return {idx:-1, cmp:c};
+      function selSort(src){
+        var d = src.slice(), n = d.length, cmp = 0, swap = 0, trace = [];
+        for(var i = 0; i < n - 1; i++){
+          var m = i;
+          for(var j = i + 1; j < n; j++){ cmp++; if(d[j] < d[m]) m = j; }
+          if(m !== i){
+            trace.push((i + 1) + '회전: 가장 작은 값 ' + d[m] + ' ↔ ' + d[i] + ' <b>교환</b>');
+            var t = d[i]; d[i] = d[m]; d[m] = t; swap++;
+          } else {
+            trace.push((i + 1) + '회전: 가장 작은 값 ' + d[i] + ' → 이미 제자리, 교환 없음');
+          }
+        }
+        return {cmp:cmp, swap:swap, trace:trace};
       }
       function render3(){
-        var lines = ['def find(data, target):', '    for i in range(len(data)):', '        if data[i] == target:   # 비교 1번', '            return i            # 찾으면 바로 끝', '    return -1                   # 끝까지 없으면 -1', '', 'data = [7, 2, 9, 4, 1]', 'find(data, ' + target + ')'];
-        draw(ex3Code, lines, [2, 3], []);
-        var r = find(DATA, target);
+        var src = INPUTS[gIdx];
+        var lines = ['def sel_sort(data):', '    n = len(data)', '    for i in range(n - 1):', '        m = i                    # 가장 작은 값의 위치', '        for j in range(i + 1, n):', '            if data[j] < data[m]:  # 비교', '                m = j', '        if m != i:               # 자리가 다를 때만', '            data[i], data[m] = data[m], data[i]  # 교환', '', 'sel_sort([' + src.join(', ') + '])'];
+        var r = selSort(src);
+        draw(ex3Code, lines, r.swap ? [5, 8] : [5], r.swap ? [] : [8]);
         ex3Cells.innerHTML = '';
-        DATA.forEach(function(v, i){
+        src.forEach(function(v){
           var c = document.createElement('div');
-          c.className = 'ex-cell' + (i < r.cmp ? (i === r.idx ? ' hit' : ' cmp') : '');
+          c.className = 'ex-cell';
           c.textContent = v;
           ex3Cells.appendChild(c);
         });
-        ex3Result.innerHTML = '<span class="big">' + r.cmp + '번</span>비교' + (r.idx >= 0 ? ' · ' + r.idx + '번 칸에서 찾았어요' : ' · 끝까지 확인했지만 없어요');
+        ex3Result.innerHTML = '비교 <span class="big">' + r.cmp + '번</span> · 교환 <span class="big">' + r.swap + '번</span>';
+        ex3Trace.innerHTML = r.trace.join('<br>');
       }
-      chipsG.forEach(function(b){ b.addEventListener('click', function(){ target = +b.dataset.g; selectChip(chipsG, b); render3(); }); });
+      chipsG.forEach(function(b){ b.addEventListener('click', function(){ gIdx = +b.dataset.g; selectChip(chipsG, b); render3(); }); });
       render3();
     })();
 
@@ -9382,7 +9508,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   /* ================= slide 1 : 버튼 없는 엘리베이터 (애니메이션) ================= */
   (function(){
     var elevators = [{id:'A', floor:1}, {id:'B', floor:5}, {id:'C', floor:9}];
-    var targets = [3, 6, 10];
+    var targets = [2, 6, 10];
     var FH = 26, FLOORS = 10;
     var bld = document.getElementById('evBuilding');
     var targetRow = document.getElementById('elevTargets');
@@ -9544,7 +9670,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       var n = parseInt(slider.value, 10);
       nBadge.textContent = 'n = ' + n;
       var bubble = n * n;
-      var quick = Math.max(1, Math.round(n * Math.log2(n)));
+      var quick = n;  /* 1차원 반복: n번 */
       var max = 50 * 50;
       bubbleFill.style.width = Math.min(100, bubble/max*100) + '%';
       quickFill.style.width = Math.min(100, quick/max*100) + '%';
@@ -9570,7 +9696,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   });
 
   /* ================= slide 9 : flip-cards ================= */
-  ['flip1','flip2','flip3','flip4'].forEach(function(id){
+  ['flip1','flip2','flip3'].forEach(function(id){
     document.getElementById(id).addEventListener('click', function(){ this.classList.toggle('flipped'); });
   });
 
