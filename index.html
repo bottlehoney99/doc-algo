@@ -1708,6 +1708,54 @@
   @media (prefers-reduced-motion: reduce){.ev-car,.ev-car .dl,.ev-car .dr,.ev-dist,.ev-tline,.ev-pax{transition:none;}}
   @media (max-width:760px){.ev-stage{grid-template-columns:1fr;}}
 
+  /* ===== 해시 자료구조 · 해시 함수 상자 ===== */
+  .hb-cards .card{padding:11px 13px;}
+  .hb-cards .card p{font-size:12.8px;}
+  .hb-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:16px;flex:1;min-height:0;align-items:start;}
+  .hb-left,.hb-right{display:flex;flex-direction:column;gap:7px;min-width:0;}
+  .hb-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .hb-lbl{font-size:11.5px;font-weight:800;color:var(--ink-faint);margin-right:2px;}
+  .hb-rule-btn{appearance:none;font-family:"JetBrains Mono",monospace;font-weight:800;font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);cursor:pointer;}
+  .hb-rule-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .hb-rule-btn.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .hb-key{appearance:none;font-family:"JetBrains Mono",monospace;font-weight:900;font-size:14px;min-width:40px;padding:4px 8px;border-radius:10px;border:2px solid var(--border);background:var(--surface);color:var(--ink);cursor:pointer;transition:transform .15s,border-color .15s;}
+  .hb-key:hover:not(:disabled){border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+  .hb-key:disabled{opacity:.3;cursor:default;text-decoration:line-through;}
+  .hb-input{width:82px;padding:6px 9px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-family:"JetBrains Mono",monospace;font-weight:800;font-size:14px;}
+  .hb-machine{position:relative;border-radius:18px;background:linear-gradient(180deg,var(--accent-soft),var(--surface-2));border:2px solid var(--accent);padding:0 14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:box-shadow .25s;}
+  .hb-machine.working{box-shadow:0 0 0 3px var(--amber);animation:hbShake .25s 4;}
+  @keyframes hbShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+  .hb-mouth{width:170px;height:40px;border-radius:0 0 46px 46px;border:2px dashed var(--accent);border-top:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--accent);background:var(--surface);}
+  .hb-token{font-family:"JetBrains Mono",monospace;font-weight:900;font-size:18px;padding:3px 14px;border-radius:9px;background:var(--amber);color:#fff;animation:hbDrop .45s ease-out;}
+  .hb-token.in{animation:hbIn .45s ease-in forwards;}
+  @keyframes hbDrop{from{transform:translateY(-36px);opacity:0}to{transform:translateY(0);opacity:1}}
+  @keyframes hbIn{to{transform:translateY(30px) scale(.4);opacity:0}}
+  .hb-gear{position:absolute;top:8px;font-size:20px;opacity:.55;}
+  .hb-gear.l{left:12px;} .hb-gear.r{right:12px;}
+  .hb-machine.working .hb-gear{animation:hbSpin .8s linear infinite;opacity:1;}
+  @keyframes hbSpin{to{transform:rotate(360deg)}}
+  .hb-rule{font-family:"JetBrains Mono",monospace;font-weight:900;font-size:17px;color:var(--accent);background:var(--surface);border-radius:10px;padding:4px 14px;border:1px solid var(--border);}
+  .hb-screen{width:100%;min-height:44px;background:var(--code-bg);color:var(--code-ink);border-radius:10px;padding:8px 12px;font-family:"JetBrains Mono",monospace;font-size:13.4px;font-weight:700;text-align:center;line-height:1.5;}
+  .hb-screen b{color:var(--code-num);}
+  .hb-out{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;color:var(--ink-soft);}
+  .hb-ticket{font-family:"Black Han Sans",sans-serif;font-size:22px;color:var(--ink-faint);background:var(--surface);border:2px dashed var(--border);border-radius:10px;padding:1px 16px;min-width:104px;text-align:center;}
+  .hb-ticket.pop{color:var(--teal);border-style:solid;border-color:var(--teal);background:var(--teal-soft);animation:hbPop .4s;}
+  @keyframes hbPop{0%{transform:scale(.6)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
+  .hb-table{display:flex;flex-direction:column;gap:3px;}
+  .hb-bucket{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border-soft);background:var(--surface-2);border-radius:10px;padding:2px 8px;min-height:28px;transition:background .3s,border-color .3s;}
+  .hb-bucket.hit{border-color:var(--teal);background:var(--teal-soft);}
+  .hb-bucket.clash{border-color:var(--amber);background:var(--amber-soft);}
+  .hb-addr{width:56px;flex:none;font-family:"JetBrains Mono",monospace;font-weight:800;font-size:12px;color:var(--ink-faint);}
+  .hb-chain{display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
+  .hb-node{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:13px;background:var(--surface);border:1.5px solid var(--border);border-radius:7px;padding:1px 9px;color:var(--ink);}
+  .hb-node.new{background:var(--teal);border-color:var(--teal);color:#fff;animation:hbPop .4s;}
+  .hb-node.newc{background:var(--amber);border-color:var(--amber);color:#fff;animation:hbPop .4s;}
+  .hb-link{color:var(--ink-faint);font-size:12px;}
+  .hb-msg{background:var(--surface-2);border-radius:11px;padding:9px 12px;font-size:13px;font-weight:700;line-height:1.55;color:var(--ink-soft);min-height:42px;}
+  .hb-msg.ok{background:var(--teal-soft);color:var(--teal);} .hb-msg.warn{background:var(--amber-soft);color:var(--amber);} .hb-msg.bad{background:var(--danger-soft);color:var(--danger);}
+  @media (prefers-reduced-motion: reduce){.hb-machine.working,.hb-token,.hb-token.in,.hb-ticket.pop,.hb-node.new,.hb-node.newc,.hb-machine.working .hb-gear{animation:none;}}
+  @media (max-width:760px){.hb-layout{grid-template-columns:1fr;}}
+
   /* ===== 나의 탐색 전략 선택하기 (개별 활동) ===== */
   .strategy-scenario{background:var(--surface-2);border-radius:13px;padding:16px 18px;font-size:14.4px;font-weight:700;color:var(--ink);text-align:center;min-height:60px;display:flex;align-items:center;justify-content:center;}
   .strategy-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
@@ -1982,7 +2030,7 @@
         <div class="hu-top"><span class="hu-num">3-2</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>탐색 알고리즘</h2>
         <p>선형 탐색·이진 탐색·해싱의 원리를 이해하고, 탐색 알고리즘이 데이터를 찾아가는 과정을 직접 실습한다.</p>
-        <div class="hu-foot"><span>총 23장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 25장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u33">
         <div class="hu-top"><span class="hu-num">3-3</span><span class="hu-badge">✨ 인터랙티브</span></div>
@@ -5727,6 +5775,56 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         <div class="card"><span class="num">AVL 트리</span><h3>균형 이진 탐색 트리</h3><p>좌우 서브 트리의 높이 차를 1 이하로 유지해 O(n)에 가까워지는 문제를 해결한다.</p></div>
         <div class="card"><span class="num">B-트리</span><h3>다진 균형 트리</h3><p>각 노드가 2보다 많은 자식을 가질 수 있으며, 분할과 병합으로 균형을 유지한다.</p></div>
         <div class="card"><span class="num">레드 블랙 트리</span><h3>색상 규칙 기반</h3><p>노드를 레드/블랙으로 칠해 균형을 유지하며 O(log n)의 효율적인 연산이 가능하다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 해시 자료구조 : 개념 -->
+  <section class="slide" data-kind="concept" data-title="해시 자료구조란?" data-tag="개념">
+    <div class="topbar"><span class="breadcrumb">02. 대표 탐색 알고리즘</span><span class="kind-tag">개념 · 해시 미리 보기</span></div>
+    <div class="slide-inner">
+      <span class="kicker">Concept · 해시 테이블(hash table)</span>
+      <h1 class="h1" style="margin-bottom:8px;">데이터를 넣을 자리를 '계산'으로 정하는 자료 구조</h1>
+      <p class="lead" style="margin-bottom:10px;font-size:14px;max-width:none;">해시 테이블은 <b>키(key)를 해시 함수에 넣어 나온 값(해시 주소)</b>을 저장 위치로 쓰는 자료 구조이다. 데이터를 넣을 때도, 찾을 때도 같은 계산을 하므로 처음부터 하나씩 비교하지 않고 그 자리로 바로 갈 수 있다.</p>
+      <div class="card-grid cols-4 hb-cards" style="flex:none;gap:10px;">
+        <div class="card"><span class="num">🔑</span><h3>키(key)</h3><p>저장하거나 찾으려는 데이터를 구별하는 값. 예: 학번, 아이디</p></div>
+        <div class="card"><span class="num">⚙️</span><h3>해시 함수</h3><p>키를 받아 저장할 주소를 계산하는 규칙. 예: h(k) = k mod 7</p></div>
+        <div class="card"><span class="num">📍</span><h3>해시 주소</h3><p>해시 함수가 계산한 결과. 테이블에서 데이터가 들어갈 칸 번호</p></div>
+        <div class="card"><span class="num">🗄️</span><h3>버킷 · 슬롯</h3><p>해시 테이블의 각 칸이 버킷이고, 버킷 안에서 데이터 하나가 들어가는 자리가 슬롯이다.</p></div>
+      </div>
+      <div class="compare-grid" style="flex:none;margin-top:10px;gap:12px;">
+        <div class="compare-card bad" style="padding:11px 14px;"><div class="compare-head">📚 배열에 차례로 넣었다면</div><div class="compare-caption">찾는 값이 나올 때까지 앞에서부터 하나씩 비교한다. 데이터가 n개이면 최악의 경우 n번 비교한다.</div></div>
+        <div class="compare-card good" style="padding:11px 14px;"><div class="compare-head">⚡ 해시 테이블에 넣었다면</div><div class="compare-caption">h(키)를 계산해 그 버킷 하나만 확인한다. 충돌이 없으면 비교 1번이면 된다.</div></div>
+      </div>
+      <div class="insight-strip" style="margin-top:10px;"><span>💡 생활 속 예: 학번의 끝자리(학번 mod 10)로 사물함 번호를 정해 두면, 학번만 보고 바로 사물함을 찾을 수 있다. 끝자리가 같은 학생이 둘 이상이면 같은 칸을 가리키는데, 이것이 <b>충돌</b>이다.</span></div>
+    </div>
+  </section>
+
+  <!-- 해시 자료구조 : 해시 함수 상자 (interactive) -->
+  <section class="slide" data-kind="interactive" data-title="해시 함수 상자에 데이터 넣어 보기" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">02. 대표 탐색 알고리즘</span><span class="kind-tag">✨ 인터랙티브 · 해시 함수 상자</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Try it · 규칙이 정해진 상자에 키를 넣으면 주소가 나온다</span>
+      <h1 class="h1" style="margin-bottom:8px;">키를 상자에 넣고, 해시 테이블이 채워지는 과정을 보자</h1>
+      <div class="hb-layout">
+        <div class="hb-left">
+          <div class="hb-row"><span class="hb-lbl">상자의 규칙</span><span id="hbRules" class="hb-row"></span></div>
+          <div class="hb-row" id="hbPool"></div>
+          <div class="hb-row"><span class="hb-lbl">직접 입력</span><input class="hb-input" type="number" id="hbInput" min="0" max="999" placeholder="0~999" aria-label="넣을 키"><button class="sim-btn" type="button" id="hbInputBtn" style="padding:6px 12px;">상자에 넣기</button></div>
+          <div class="hb-machine" id="hbMachine">
+            <span class="hb-gear l" aria-hidden="true">⚙️</span><span class="hb-gear r" aria-hidden="true">⚙️</span>
+            <div class="hb-mouth" id="hbSlot">▼ 여기로 키가 들어가요</div>
+            <div class="hb-rule" id="hbRule">h(k) = k mod 7</div>
+            <div class="hb-screen" id="hbScreen">키를 골라 상자에 넣어 보세요</div>
+            <div class="hb-out">나온 주소 <span class="hb-ticket" id="hbTicket">-</span></div>
+          </div>
+          <div class="ctrl-row"><button class="sim-btn primary" type="button" id="hbAuto">남은 키 모두 넣기 ▶</button><button class="sim-btn" type="button" id="hbReset">처음부터 ⟲</button></div>
+        </div>
+        <div class="hb-right">
+          <span class="hb-lbl" id="hbTableLbl">해시 테이블 (버킷 0 ~ 6)</span>
+          <div class="hb-table" id="hbTable"></div>
+          <div class="hb-msg" id="hbMsg">키를 누르면 상자가 규칙대로 계산해서 주소를 알려 주고, 그 버킷에 데이터가 들어가요.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -11380,6 +11478,132 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     }
     resetBtn.addEventListener('click', init);
     init();
+  })();
+
+  /* ================= 해시 함수 상자 (해시 테이블 채우기) ================= */
+  (function(){
+    var pool = document.getElementById('hbPool');
+    if(!pool) return;
+    var KEYS = [23, 15, 41, 8, 37, 50, 12, 30];
+    var RULES = [{m:7, label:'k mod 7'}, {m:5, label:'k mod 5'}, {m:10, label:'k mod 10 (일의 자리)'}];
+    var M = 7, table, used, busy, clashes, timers = [], lastNew = null;
+    var rulesEl = document.getElementById('hbRules'), tableEl = document.getElementById('hbTable');
+    var slot = document.getElementById('hbSlot'), machine = document.getElementById('hbMachine');
+    var ruleEl = document.getElementById('hbRule'), screen = document.getElementById('hbScreen');
+    var ticket = document.getElementById('hbTicket'), msgEl = document.getElementById('hbMsg');
+    var input = document.getElementById('hbInput'), autoBtn = document.getElementById('hbAuto');
+    var SLOT_TEXT = '▼ 여기로 키가 들어가요';
+    function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
+    function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
+    var prevCleanup = deckCleanup;
+    deckCleanup = function(){ clearTimers(); if(prevCleanup) prevCleanup(); };
+    function msg(html, cls){ msgEl.className = 'hb-msg' + (cls ? ' ' + cls : ''); msgEl.innerHTML = html; }
+    function count(){ var n = 0; table.forEach(function(c){ n += c.length; }); return n; }
+    function renderRules(){
+      rulesEl.innerHTML = '';
+      RULES.forEach(function(r){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'hb-rule-btn' + (r.m === M ? ' active' : ''); b.textContent = r.label;
+        b.addEventListener('click', function(){ if(r.m !== M){ M = r.m; reset(); } });
+        rulesEl.appendChild(b);
+      });
+    }
+    function renderPool(){
+      pool.innerHTML = '<span class="hb-lbl">넣을 키</span>';
+      KEYS.forEach(function(k){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'hb-key'; b.textContent = k;
+        b.disabled = !!used[k];
+        b.addEventListener('click', function(){ insert(k); });
+        pool.appendChild(b);
+      });
+      autoBtn.disabled = busy || KEYS.every(function(k){ return used[k]; });
+    }
+    function renderTable(hl){
+      tableEl.innerHTML = '';
+      for(var b = 0; b < M; b++){
+        var row = document.createElement('div');
+        row.className = 'hb-bucket' + (hl && hl.b === b ? (hl.clash ? ' clash' : ' hit') : '');
+        var html = '<span class="hb-addr">버킷 ' + b + '</span><span class="hb-chain">';
+        table[b].forEach(function(k, i){
+          if(i > 0) html += '<span class="hb-link">→</span>';
+          var cls = (hl && hl.b === b && i === table[b].length - 1) ? (hl.clash ? ' newc' : ' new') : '';
+          html += '<span class="hb-node' + cls + '">' + k + '</span>';
+        });
+        row.innerHTML = html + '</span>';
+        tableEl.appendChild(row);
+      }
+    }
+    function insert(k, done){
+      if(busy) return false;
+      if(used[k]){ msg('키 ' + k + '은(는) 이미 해시 테이블에 넣었어요. 다른 키를 골라 보세요.', 'bad'); return false; }
+      busy = true; used[k] = true;
+      renderPool();
+      var a = k % M;
+      ticket.className = 'hb-ticket'; ticket.textContent = '-';
+      slot.innerHTML = '<span class="hb-token">' + k + '</span>';
+      screen.textContent = '키 ' + k + ' 입력! 규칙대로 계산하는 중…';
+      msg('키 <b>' + k + '</b>을(를) 해시 함수 상자에 넣었어요.', '');
+      later(function(){
+        var tok = slot.querySelector('.hb-token'); if(tok) tok.classList.add('in');
+        machine.classList.add('working');
+        screen.innerHTML = 'h(' + k + ') = ' + k + ' mod ' + M + '<br>' + k + ' ÷ ' + M + ' = ' + Math.floor(k / M) + ' … 나머지 <b>' + a + '</b>';
+      }, 550);
+      later(function(){
+        machine.classList.remove('working');
+        slot.textContent = SLOT_TEXT;
+        void ticket.offsetWidth;
+        ticket.className = 'hb-ticket pop'; ticket.textContent = '주소 ' + a;
+      }, 1650);
+      later(function(){
+        var clash = table[a].length > 0, before = table[a].slice();
+        table[a].push(k);
+        if(clash) clashes++;
+        renderTable({b:a, clash:clash});
+        busy = false;
+        renderPool();
+        var allDone = KEYS.every(function(x){ return used[x]; });
+        if(clash){
+          msg('⚠️ <b>충돌!</b> 버킷 ' + a + '에는 이미 ' + before.join(', ') + '이(가) 들어 있어요. 같은 주소가 나왔으므로 체이닝으로 뒤에 이어 붙였어요.', 'warn');
+        } else {
+          msg('✅ 키 ' + k + ' → 해시 주소 ' + a + ' → <b>버킷 ' + a + '</b>에 바로 저장했어요.', 'ok');
+        }
+        if(allDone){
+          msg('🎉 키 ' + count() + '개를 모두 넣었어요. 규칙 <b>k mod ' + M + '</b>에서 충돌은 <b>' + clashes + '번</b> 났어요. 위에서 규칙을 바꿔 충돌이 몇 번 나는지 비교해 보세요.', clashes ? 'warn' : 'ok');
+        }
+        if(done) done();
+      }, 2250);
+      return true;
+    }
+    document.getElementById('hbInputBtn').addEventListener('click', function(){
+      var v = parseInt(input.value, 10);
+      if(isNaN(v) || v < 0 || v > 999){ msg('0부터 999 사이의 정수를 입력해 보세요.', 'bad'); return; }
+      if(insert(v)) input.value = '';
+    });
+    input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('hbInputBtn').click(); } });
+    autoBtn.addEventListener('click', function(){
+      if(busy) return;
+      (function next(){
+        var rest = KEYS.filter(function(k){ return !used[k]; });
+        if(!rest.length) return;
+        insert(rest[0], function(){ later(next, 250); });
+      })();
+    });
+    function reset(){
+      clearTimers();
+      busy = false; used = {}; clashes = 0;
+      table = []; for(var i = 0; i < M; i++) table.push([]);
+      machine.classList.remove('working');
+      slot.textContent = SLOT_TEXT;
+      ticket.className = 'hb-ticket'; ticket.textContent = '-';
+      ruleEl.textContent = 'h(k) = k mod ' + M;
+      screen.textContent = '키를 골라 상자에 넣어 보세요';
+      document.getElementById('hbTableLbl').textContent = '해시 테이블 (버킷 0 ~ ' + (M - 1) + ')';
+      renderRules(); renderPool(); renderTable(null);
+      msg('키를 누르면 상자가 <b>k mod ' + M + '</b>로 계산해서 주소를 알려 주고, 그 버킷에 데이터가 들어가요.', '');
+    }
+    document.getElementById('hbReset').addEventListener('click', reset);
+    reset();
   })();
 
   /* ================= slide 16 : 나의 탐색 전략 선택하기 (개별 활동) ================= */
