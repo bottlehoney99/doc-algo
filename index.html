@@ -1473,15 +1473,15 @@
   .hcl-tab{appearance:none;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:13px;padding:8px 16px;border-radius:9px;cursor:pointer;}
   .hcl-tab.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
   .hcl-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:16px;flex:1;min-height:0;}
-  .hcl-side{display:flex;flex-direction:column;gap:9px;min-width:0;}
-  .hcl-desc{font-size:13.2px;line-height:1.6;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:8px 12px;}
+  .hcl-side{display:flex;flex-direction:column;gap:7px;min-width:0;}
+  .hcl-desc{font-size:12.6px;line-height:1.5;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:8px 12px;}
   .hcl-queue{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
   .hcl-queue .lbl{font-size:12px;font-weight:800;color:var(--ink-faint);margin-right:2px;}
   .hcl-k{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:15px;padding:6px 12px;border-radius:9px;background:var(--surface-2);border:1.5px solid var(--border-soft);color:var(--ink-faint);}
   .hcl-k.cur{background:var(--accent);color:var(--accent-ink);border-color:transparent;transform:scale(1.08);}
   .hcl-k.done{opacity:.4;text-decoration:line-through;}
   .hcl-calc{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--ink);background:var(--accent-soft);border-radius:10px;padding:8px 12px;line-height:1.6;}
-  .hcl-log{font-size:12.4px;line-height:1.6;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:7px 11px;max-height:110px;overflow:auto;}
+  .hcl-log{font-size:12px;line-height:1.5;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:6px 11px;max-height:70px;overflow:auto;}
   .hcl-table{display:flex;flex-direction:column;gap:5px;min-width:0;}
   .hcl-row{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border-soft);border-radius:10px;padding:5px 8px;cursor:pointer;background:var(--surface);transition:.15s;min-height:42px;}
   .hcl-row:hover{border-color:var(--accent);}
@@ -1494,6 +1494,18 @@
   .hcl-node.new{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);}
   .hcl-arrow{color:var(--ink-faint);font-weight:800;font-size:13px;}
   .hcl-empty{font-size:12px;color:var(--ink-faint);}
+  .hcl-tlabel{font-size:12px;font-weight:800;color:var(--accent);margin-bottom:4px;}
+  .hcl-frame{display:flex;flex-direction:column;gap:4px;border:2px solid var(--accent);border-radius:12px;padding:6px 8px;background:var(--surface);}
+  .hcl-head,.hcl-frame .hcl-row{display:grid;grid-template-columns:50px 90px;gap:8px;align-items:center;}
+  .hcl-frame.chain .hcl-head,.hcl-frame.chain .hcl-row{grid-template-columns:50px 90px minmax(0,1fr);}
+  .hcl-head{font-size:11px;font-weight:800;color:var(--ink-faint);padding:0 8px 3px;border-bottom:1.5px solid var(--border);}
+  .hcl-head span:nth-child(3){color:var(--amber);}
+  .hcl-frame .hcl-row{min-height:34px;padding:2px 8px;}
+  .hcl-frame .hcl-idx{width:auto;text-align:center;background:var(--accent);color:var(--accent-ink);border-radius:7px;padding:4px 0;font-weight:900;}
+  .hcl-slot{display:flex;align-items:center;justify-content:center;min-height:26px;border:2px solid var(--ink-faint);border-radius:7px;background:var(--surface);font-family:"JetBrains Mono",monospace;font-weight:900;font-size:14px;color:var(--ink);}
+  .hcl-slot.empty{border-style:dashed;border-color:var(--border);color:var(--ink-faint);font-family:inherit;font-size:11px;font-weight:700;}
+  .hcl-slot.new{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);}
+  .hcl-frame .hcl-node{border-color:var(--amber);}
   @media (max-width:760px){.hcl-layout{grid-template-columns:1fr;}}
   /* ===== 제산 함수 · 접지 함수 ===== */
   .hfx-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:none;}
@@ -1595,6 +1607,14 @@
   .hp-node.hit{background:var(--teal);border-color:var(--teal);color:#fff;transform:scale(1.1);}
   .hp-node.skip{opacity:.45;}
   .hp-cnt{flex:none;font-size:11px;font-weight:800;color:var(--ink-faint);min-width:28px;text-align:right;}
+  .hp-tlabel{font-size:12px;font-weight:800;color:var(--accent);}
+  .hp-tframe{display:flex;flex-direction:column;gap:4px;border:2px solid var(--accent);border-radius:12px;padding:6px 8px;background:var(--surface);}
+  .hp-thead,.hp-row.slots{display:grid;grid-template-columns:54px repeat(var(--hp-s,2),minmax(0,1fr)) 34px;gap:6px;align-items:center;}
+  .hp-thead{font-size:11px;font-weight:800;color:var(--ink-faint);text-align:center;padding:0 8px 3px;border-bottom:1.5px solid var(--border);}
+  .hp-row.slots{padding:3px 8px;}
+  .hp-row.slots .hp-addr{width:auto;text-align:center;background:var(--accent);color:var(--accent-ink);border-radius:7px;padding:4px 0;font-weight:900;}
+  .hp-row.slots .hp-node{text-align:center;min-height:28px;display:flex;align-items:center;justify-content:center;padding:2px 6px;}
+  .hp-node.empty{border-style:dashed;background:transparent;color:var(--ink-faint);font-family:inherit;font-size:10.5px;font-weight:700;}
   @media (max-width:760px){.hp-layout{grid-template-columns:1fr;}}
 
   /* ===== 참고 영상 카드 (YouTube 링크) ===== */
@@ -1710,6 +1730,25 @@
 
   /* ===== 해시 자료구조 · 해시 함수 상자 ===== */
   .hb-cards .card{padding:11px 13px;}
+  .tbs-wrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;}
+  .tbs-svg{width:100%;max-width:720px;height:auto;max-height:100%;}
+  .tbs-idx{font-family:"JetBrains Mono",monospace;font-weight:900;font-size:17px;fill:var(--accent-ink);}
+  .tbs-val{font-family:"JetBrains Mono",monospace;font-weight:900;font-size:20px;fill:var(--ink);}
+  .tbs-lbl{font-family:"Black Han Sans",sans-serif;font-size:28px;}
+  .tbs-small{font-size:13px;font-weight:800;fill:var(--ink-faint);}
+  .tbs-chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;flex:none;}
+  .tbs-chip{font-size:14px;font-weight:800;border-radius:999px;padding:5px 14px;}
+  .tbs-chip.a{background:var(--accent-soft);color:var(--accent);} .tbs-chip.b{background:var(--amber-soft);color:var(--amber);} .tbs-chip.c{background:var(--teal-soft);color:var(--teal);}
+  .hs-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:10px;align-items:stretch;flex:none;}
+  .hs-step{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:18px 8px;border-radius:16px;background:var(--surface-2);border:2px solid var(--border);text-align:center;font-size:17px;}
+  .hs-step.fn{background:linear-gradient(150deg,var(--violet),var(--accent));color:#fff;border-color:transparent;}
+  .hs-step.fn .hs-ex{color:rgba(255,255,255,.85);}
+  .hs-step.tb{border-color:var(--teal);background:var(--teal-soft);}
+  .hs-ico{font-size:34px;line-height:1.1;}
+  .hs-ex{font-size:12.5px;font-weight:700;color:var(--ink-faint);}
+  .hs-arr{align-self:center;font-size:26px;font-weight:900;color:var(--accent);}
+  .hs-terms .card p{font-size:14px;line-height:1.6;}
+  @media (max-width:760px){.hs-flow{grid-template-columns:1fr;}.hs-arr{transform:rotate(90deg);justify-self:center;}}
   .hb-cards .card p{font-size:12.8px;}
   .hb-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:16px;flex:1;min-height:0;align-items:start;}
   .hb-left,.hb-right{display:flex;flex-direction:column;gap:7px;min-width:0;}
@@ -1722,38 +1761,56 @@
   .hb-key:hover:not(:disabled){border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
   .hb-key:disabled{opacity:.3;cursor:default;text-decoration:line-through;}
   .hb-input{width:82px;padding:6px 9px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-family:"JetBrains Mono",monospace;font-weight:800;font-size:14px;}
-  .hb-machine{position:relative;border-radius:18px;background:linear-gradient(180deg,var(--accent-soft),var(--surface-2));border:2px solid var(--accent);padding:0 14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:box-shadow .25s;}
-  .hb-machine.working{box-shadow:0 0 0 3px var(--amber);animation:hbShake .25s 4;}
+  .hb-machine{position:relative;border-radius:18px;background:radial-gradient(circle,rgba(255,255,255,.2) 0 1.6px,transparent 2.4px) 0 0/18px 18px,linear-gradient(150deg,var(--violet),var(--accent));border:none;box-shadow:inset 0 -6px 0 rgba(0,0,0,.14),var(--shadow-sm);padding:0 14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:box-shadow .25s,background .4s;}
+  .hb-machine::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:22px;transform:translateX(-50%);background:rgba(255,255,255,.16);pointer-events:none;}
+  .hb-machine>*{position:relative;}
+  .hb-machine.working{box-shadow:0 0 0 3px var(--amber),inset 0 -6px 0 rgba(0,0,0,.14);animation:hbShake .25s 4;}
+  .hb-machine.solved{background:radial-gradient(circle,rgba(255,255,255,.2) 0 1.6px,transparent 2.4px) 0 0/18px 18px,linear-gradient(150deg,var(--teal),var(--accent));}
+  .hb-tag{position:absolute !important;top:6px;right:10px;background:var(--amber);color:#fff;font-size:11px;font-weight:900;border-radius:999px;padding:2px 9px;box-shadow:0 2px 0 rgba(0,0,0,.15);}
+  .hb-machine.solved .hb-tag{background:var(--surface);color:var(--teal);}
   @keyframes hbShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
-  .hb-mouth{width:170px;height:40px;border-radius:0 0 46px 46px;border:2px dashed var(--accent);border-top:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--accent);background:var(--surface);}
+  .hb-mouth{width:170px;height:36px;border-radius:0 0 46px 46px;border:2px dashed var(--accent);border-top:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--accent);background:var(--surface);}
   .hb-token{font-family:"JetBrains Mono",monospace;font-weight:900;font-size:18px;padding:3px 14px;border-radius:9px;background:var(--amber);color:#fff;animation:hbDrop .45s ease-out;}
   .hb-token.in{animation:hbIn .45s ease-in forwards;}
   @keyframes hbDrop{from{transform:translateY(-36px);opacity:0}to{transform:translateY(0);opacity:1}}
   @keyframes hbIn{to{transform:translateY(30px) scale(.4);opacity:0}}
-  .hb-gear{position:absolute;top:8px;font-size:20px;opacity:.55;}
-  .hb-gear.l{left:12px;} .hb-gear.r{right:12px;}
-  .hb-machine.working .hb-gear{animation:hbSpin .8s linear infinite;opacity:1;}
+  .hb-gear{position:absolute !important;top:34px;font-family:"Black Han Sans",sans-serif;font-size:30px;line-height:1;color:rgba(255,255,255,.55);animation:hbFloat 2.4s ease-in-out infinite;}
+  .hb-gear.l{left:16px;} .hb-gear.r{right:16px;animation-delay:-1.2s;}
+  .hb-machine.working .hb-gear{animation:hbSpin .8s linear infinite;color:#fff;}
+  @keyframes hbFloat{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-5px) rotate(8deg)}}
   @keyframes hbSpin{to{transform:rotate(360deg)}}
-  .hb-rule{font-family:"JetBrains Mono",monospace;font-weight:900;font-size:17px;color:var(--accent);background:var(--surface);border-radius:10px;padding:4px 14px;border:1px solid var(--border);}
+  .hb-rule{font-family:"JetBrains Mono",monospace;font-weight:900;font-size:17px;color:var(--accent);background:var(--surface);border-radius:10px;padding:4px 12px;border:none;box-shadow:0 3px 0 rgba(0,0,0,.15);display:flex;align-items:center;gap:6px;}
+  .hb-rule .hb-qm{color:var(--violet);}
+  .hb-guess{width:52px;padding:2px 6px;border-radius:7px;border:2px dashed var(--violet);background:var(--violet-soft);color:var(--ink);font-family:"JetBrains Mono",monospace;font-weight:900;font-size:16px;text-align:center;}
+  .hb-guess-btn{appearance:none;border:none;border-radius:7px;background:var(--violet);color:#fff;font-weight:800;font-size:12px;padding:5px 10px;cursor:pointer;}
+  .hb-guess-btn:hover{filter:brightness(1.1);}
+  .hb-rule.ok{color:var(--teal);animation:hbPop .4s;}
+  .hb-rule.no{animation:hbShake .25s 2;}
   .hb-screen{width:100%;min-height:44px;background:var(--code-bg);color:var(--code-ink);border-radius:10px;padding:8px 12px;font-family:"JetBrains Mono",monospace;font-size:13.4px;font-weight:700;text-align:center;line-height:1.5;}
   .hb-screen b{color:var(--code-num);}
-  .hb-out{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;color:var(--ink-soft);}
+  .hb-out{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;color:#fff;}
   .hb-ticket{font-family:"Black Han Sans",sans-serif;font-size:22px;color:var(--ink-faint);background:var(--surface);border:2px dashed var(--border);border-radius:10px;padding:1px 16px;min-width:104px;text-align:center;}
   .hb-ticket.pop{color:var(--teal);border-style:solid;border-color:var(--teal);background:var(--teal-soft);animation:hbPop .4s;}
   @keyframes hbPop{0%{transform:scale(.6)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
-  .hb-table{display:flex;flex-direction:column;gap:3px;}
-  .hb-bucket{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border-soft);background:var(--surface-2);border-radius:10px;padding:2px 8px;min-height:28px;transition:background .3s,border-color .3s;}
-  .hb-bucket.hit{border-color:var(--teal);background:var(--teal-soft);}
-  .hb-bucket.clash{border-color:var(--amber);background:var(--amber-soft);}
-  .hb-addr{width:56px;flex:none;font-family:"JetBrains Mono",monospace;font-weight:800;font-size:12px;color:var(--ink-faint);}
-  .hb-chain{display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
+  .hb-table{display:flex;flex-direction:column;gap:2px;border:2px solid var(--accent);border-radius:12px;background:var(--surface-2);padding:5px 7px 6px;}
+  .hb-thead,.hb-bucket{display:grid;grid-template-columns:52px minmax(0,150px);gap:8px;align-items:center;}
+  .hb-thead{font-size:10.5px;font-weight:800;color:var(--accent);padding-bottom:3px;border-bottom:1.5px solid var(--border);margin-bottom:2px;}
+  .hb-thead span:last-child{color:var(--amber);}
+  .hb-bucket{border-radius:8px;padding:1px 2px;transition:background .3s;}
+  .hb-bucket.hit{background:var(--teal-soft);}
+  .hb-bucket.clash{background:var(--amber-soft);}
+  .hb-idx{background:var(--accent);color:var(--accent-ink);font-family:"JetBrains Mono",monospace;font-weight:900;font-size:12.5px;border-radius:6px;text-align:center;padding:3px 0;}
+  .hb-slot{border:2px solid var(--ink-faint);border-radius:6px;background:var(--surface);min-height:25px;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-weight:900;font-size:14px;color:var(--ink);}
+  .hb-slot.empty{border-style:dashed;border-color:var(--border);color:var(--ink-faint);font-family:inherit;font-size:10.5px;font-weight:700;}
+  .hb-slot.new{background:var(--teal);border-color:var(--teal);color:#fff;animation:hbPop .4s;}
+  .hb-chain{display:flex;gap:4px;align-items:center;flex-wrap:wrap;min-height:25px;}
   .hb-node{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:13px;background:var(--surface);border:1.5px solid var(--border);border-radius:7px;padding:1px 9px;color:var(--ink);}
   .hb-node.new{background:var(--teal);border-color:var(--teal);color:#fff;animation:hbPop .4s;}
   .hb-node.newc{background:var(--amber);border-color:var(--amber);color:#fff;animation:hbPop .4s;}
   .hb-link{color:var(--ink-faint);font-size:12px;}
   .hb-msg{background:var(--surface-2);border-radius:11px;padding:9px 12px;font-size:13px;font-weight:700;line-height:1.55;color:var(--ink-soft);min-height:42px;}
   .hb-msg.ok{background:var(--teal-soft);color:var(--teal);} .hb-msg.warn{background:var(--amber-soft);color:var(--amber);} .hb-msg.bad{background:var(--danger-soft);color:var(--danger);}
-  @media (prefers-reduced-motion: reduce){.hb-machine.working,.hb-token,.hb-token.in,.hb-ticket.pop,.hb-node.new,.hb-node.newc,.hb-machine.working .hb-gear{animation:none;}}
+  @media (prefers-reduced-motion: reduce){.hb-machine.working,.hb-token,.hb-token.in,.hb-ticket.pop,.hb-slot.new,.hb-gear,.hb-rule.ok,.hb-rule.no,.hb-node.new,.hb-node.newc,.hb-machine.working .hb-gear{animation:none;}}
   @media (max-width:760px){.hb-layout{grid-template-columns:1fr;}}
 
   /* ===== 나의 탐색 전략 선택하기 (개별 활동) ===== */
@@ -2030,7 +2087,7 @@
         <div class="hu-top"><span class="hu-num">3-2</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>탐색 알고리즘</h2>
         <p>선형 탐색·이진 탐색·해싱의 원리를 이해하고, 탐색 알고리즘이 데이터를 찾아가는 과정을 직접 실습한다.</p>
-        <div class="hu-foot"><span>총 25장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 26장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u33">
         <div class="hu-top"><span class="hu-num">3-3</span><span class="hu-badge">✨ 인터랙티브</span></div>
@@ -5779,56 +5836,6 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     </div>
   </section>
 
-  <!-- 해시 자료구조 : 개념 -->
-  <section class="slide" data-kind="concept" data-title="해시 자료구조란?" data-tag="개념">
-    <div class="topbar"><span class="breadcrumb">02. 대표 탐색 알고리즘</span><span class="kind-tag">개념 · 해시 미리 보기</span></div>
-    <div class="slide-inner">
-      <span class="kicker">Concept · 해시 테이블(hash table)</span>
-      <h1 class="h1" style="margin-bottom:8px;">데이터를 넣을 자리를 '계산'으로 정하는 자료 구조</h1>
-      <p class="lead" style="margin-bottom:10px;font-size:14px;max-width:none;">해시 테이블은 <b>키(key)를 해시 함수에 넣어 나온 값(해시 주소)</b>을 저장 위치로 쓰는 자료 구조이다. 데이터를 넣을 때도, 찾을 때도 같은 계산을 하므로 처음부터 하나씩 비교하지 않고 그 자리로 바로 갈 수 있다.</p>
-      <div class="card-grid cols-4 hb-cards" style="flex:none;gap:10px;">
-        <div class="card"><span class="num">🔑</span><h3>키(key)</h3><p>저장하거나 찾으려는 데이터를 구별하는 값. 예: 학번, 아이디</p></div>
-        <div class="card"><span class="num">⚙️</span><h3>해시 함수</h3><p>키를 받아 저장할 주소를 계산하는 규칙. 예: h(k) = k mod 7</p></div>
-        <div class="card"><span class="num">📍</span><h3>해시 주소</h3><p>해시 함수가 계산한 결과. 테이블에서 데이터가 들어갈 칸 번호</p></div>
-        <div class="card"><span class="num">🗄️</span><h3>버킷 · 슬롯</h3><p>해시 테이블의 각 칸이 버킷이고, 버킷 안에서 데이터 하나가 들어가는 자리가 슬롯이다.</p></div>
-      </div>
-      <div class="compare-grid" style="flex:none;margin-top:10px;gap:12px;">
-        <div class="compare-card bad" style="padding:11px 14px;"><div class="compare-head">📚 배열에 차례로 넣었다면</div><div class="compare-caption">찾는 값이 나올 때까지 앞에서부터 하나씩 비교한다. 데이터가 n개이면 최악의 경우 n번 비교한다.</div></div>
-        <div class="compare-card good" style="padding:11px 14px;"><div class="compare-head">⚡ 해시 테이블에 넣었다면</div><div class="compare-caption">h(키)를 계산해 그 버킷 하나만 확인한다. 충돌이 없으면 비교 1번이면 된다.</div></div>
-      </div>
-      <div class="insight-strip" style="margin-top:10px;"><span>💡 생활 속 예: 학번의 끝자리(학번 mod 10)로 사물함 번호를 정해 두면, 학번만 보고 바로 사물함을 찾을 수 있다. 끝자리가 같은 학생이 둘 이상이면 같은 칸을 가리키는데, 이것이 <b>충돌</b>이다.</span></div>
-    </div>
-  </section>
-
-  <!-- 해시 자료구조 : 해시 함수 상자 (interactive) -->
-  <section class="slide" data-kind="interactive" data-title="해시 함수 상자에 데이터 넣어 보기" data-tag="실습">
-    <div class="topbar"><span class="breadcrumb">02. 대표 탐색 알고리즘</span><span class="kind-tag">✨ 인터랙티브 · 해시 함수 상자</span></div>
-    <div class="slide-inner" style="justify-content:flex-start;">
-      <span class="kicker">Try it · 규칙이 정해진 상자에 키를 넣으면 주소가 나온다</span>
-      <h1 class="h1" style="margin-bottom:8px;">키를 상자에 넣고, 해시 테이블이 채워지는 과정을 보자</h1>
-      <div class="hb-layout">
-        <div class="hb-left">
-          <div class="hb-row"><span class="hb-lbl">상자의 규칙</span><span id="hbRules" class="hb-row"></span></div>
-          <div class="hb-row" id="hbPool"></div>
-          <div class="hb-row"><span class="hb-lbl">직접 입력</span><input class="hb-input" type="number" id="hbInput" min="0" max="999" placeholder="0~999" aria-label="넣을 키"><button class="sim-btn" type="button" id="hbInputBtn" style="padding:6px 12px;">상자에 넣기</button></div>
-          <div class="hb-machine" id="hbMachine">
-            <span class="hb-gear l" aria-hidden="true">⚙️</span><span class="hb-gear r" aria-hidden="true">⚙️</span>
-            <div class="hb-mouth" id="hbSlot">▼ 여기로 키가 들어가요</div>
-            <div class="hb-rule" id="hbRule">h(k) = k mod 7</div>
-            <div class="hb-screen" id="hbScreen">키를 골라 상자에 넣어 보세요</div>
-            <div class="hb-out">나온 주소 <span class="hb-ticket" id="hbTicket">-</span></div>
-          </div>
-          <div class="ctrl-row"><button class="sim-btn primary" type="button" id="hbAuto">남은 키 모두 넣기 ▶</button><button class="sim-btn" type="button" id="hbReset">처음부터 ⟲</button></div>
-        </div>
-        <div class="hb-right">
-          <span class="hb-lbl" id="hbTableLbl">해시 테이블 (버킷 0 ~ 6)</span>
-          <div class="hb-table" id="hbTable"></div>
-          <div class="hb-msg" id="hbMsg">키를 누르면 상자가 규칙대로 계산해서 주소를 알려 주고, 그 버킷에 데이터가 들어가요.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- 11 : DIVIDER 03 -->
   <section class="slide" data-kind="divider" data-title="03 해시 탐색" data-tag="구분">
     <div class="topbar"><span class="breadcrumb">03. 탐색 알고리즘</span><span class="kind-tag">Section 03</span></div>
@@ -5846,17 +5853,110 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     <div class="slide-inner">
       <span class="kicker">Concept · 해싱(hashing)이란</span>
       <h1 class="h1">키를 계산해 바로 위치를 찾아가는 탐색</h1>
-      <p class="lead" style="margin-bottom:10px;">해시 탐색은 순차·이진 탐색처럼 값을 반복적으로 비교하는 대신, <b>해시 함수</b>를 이용한 산술 연산으로 키의 위치(해시 주소)를 계산하여 곧바로 접근하는 탐색 기법이다. 데이터가 저장되는 공간을 해시 테이블이라 하며, 서로 다른 해시 주소로 접근한다면 시간 복잡도는 O(1)이 된다.</p>
-      <div class="pipeline">
-        <div class="pipe-step"><span class="pn">01</span><h3>키 (key)</h3><p>저장·탐색하려는 데이터의 키값 k</p></div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step"><span class="pn">02</span><h3>해시 함수 F(k)</h3><p>키에 산술 연산을 적용해 주소를 계산</p></div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step"><span class="pn">03</span><h3>해시 주소</h3><p>해시 테이블에서 데이터가 저장될 위치</p></div>
-      </div>
-      <div class="insight-strip" style="margin-top:12px;">💡 키값이 다른 데이터가 같은 해시 주소를 가지는 것을 충돌(collision), 버킷의 저장 공간을 초과하는 것을 오버플로(overflow)라고 한다.</div>
+      <p class="lead" style="max-width:none;font-size:22px;line-height:1.75;margin-top:18px;">해시 탐색 알고리즘은 순차 탐색이나 이진 탐색처럼 키값을 반복적으로 비교하며 탐색을 진행하는 방식이 아니라, <b>해시 함수</b>를 이용한 산술 연산을 통해 <b>키의 위치</b>를 계산하는 탐색 기법이다.</p>
     </div>
   </section>
+
+  <!-- 해시 자료구조 : 개념 -->
+  <section class="slide" data-kind="concept" data-title="해싱의 개념" data-tag="개념">
+    <div class="topbar"><span class="breadcrumb">02. 대표 탐색 알고리즘</span><span class="kind-tag">개념 · 해싱</span></div>
+    <div class="slide-inner">
+      <span class="kicker">Concept · 해싱(hashing)</span>
+      <h1 class="h1" style="margin-bottom:10px;">해싱: 데이터를 넣을 자리를 <span style="color:var(--accent);">'계산'</span>으로 정한다</h1>
+      <p class="lead" style="margin-bottom:18px;max-width:none;"><b>해싱</b>은 키를 <b>해시 함수</b>에 넣어 나온 값을 저장 위치로 쓰는 방법이다.</p>
+      <div class="hs-flow">
+        <div class="hs-step"><span class="hs-ico">🔑</span><b>키</b><span class="hs-ex">학번 23</span></div>
+        <span class="hs-arr">→</span>
+        <div class="hs-step fn"><span class="hs-ico">⚙️</span><b>해시 함수</b><span class="hs-ex">정해진 규칙으로 계산</span></div>
+        <span class="hs-arr">→</span>
+        <div class="hs-step"><span class="hs-ico">📍</span><b>해시 주소</b><span class="hs-ex">주소 2</span></div>
+        <span class="hs-arr">→</span>
+        <div class="hs-step tb"><span class="hs-ico">🗄️</span><b>해시 테이블</b><span class="hs-ex">2번 칸에 저장</span></div>
+      </div>
+      <div class="insight-strip" style="margin-top:18px;"><span>💡 넣을 때도, 찾을 때도 <b>같은 계산</b>을 하므로 하나씩 비교하지 않고 그 자리로 바로 간다.</span></div>
+    </div>
+  </section>
+
+  <!-- 해시 자료구조 : 해시 테이블·버킷·슬롯 그림 -->
+  <section class="slide" data-kind="concept" data-title="해시 테이블 · 버킷 · 슬롯" data-tag="개념">
+    <div class="topbar"><span class="breadcrumb">02. 대표 탐색 알고리즘</span><span class="kind-tag">개념 · 그림으로 보기</span></div>
+    <div class="slide-inner">
+      <span class="kicker">Concept · 해시 테이블의 구조</span>
+      <h1 class="h1" style="margin-bottom:6px;">해시 테이블 · 버킷 · 슬롯</h1>
+      <div class="tbs-wrap">
+        <svg class="tbs-svg" viewBox="0 0 760 340" role="img" aria-label="해시 테이블, 버킷, 슬롯 구조 그림">
+        <defs><marker id="tbsArr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink-soft)"/></marker></defs>
+        <rect x="190" y="18" width="332" height="292" rx="14" style="fill:var(--surface-2);stroke:var(--accent);stroke-width:3"/>
+        <rect x="200" y="30" width="50" height="48" rx="8" style="fill:var(--accent)"/>
+        <text x="225" y="61" text-anchor="middle" class="tbs-idx">[0]</text>
+        <rect x="262" y="30" width="120" height="48" rx="8" style="fill:var(--surface);stroke:var(--ink-faint);stroke-width:2"/>
+        <text x="322" y="62" text-anchor="middle" class="tbs-val">23</text>
+        <rect x="388" y="30" width="120" height="48" rx="8" style="fill:var(--teal-soft);stroke:var(--teal);stroke-width:3.5"/>
+        <text x="448" y="62" text-anchor="middle" class="tbs-val">41</text>
+        <rect x="200" y="86" width="50" height="48" rx="8" style="fill:var(--accent)"/>
+        <text x="225" y="117" text-anchor="middle" class="tbs-idx">[1]</text>
+        <rect x="262" y="86" width="120" height="48" rx="8" style="fill:var(--surface);stroke:var(--ink-faint);stroke-width:2"/>
+        <text x="322" y="118" text-anchor="middle" class="tbs-val">15</text>
+        <rect x="388" y="86" width="120" height="48" rx="8" style="fill:var(--surface);stroke:var(--border);stroke-width:2;stroke-dasharray:6 5"/>
+        <rect x="200" y="142" width="50" height="48" rx="8" style="fill:var(--accent)"/>
+        <text x="225" y="173" text-anchor="middle" class="tbs-idx">[2]</text>
+        <rect x="262" y="142" width="120" height="48" rx="8" style="fill:var(--surface);stroke:var(--border);stroke-width:2;stroke-dasharray:6 5"/>
+        <rect x="388" y="142" width="120" height="48" rx="8" style="fill:var(--surface);stroke:var(--border);stroke-width:2;stroke-dasharray:6 5"/>
+        <rect x="200" y="198" width="50" height="48" rx="8" style="fill:var(--accent)"/>
+        <text x="225" y="229" text-anchor="middle" class="tbs-idx">[3]</text>
+        <rect x="262" y="198" width="120" height="48" rx="8" style="fill:var(--surface);stroke:var(--ink-faint);stroke-width:2"/>
+        <text x="322" y="230" text-anchor="middle" class="tbs-val">10</text>
+        <rect x="388" y="198" width="120" height="48" rx="8" style="fill:var(--surface);stroke:var(--ink-faint);stroke-width:2"/>
+        <text x="448" y="230" text-anchor="middle" class="tbs-val">38</text>
+        <rect x="200" y="254" width="50" height="48" rx="8" style="fill:var(--accent)"/>
+        <text x="225" y="285" text-anchor="middle" class="tbs-idx">[4]</text>
+        <rect x="262" y="254" width="120" height="48" rx="8" style="fill:var(--surface);stroke:var(--ink-faint);stroke-width:2"/>
+        <text x="322" y="286" text-anchor="middle" class="tbs-val">54</text>
+        <rect x="388" y="254" width="120" height="48" rx="8" style="fill:var(--surface);stroke:var(--border);stroke-width:2;stroke-dasharray:6 5"/>
+        <rect x="195" y="192" width="322" height="60" rx="12" style="fill:none;stroke:var(--amber);stroke-width:4"/>
+        <line x1="522" y1="222" x2="598" y2="222" style="stroke:var(--ink-soft);stroke-width:2.5" marker-start="url(#tbsArr)"/>
+        <text x="610" y="230" class="tbs-lbl" style="fill:var(--amber)">버킷</text>
+        <line x1="510" y1="54" x2="598" y2="54" style="stroke:var(--ink-soft);stroke-width:2.5" marker-start="url(#tbsArr)"/>
+        <text x="610" y="62" class="tbs-lbl" style="fill:var(--teal)">슬롯</text>
+        <path d="M176,20 C160,20 166,160 150,164 C166,168 160,308 176,308" style="fill:none;stroke:var(--accent);stroke-width:3"/>
+        <text x="84" y="160" text-anchor="middle" class="tbs-lbl" style="fill:var(--accent)">해시</text>
+        <text x="84" y="190" text-anchor="middle" class="tbs-lbl" style="fill:var(--accent)">테이블</text>
+        <text x="225" y="332" text-anchor="middle" class="tbs-small">주소</text>
+        </svg>
+      </div>
+      <div class="tbs-chips"><span class="tbs-chip a">해시 테이블 = 데이터의 주소와 값이 쌍을 이루어 저장되는 공간</span><span class="tbs-chip b">버킷 = 주소 하나의 칸</span><span class="tbs-chip c">슬롯 = 데이터 1개 자리</span></div>
+    </div>
+  </section>
+
+  <!-- 해시 자료구조 : 해시 함수 상자 (interactive) -->
+  <section class="slide" data-kind="interactive" data-title="해시 함수 상자에 데이터 넣어 보기" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">02. 대표 탐색 알고리즘</span><span class="kind-tag">✨ 인터랙티브 · 해시 함수 상자</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Try it · 비밀 규칙 상자에 키를 넣고, 나온 주소로 규칙을 추리하자</span>
+      <h1 class="h1" style="margin-bottom:8px;">키를 상자에 넣고, 해시 테이블이 채워지는 과정을 보자</h1>
+      <div class="hb-layout">
+        <div class="hb-left">
+          <div class="hb-row"><span class="hb-lbl">상자 고르기</span><span id="hbRules" class="hb-row"></span></div>
+          <div class="hb-row" id="hbPool"></div>
+          <div class="hb-row"><span class="hb-lbl">직접 입력</span><input class="hb-input" type="number" id="hbInput" min="0" max="999" placeholder="0~999" aria-label="넣을 키"><button class="sim-btn" type="button" id="hbInputBtn" style="padding:6px 12px;">상자에 넣기</button></div>
+          <div class="hb-machine" id="hbMachine">
+            <span class="hb-gear l" aria-hidden="true">?</span><span class="hb-gear r" aria-hidden="true">?</span><span class="hb-tag" id="hbTag">🎁 비밀 상자 A</span>
+            <div class="hb-mouth" id="hbSlot">▼ 여기로 키가 들어가요</div>
+            <div class="hb-rule" id="hbRule">해시 함수</div>
+            <div class="hb-screen" id="hbScreen">키를 골라 상자에 넣어 보세요</div>
+            <div class="hb-out">나온 주소 <span class="hb-ticket" id="hbTicket">-</span></div>
+          </div>
+          <div class="ctrl-row"><button class="sim-btn primary" type="button" id="hbAuto">남은 키 모두 넣기 ▶</button><button class="sim-btn" type="button" id="hbReset">처음부터 ⟲</button><button class="sim-btn" type="button" id="hbReveal">규칙 공개 🔓</button></div>
+        </div>
+        <div class="hb-right">
+          <span class="hb-lbl" id="hbTableLbl">해시 테이블 T · 크기 m = 7 (주소 0 ~ 6)</span>
+          <div class="hb-table" id="hbTable"></div>
+          <div class="hb-msg" id="hbMsg">키를 누르면 상자가 규칙대로 계산해서 주소를 알려 주고, 그 버킷에 데이터가 들어가요.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- 해시 함수의 종류 : 제산 함수 · 접지 함수 -->
   <section class="slide" data-kind="concept" data-title="해시 함수 — 제산 함수와 접지 함수" data-tag="개념">
@@ -10618,8 +10718,8 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       var msgEl = document.getElementById('hclMsg'), logEl = document.getElementById('hclLog');
       var tabs = document.querySelectorAll('#hclTabs .hcl-tab');
       var DESC = {
-        chain: '<b>체이닝</b> · 같은 주소로 계산된 키는 그 버킷에 <b>연결 리스트로 줄줄이</b> 이어 붙인다. 주소를 계산해서 해당 버킷을 눌러 보세요.',
-        linear: '<b>선형 개방 주소법</b> · 칸마다 키를 하나만 넣는다. 계산한 주소가 이미 차 있으면 <b>바로 다음 칸(+1)</b>을 차례로 조사해 빈칸에 넣는다. 마지막 칸 다음은 0번 칸이다.'
+        chain: '<b>체이닝</b> · 버킷마다 슬롯은 1개. 슬롯이 이미 차 있으면(충돌) 넘친 키를 그 버킷의 <b>연결 리스트</b> 끝에 이어 붙인다. 주소를 계산해서 해당 버킷을 눌러 보세요.',
+        linear: '<b>선형 개방 주소법</b> · 버킷마다 슬롯은 1개. 계산한 버킷의 슬롯이 차 있으면 <b>바로 다음 버킷(+1)</b>의 슬롯을 차례로 조사해 빈 슬롯에 넣는다. 마지막 버킷(6) 다음은 버킷 0이다.'
       };
       var mode = 'chain', S = {};
       function msg(cls, html){ msgEl.className = 'nu-msg' + (cls ? ' ' + cls : ''); msgEl.innerHTML = html; }
@@ -10651,27 +10751,33 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         if(s.idx < KEYS.length){
           var txt = 'h(' + k + ') = ' + k + ' mod 7 = ?';
           if(mode === 'linear' && s.probes.length){
-            txt = 'h(' + k + ') = ' + home(k) + ' → 충돌! 조사한 칸: ' + s.probes.join(', ') + ' → 다음 칸은 ?';
+            txt = 'h(' + k + ') = ' + home(k) + ' → 충돌! 조사한 버킷: ' + s.probes.join(', ') + ' → 다음 버킷은 ?';
           }
           calcEl.textContent = txt;
         } else {
           calcEl.textContent = '모든 키를 넣었어요.';
         }
-        tableEl.innerHTML = '';
+        tableEl.innerHTML = '<div class="hcl-tlabel">해시 테이블 T · 버킷 ' + M + '개 × 버킷마다 슬롯 1개</div>';
+        var frame = document.createElement('div');
+        frame.className = 'hcl-frame' + (mode === 'chain' ? ' chain' : '');
+        frame.innerHTML = '<div class="hcl-head"><span>주소</span><span>슬롯</span>' + (mode === 'chain' ? '<span>넘친 키 · 연결 리스트</span>' : '') + '</div>';
+        tableEl.appendChild(frame);
         for(var b = 0; b < M; b++){
           var row = document.createElement('div');
           row.className = 'hcl-row' + (s.probes.indexOf(b) >= 0 ? ' probe' : '') + (s.bad === b ? ' bad' : '');
-          var cells = '';
+          var first = mode === 'chain' ? s.table[b][0] : s.table[b];
+          var isNew = mode === 'chain' ? (s.last === b && s.table[b].length === 1) : s.last === b;
+          var html = '<span class="hcl-idx">[' + b + ']</span>';
+          html += (first === undefined || first === null) ? '<span class="hcl-slot empty">빈 슬롯</span>' : '<span class="hcl-slot' + (isNew ? ' new' : '') + '">' + first + '</span>';
           if(mode === 'chain'){
-            cells = s.table[b].length ? s.table[b].map(function(v, j){
-              return '<span class="hcl-node' + (s.last === b && j === s.table[b].length - 1 ? ' new' : '') + '">' + v + '</span>';
-            }).join('<span class="hcl-arrow">→</span>') : '<span class="hcl-empty">비어 있음</span>';
-          } else {
-            cells = s.table[b] === null ? '<span class="hcl-empty">빈칸</span>' : '<span class="hcl-node' + (s.last === b ? ' new' : '') + '">' + s.table[b] + '</span>';
+            var rest = s.table[b].slice(1);
+            html += '<div class="hcl-cells">' + rest.map(function(v, j){
+              return '<span class="hcl-arrow">→</span><span class="hcl-node' + (s.last === b && j === rest.length - 1 ? ' new' : '') + '">' + v + '</span>';
+            }).join('') + '</div>';
           }
-          row.innerHTML = '<span class="hcl-idx">' + (mode === 'chain' ? '버킷 ' : '칸 ') + b + '</span><div class="hcl-cells">' + cells + '</div>';
+          row.innerHTML = html;
           (function(bb){ row.addEventListener('click', function(){ place(bb); }); })(b);
-          tableEl.appendChild(row);
+          frame.appendChild(row);
         }
         logEl.innerHTML = s.logs.length ? s.logs.join('<br>') : '넣은 기록이 여기에 쌓여요.';
         logEl.scrollTop = logEl.scrollHeight;
@@ -10689,32 +10795,32 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
           }
           var coll = s.table[h].length > 0;
           s.table[h].push(k); s.last = h;
-          s.logs.push('h(' + k + ') = ' + k + ' mod 7 = ' + h + (coll ? ' → 충돌! 버킷 ' + h + '의 리스트 끝에 연결' : ' → 버킷 ' + h + '에 저장'));
-          msg(coll ? 'info' : 'ok', coll ? '🔗 충돌! 버킷 ' + h + '에 이미 키가 있어서, 리스트 끝에 이어 붙였어요.' : '✅ 버킷 ' + h + '에 넣었어요.');
+          s.logs.push('h(' + k + ') = ' + k + ' mod 7 = ' + h + (coll ? ' → 충돌! 버킷 ' + h + '의 연결 리스트 끝에 연결' : ' → 버킷 ' + h + '의 슬롯에 저장'));
+          msg(coll ? 'info' : 'ok', coll ? '🔗 충돌! 버킷 ' + h + '의 슬롯이 이미 차 있어서, 연결 리스트 끝에 이어 붙였어요.' : '✅ 버킷 ' + h + '의 슬롯에 넣었어요.');
           s.idx++;
         } else {
           var expect = nextProbe(k);
           if(b !== expect){
             s.bad = b;
-            if(s.probes.length === 0) msg('bad', '❌ ' + b + '번 칸이 아니에요. 먼저 ' + k + ' mod 7 을 계산해서 그 칸을 눌러 보세요.');
-            else msg('bad', '❌ 충돌이 나면 바로 <b>다음 칸</b>을 조사해요. 지금 조사할 칸은 ' + s.probes[s.probes.length - 1] + '번의 다음 칸이에요.');
+            if(s.probes.length === 0) msg('bad', '❌ 버킷 ' + b + '이(가) 아니에요. 먼저 ' + k + ' mod 7 을 계산해서 그 버킷을 눌러 보세요.');
+            else msg('bad', '❌ 충돌이 나면 바로 <b>다음 버킷</b>을 조사해요. 지금 조사할 곳은 버킷 ' + s.probes[s.probes.length - 1] + '의 다음 버킷이에요.');
             render(); return;
           }
           if(s.table[b] !== null){
             s.probes.push(b); s.total++;
-            msg('info', '💥 ' + b + '번 칸에는 이미 다른 키(' + s.table[b] + ')가 있어요. 다음 칸(+1)을 눌러 보세요.');
+            msg('info', '💥 버킷 ' + b + '의 슬롯에는 이미 다른 키(' + s.table[b] + ')가 있어요. 다음 버킷(+1)을 눌러 보세요.');
             render(); return;
           }
           s.total++;
           var tries = s.probes.length + 1;
           s.table[b] = k; s.last = b;
-          s.logs.push('h(' + k + ') = ' + h + (s.probes.length ? ' → 조사 ' + s.probes.concat([b]).join(' → ') + ' → 칸 ' + b + '에 저장 (' + tries + '번 조사)' : ' → 칸 ' + b + '에 바로 저장'));
-          msg('ok', s.probes.length ? '✅ ' + tries + '번 조사한 끝에 빈칸 ' + b + '번에 넣었어요.' : '✅ 칸 ' + b + '에 넣었어요.');
+          s.logs.push('h(' + k + ') = ' + h + (s.probes.length ? ' → 조사 ' + s.probes.concat([b]).join(' → ') + ' → 버킷 ' + b + '에 저장 (' + tries + '번 조사)' : ' → 버킷 ' + b + '의 슬롯에 바로 저장'));
+          msg('ok', s.probes.length ? '✅ ' + tries + '번 조사한 끝에 버킷 ' + b + '의 빈 슬롯에 넣었어요.' : '✅ 버킷 ' + b + '의 슬롯에 넣었어요.');
           s.probes = []; s.idx++;
         }
         if(s.idx >= KEYS.length){
-          if(mode === 'chain') msg('ok', '🎉 완료! 버킷 4에 키가 4개나 줄줄이 연결됐어요. 체이닝은 칸이 모자라지 않지만, 한 버킷의 리스트가 길어지면 찾을 때 그만큼 차례로 비교해야 해요.');
-          else msg('ok', '🎉 완료! 키 6개를 넣는 데 칸을 모두 ' + s.total + '번 조사했어요. 충돌한 키들이 4번 칸 근처부터 줄지어 모이는 현상(군집)이 생겼어요.');
+          if(mode === 'chain') msg('ok', '🎉 완료! 버킷 4에 키가 4개 들어갔어요. 슬롯 1개에 1개, 나머지 3개는 연결 리스트로 이어졌어요. 리스트가 길어지면 찾을 때 그만큼 차례로 비교해야 해요.');
+          else msg('ok', '🎉 완료! 키 6개를 넣는 데 버킷을 모두 ' + s.total + '번 조사했어요. 충돌한 키들이 버킷 4 근처부터 줄지어 모이는 현상(군집)이 생겼어요.');
         }
         render();
       }
@@ -10723,7 +10829,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         if(!keep || !S[m]) S[m] = fresh(m);
         if(st().idx > 0 && st().idx < KEYS.length) msg('info', '이어서 진행해요. 지금 넣을 키: <b>' + KEYS[st().idx] + '</b>');
         else if(st().idx >= KEYS.length) msg('ok', '이 방법으로는 모두 넣었어요. 처음부터 다시 하려면 ⟲ 버튼을 누르세요.');
-        if(st().idx === 0) msg('info', '첫 번째 키 <b>' + KEYS[0] + '</b>부터 시작해요. h(k) = k mod 7 을 계산해서 알맞은 ' + (m === 'chain' ? '버킷' : '칸') + '을 눌러 보세요.');
+        if(st().idx === 0) msg('info', '첫 번째 키 <b>' + KEYS[0] + '</b>부터 시작해요. h(k) = k mod 7 을 계산해서 알맞은 버킷을 눌러 보세요.');
         render();
       }
       tabs.forEach(function(b){ b.addEventListener('click', function(){ start(b.dataset.m, true); }); });
@@ -11140,9 +11246,9 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
 
   /* ================= slide 13-2 : 버킷에 직접 넣어 보기 (넣기 → 찾기) ================= */
   (function(){
-    var KEYS = [10, 17, 8, 15, 23, 24, 6];
-    var TARGETS = [24, 8, 31];
-    var M = 7;
+    var KEYS = [10, 17, 8, 15, 23, 30, 6];
+    var TARGETS = [17, 8, 31];
+    var M = 7, S = 2;
     var poolEl = document.getElementById('hpPool');
     var tableEl = document.getElementById('hpTable');
     var calcEl = document.getElementById('hpCalc');
@@ -11238,26 +11344,40 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
 
     function renderTable(hl){
       tableEl.textContent = '';
+      var lbl = document.createElement('div');
+      lbl.className = 'hp-tlabel';
+      lbl.textContent = '해시 테이블 T · 버킷 ' + M + '개 × 버킷마다 슬롯 ' + S + '개';
+      tableEl.appendChild(lbl);
+      var frame = document.createElement('div');
+      frame.className = 'hp-tframe';
+      frame.style.setProperty('--hp-s', S);
+      var head = document.createElement('div');
+      head.className = 'hp-thead';
+      var hh = '<span>주소</span>';
+      for(var si = 0; si < S; si++) hh += '<span>슬롯 ' + si + '</span>';
+      head.innerHTML = hh + '<span></span>';
+      frame.appendChild(head);
+      tableEl.appendChild(frame);
       for(var b = 0; b < M; b++){
         (function(b){
           var row = document.createElement('div');
-          row.className = 'hp-row' + (phase === 'search' && (busy || searchDone) ? ' locked' : '');
+          row.className = 'hp-row slots' + (phase === 'search' && (busy || searchDone) ? ' locked' : '');
           row.setAttribute('role', 'button');
           row.setAttribute('tabindex', '0');
           row.setAttribute('aria-label', '버킷 ' + b);
           row.dataset.b = b;
           var addr = document.createElement('div');
           addr.className = 'hp-addr';
-          addr.textContent = '버킷 ' + b;
+          addr.textContent = '[' + b + ']';
           row.appendChild(addr);
-          var chain = document.createElement('div');
-          chain.className = 'hp-chain';
-          buckets[b].forEach(function(item, i){
-            if(i > 0){
-              var lk = document.createElement('span');
-              lk.className = 'hp-link';
-              lk.textContent = '→';
-              chain.appendChild(lk);
+          for(var si = 0; si < S; si++){
+            var item = buckets[b][si], i = si;
+            if(!item){
+              var e = document.createElement('div');
+              e.className = 'hp-node empty';
+              e.textContent = '비어 있음';
+              row.appendChild(e);
+              continue;
             }
             var n = document.createElement('div');
             n.className = 'hp-node';
@@ -11267,12 +11387,11 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
               else if(i < hl.node) n.classList.add('skip');
             }
             n.textContent = item.k;
-            chain.appendChild(n);
-          });
-          row.appendChild(chain);
+            row.appendChild(n);
+          }
           var cnt = document.createElement('div');
           cnt.className = 'hp-cnt';
-          cnt.textContent = buckets[b].length ? buckets[b].length + '개' : '';
+          cnt.textContent = buckets[b].length + '/' + S;
           row.appendChild(cnt);
           row.addEventListener('click', function(){ onRow(b, row); });
           row.addEventListener('keydown', function(e){
@@ -11289,7 +11408,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
             if(KEYS.indexOf(k) >= 0 && !placed[k]) selected = k;
             onRow(b, row);
           });
-          tableEl.appendChild(row);
+          frame.appendChild(row);
         })(b);
       }
     }
@@ -11336,12 +11455,12 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       selected = null;
       var left = KEYS.filter(function(x){ return !placed[x]; }).length;
       var msg = '정답! ' + k + ' mod ' + M + ' = ' + b + ' → 버킷 ' + b + '에 저장했어요.';
-      var sub = collided ? '충돌! 버킷 ' + b + '에는 이미 다른 키가 있어서, 체이닝으로 뒤에 연결했어요.' : '';
+      var sub = collided ? '버킷 ' + b + '의 슬롯 0에는 이미 키가 있어서, 비어 있는 슬롯 ' + (buckets[b].length - 1) + '에 넣었어요.' : '';
       renderPool();
       renderTable();
       renderCalc();
       if(left === 0){
-        say('모두 넣었어요! 충돌은 ' + collisions + '번 일어났어요.', 'ok', '이제 저장한 키를 해시 함수로 찾아볼까요?');
+        say('모두 넣었어요! 같은 버킷을 함께 쓴 경우가 ' + collisions + '번 있었지만, 슬롯이 넉넉해서 넘치지(오버플로) 않았어요.', 'ok', '이제 저장한 키를 해시 함수로 찾아볼까요?');
         goBtn.style.display = '';
         hintBtn.style.display = 'none';
         step1.className = 'hp-step done';
@@ -11391,18 +11510,18 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         finishTarget(t, 0, false);
         return;
       }
-      say('맞아요! 버킷 ' + b + '의 체인을 앞에서부터 하나씩 비교해요.', 'ok');
+      say('맞아요! 버킷 ' + b + '의 슬롯을 앞에서부터 하나씩 비교해요.', 'ok');
       var i = 0;
       (function step(){
         var node = chain[i];
         var isHit = node.k === t;
         renderTable({row:b, node:i, state: isHit ? 'hit' : 'cmp'});
-        say('비교 ' + (i + 1) + '번째: ' + node.k + ' = ' + t + ' ? ' + (isHit ? '같아요! 찾았다 🎉' : '아니요 → 다음 칸으로'), isHit ? 'ok' : '');
+        say('비교 ' + (i + 1) + '번째: ' + node.k + ' = ' + t + ' ? ' + (isHit ? '같아요! 찾았다 🎉' : '아니요 → 다음 슬롯으로'), isHit ? 'ok' : '');
         if(isHit){ timers.push(setTimeout(function(){ finishTarget(t, i + 1, true); }, 700)); return; }
         i++;
         if(i >= chain.length){
           timers.push(setTimeout(function(){
-            say('체인 끝까지 비교했지만 키(' + t + ')는 없어요. 비교 ' + chain.length + '번 만에 "없음"을 알았어요.', 'bad');
+            say('버킷의 슬롯을 모두 비교했지만 키(' + t + ')는 없어요. 비교 ' + chain.length + '번 만에 "없음"을 알았어요.', 'bad');
             finishTarget(t, chain.length, false);
           }, 800));
           return;
@@ -11433,7 +11552,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       var parts = tResults.map(function(r){ return r.k + '(' + r.cmp + '번' + (r.found ? '' : ', 없음') + ')'; }).join(', ');
       var miss = tResults.filter(function(r){ return !r.found; })[0];
       say('실습 끝! 비교 횟수: ' + parts + ' → 합계 ' + total + '번.', 'ok',
-          (miss ? '참고: 없는 키(' + miss.k + ')를 선형 탐색으로 확인하려면 저장된 ' + KEYS.length + '개를 모두 비교해야 해서 ' + KEYS.length + '번이에요. 해시 탐색은 한 버킷만 확인했어요. ' : '') + '"처음부터"를 눌러 다른 순서로 넣어 보면 체인 안의 순서와 비교 횟수가 달라져요.');
+          (miss ? '참고: 없는 키(' + miss.k + ')를 선형 탐색으로 확인하려면 저장된 ' + KEYS.length + '개를 모두 비교해야 해서 ' + KEYS.length + '번이에요. 해시 탐색은 한 버킷만 확인했어요. ' : '') + '"처음부터"를 눌러 다른 순서로 넣어 보면 슬롯 안의 순서와 비교 횟수가 달라져요.');
       hintBtn.disabled = true;
       calcEl.textContent = '모든 키를 찾아봤어요 ✓';
     }
@@ -11484,9 +11603,12 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
   (function(){
     var pool = document.getElementById('hbPool');
     if(!pool) return;
-    var KEYS = [23, 15, 41, 8, 37, 50, 12, 30];
-    var RULES = [{m:7, label:'k mod 7'}, {m:5, label:'k mod 5'}, {m:10, label:'k mod 10 (일의 자리)'}];
-    var M = 7, table, used, busy, clashes, timers = [], lastNew = null;
+    var KEYSETS = {7:[23, 15, 41, 10, 35, 54], 5:[23, 16, 40, 12, 9], 10:[23, 15, 41, 8, 37, 50, 62]};
+    var KEYS = KEYSETS[7];
+    var RULES = [{m:7, name:'A'}, {m:5, name:'B'}, {m:10, name:'C'}];
+    var M = 7, table, used, busy, clashes, timers = [], lastNew = null, obs = [], solved = {}, guessOpen = false;
+    var tagEl = document.getElementById('hbTag');
+    function boxName(){ for(var i = 0; i < RULES.length; i++) if(RULES[i].m === M) return '상자 ' + RULES[i].name; return '상자'; }
     var rulesEl = document.getElementById('hbRules'), tableEl = document.getElementById('hbTable');
     var slot = document.getElementById('hbSlot'), machine = document.getElementById('hbMachine');
     var ruleEl = document.getElementById('hbRule'), screen = document.getElementById('hbScreen');
@@ -11503,7 +11625,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       rulesEl.innerHTML = '';
       RULES.forEach(function(r){
         var b = document.createElement('button');
-        b.type = 'button'; b.className = 'hb-rule-btn' + (r.m === M ? ' active' : ''); b.textContent = r.label;
+        b.type = 'button'; b.className = 'hb-rule-btn' + (r.m === M ? ' active' : ''); b.textContent = '상자 ' + r.name + (solved[r.m] ? ' · k mod ' + r.m : ' ?');
         b.addEventListener('click', function(){ if(r.m !== M){ M = r.m; reset(); } });
         rulesEl.appendChild(b);
       });
@@ -11520,40 +11642,40 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       autoBtn.disabled = busy || KEYS.every(function(k){ return used[k]; });
     }
     function renderTable(hl){
-      tableEl.innerHTML = '';
+      tableEl.innerHTML = '<div class="hb-thead"><span>주소</span><span>버킷(슬롯)</span></div>';
       for(var b = 0; b < M; b++){
         var row = document.createElement('div');
-        row.className = 'hb-bucket' + (hl && hl.b === b ? (hl.clash ? ' clash' : ' hit') : '');
-        var html = '<span class="hb-addr">버킷 ' + b + '</span><span class="hb-chain">';
-        table[b].forEach(function(k, i){
-          if(i > 0) html += '<span class="hb-link">→</span>';
-          var cls = (hl && hl.b === b && i === table[b].length - 1) ? (hl.clash ? ' newc' : ' new') : '';
-          html += '<span class="hb-node' + cls + '">' + k + '</span>';
-        });
-        row.innerHTML = html + '</span>';
+        var mine = hl && hl.b === b, chain = table[b];
+        row.className = 'hb-bucket' + (mine ? (hl.clash ? ' clash' : ' hit') : '');
+        var html = '<span class="hb-idx">[' + b + ']</span>';
+        html += chain.length ? '<span class="hb-slot' + (mine && !hl.clash ? ' new' : '') + '">' + chain[0] + '</span>' : '<span class="hb-slot empty">비어 있음</span>';
+        row.innerHTML = html;
         tableEl.appendChild(row);
       }
     }
     function insert(k, done){
       if(busy) return false;
       if(used[k]){ msg('키 ' + k + '은(는) 이미 해시 테이블에 넣었어요. 다른 키를 골라 보세요.', 'bad'); return false; }
+      if(table[k % M].length){ msg('키 ' + k + '이(가) 들어갈 버킷은 이미 차 있어요. 이번 활동에서는 비어 있는 버킷으로 가는 다른 키를 넣어 보세요.', 'bad'); return false; }
       busy = true; used[k] = true;
       renderPool();
       var a = k % M;
       ticket.className = 'hb-ticket'; ticket.textContent = '-';
       slot.innerHTML = '<span class="hb-token">' + k + '</span>';
-      screen.textContent = '키 ' + k + ' 입력! 규칙대로 계산하는 중…';
+      screen.textContent = '키 ' + k + ' 입력! ' + (solved[M] ? '규칙대로 계산하는 중…' : '🤫 상자 속에서 비밀 계산 중…');
       msg('키 <b>' + k + '</b>을(를) 해시 함수 상자에 넣었어요.', '');
       later(function(){
         var tok = slot.querySelector('.hb-token'); if(tok) tok.classList.add('in');
         machine.classList.add('working');
-        screen.innerHTML = 'h(' + k + ') = ' + k + ' mod ' + M + '<br>' + k + ' ÷ ' + M + ' = ' + Math.floor(k / M) + ' … 나머지 <b>' + a + '</b>';
+        if(solved[M]) screen.innerHTML = calcText(k);
       }, 550);
       later(function(){
         machine.classList.remove('working');
         slot.textContent = SLOT_TEXT;
         void ticket.offsetWidth;
         ticket.className = 'hb-ticket pop'; ticket.textContent = '주소 ' + a;
+        obs.push({k:k, a:a});
+        if(!solved[M]) screen.innerHTML = obsText();
       }, 1650);
       later(function(){
         var clash = table[a].length > 0, before = table[a].slice();
@@ -11563,13 +11685,11 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         busy = false;
         renderPool();
         var allDone = KEYS.every(function(x){ return used[x]; });
-        if(clash){
-          msg('⚠️ <b>충돌!</b> 버킷 ' + a + '에는 이미 ' + before.join(', ') + '이(가) 들어 있어요. 같은 주소가 나왔으므로 체이닝으로 뒤에 이어 붙였어요.', 'warn');
-        } else {
-          msg('✅ 키 ' + k + ' → 해시 주소 ' + a + ' → <b>버킷 ' + a + '</b>에 바로 저장했어요.', 'ok');
+        {
+          msg('✅ 키 ' + k + ' → 해시 주소 ' + a + ' → <b>버킷 ' + a + '</b>에 바로 저장했어요.' + (!solved[M] && obs.length >= 3 ? ' 🕵️ 규칙이 보이나요? ‘규칙 맞혀 보기’를 눌러 보세요.' : ''), 'ok');
         }
         if(allDone){
-          msg('🎉 키 ' + count() + '개를 모두 넣었어요. 규칙 <b>k mod ' + M + '</b>에서 충돌은 <b>' + clashes + '번</b> 났어요. 위에서 규칙을 바꿔 충돌이 몇 번 나는지 비교해 보세요.', clashes ? 'warn' : 'ok');
+          msg('🎉 키 ' + count() + '개가 모두 서로 다른 버킷에 들어갔어요. ' + (solved[M] ? '다른 상자도 골라 규칙을 맞혀 보세요.' : '이제 ' + boxName() + '의 규칙을 맞혀 보세요!'), 'ok');
         }
         if(done) done();
       }, 2250);
@@ -11589,18 +11709,61 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         insert(rest[0], function(){ later(next, 250); });
       })();
     });
+    function calcText(k){ var a = k % M; return 'h(' + k + ') = ' + k + ' mod ' + M + '<br>' + k + ' ÷ ' + M + ' = ' + Math.floor(k / M) + ' … 나머지 <b>' + a + '</b>'; }
+    function obsText(){
+      if(!obs.length) return '🔍 키를 넣고 나온 주소를 관찰해 보세요';
+      return '관찰 기록<br>' + obs.slice(-4).map(function(o){ return o.k + ' → <b>' + o.a + '</b>'; }).join(' · ');
+    }
+    function renderRule(){
+      var box = boxName();
+      machine.classList.toggle('solved', !!solved[M]);
+      tagEl.textContent = solved[M] ? '🔓 ' + box + ' 규칙 발견!' : '🎁 비밀 ' + box;
+      ruleEl.className = 'hb-rule';
+      if(solved[M]){ ruleEl.innerHTML = 'h(k) = k mod ' + M + ' ✓'; return; }
+      if(!guessOpen){ ruleEl.innerHTML = '해시 함수 <button class="hb-guess-btn" type="button" id="hbGuessOpen">규칙 맞혀 보기</button>'; return; }
+      ruleEl.innerHTML = 'h(k) = k mod <input class="hb-guess" type="number" id="hbGuess" min="1" max="99" placeholder="?" aria-label="나누는 수 추측"><button class="hb-guess-btn" type="button" id="hbGuessBtn">맞혀 보기</button>';
+    }
+    function unlock(how){
+      solved[M] = true;
+      renderRule(); renderRules();
+      void ruleEl.offsetWidth; ruleEl.classList.add('ok');
+      screen.innerHTML = obs.length ? calcText(obs[obs.length - 1].k) : '키를 골라 상자에 넣어 보세요';
+      document.getElementById('hbTableLbl').textContent = '해시 테이블 T · 크기 m = ' + M + ' (주소 0 ~ ' + (M - 1) + ')';
+      msg(how === 'guess'
+        ? '🎉 <b>정답!</b> ' + boxName() + '의 해시 함수는 <b>h(k) = k mod ' + M + '</b>, 키를 ' + M + '로 나눈 나머지가 주소예요. 그래서 주소는 0 ~ ' + (M - 1) + ' 중 하나이고, 버킷도 ' + M + '칸이에요.'
+        : '🔓 ' + boxName() + '의 규칙은 <b>h(k) = k mod ' + M + '</b>이에요. 관찰 기록과 맞는지 확인해 보세요.', 'ok');
+    }
+    function checkGuess(){
+      if(busy || solved[M]) return;
+      var gEl = document.getElementById('hbGuess'), g = parseInt(gEl.value, 10);
+      if(isNaN(g) || g < 1 || g > 99){ msg('1부터 99 사이의 수를 넣어 맞혀 보세요.', 'bad'); return; }
+      if(!obs.length){ msg('먼저 키를 몇 개 상자에 넣고, 어떤 주소가 나오는지 관찰해 보세요.', 'bad'); return; }
+      if(g === M){ unlock('guess'); return; }
+      ruleEl.classList.remove('no'); void ruleEl.offsetWidth; ruleEl.classList.add('no');
+      var bad = obs.filter(function(o){ return o.k % g !== o.a; })[0];
+      if(bad) msg('🤔 아쉬워요. k mod ' + g + '라면 키 ' + bad.k + '의 주소는 ' + (bad.k % g) + '인데, 상자는 <b>' + bad.a + '</b>을(를) 냈어요. 나온 주소가 0부터 몇까지인지 살펴보세요.', 'warn');
+      else msg('🤔 지금까지 넣은 키로는 k mod ' + g + '와(과) 구별이 안 돼요. 키를 더 넣어 보고 다시 맞혀 보세요.', 'warn');
+      gEl.value = ''; gEl.focus();
+    }
+    ruleEl.addEventListener('click', function(e){
+      if(!e.target) return;
+      if(e.target.id === 'hbGuessBtn') checkGuess();
+      else if(e.target.id === 'hbGuessOpen'){ guessOpen = true; renderRule(); var g = document.getElementById('hbGuess'); if(g) g.focus(); }
+    });
+    ruleEl.addEventListener('keydown', function(e){ if(e.target && e.target.id === 'hbGuess' && e.key === 'Enter'){ e.preventDefault(); checkGuess(); } });
+    document.getElementById('hbReveal').addEventListener('click', function(){ if(!busy && !solved[M]) unlock('reveal'); });
     function reset(){
       clearTimers();
-      busy = false; used = {}; clashes = 0;
+      busy = false; used = {}; clashes = 0; obs = []; guessOpen = false; KEYS = KEYSETS[M];
       table = []; for(var i = 0; i < M; i++) table.push([]);
       machine.classList.remove('working');
       slot.textContent = SLOT_TEXT;
       ticket.className = 'hb-ticket'; ticket.textContent = '-';
-      ruleEl.textContent = 'h(k) = k mod ' + M;
-      screen.textContent = '키를 골라 상자에 넣어 보세요';
-      document.getElementById('hbTableLbl').textContent = '해시 테이블 (버킷 0 ~ ' + (M - 1) + ')';
+      renderRule();
+      screen.innerHTML = solved[M] ? '키를 골라 상자에 넣어 보세요' : obsText();
+      document.getElementById('hbTableLbl').textContent = solved[M] ? '해시 테이블 T · 크기 m = ' + M + ' (주소 0 ~ ' + (M - 1) + ')' : '해시 테이블 T · 주소 0 ~ ' + (M - 1);
       renderRules(); renderPool(); renderTable(null);
-      msg('키를 누르면 상자가 <b>k mod ' + M + '</b>로 계산해서 주소를 알려 주고, 그 버킷에 데이터가 들어가요.', '');
+      msg(solved[M] ? '키를 누르면 상자가 <b>k mod ' + M + '</b>로 계산해서 주소를 알려 주고, 그 버킷에 데이터가 들어가요.' : '🎁 ' + boxName() + '에는 <b>비밀 규칙</b>이 숨어 있어요. 키를 넣고 나온 주소를 관찰해서, ‘규칙 맞혀 보기’로 규칙을 맞혀 보세요!', '');
     }
     document.getElementById('hbReset').addEventListener('click', reset);
     reset();
