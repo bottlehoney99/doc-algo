@@ -1900,6 +1900,30 @@
 </head>
 <body>
 
+<!-- 텍스트 복사 방지: 글자 선택·복사·잘라내기·오른쪽 클릭을 막는다 (입력칸은 그대로 사용 가능) -->
+<style>
+  body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
+  input,textarea,select,[contenteditable="true"]{-webkit-user-select:text;user-select:text;}
+</style>
+<script>
+(function(){
+  function inField(t){ return t && t.closest && t.closest('input,textarea,select,[contenteditable="true"]'); }
+  ['copy','cut','contextmenu','selectstart'].forEach(function(ev){
+    document.addEventListener(ev, function(e){ if(!inField(e.target)) e.preventDefault(); }, true);
+  });
+  document.addEventListener('dragstart', function(e){
+    var t = e.target;
+    if(t && t.closest && t.closest('[draggable="true"]')) return; /* 끌어다 놓기 실습은 그대로 둔다 */
+    if(!inField(t)) e.preventDefault();
+  }, true);
+  document.addEventListener('keydown', function(e){
+    if(!(e.ctrlKey || e.metaKey) || e.altKey) return;
+    var k = (e.key || '').toLowerCase();
+    if((k === 'c' || k === 'x' || k === 'a') && !inField(e.target)) e.preventDefault();
+  }, true);
+})();
+</script>
+
 <div id="hub">
   <div class="hub-card-outer">
     <span class="hub-eyebrow">정보 · I~III단원</span>
