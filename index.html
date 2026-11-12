@@ -1468,6 +1468,90 @@
   .hp-log .hp-sub{display:block;margin-top:3px;font-weight:600;color:var(--ink-soft);}
   .hp-btnrow{display:flex;gap:8px;flex-wrap:wrap;}
   .hp-btnrow .sim-btn{flex:1;min-width:110px;}
+  /* ===== 오버플로 처리 직접 해 보기 (체이닝 / 선형 개방 주소법) ===== */
+  .hcl-tabs{display:flex;gap:8px;margin-bottom:8px;flex:none;}
+  .hcl-tab{appearance:none;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:13px;padding:8px 16px;border-radius:9px;cursor:pointer;}
+  .hcl-tab.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .hcl-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:16px;flex:1;min-height:0;}
+  .hcl-side{display:flex;flex-direction:column;gap:9px;min-width:0;}
+  .hcl-desc{font-size:13.2px;line-height:1.6;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:8px 12px;}
+  .hcl-queue{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .hcl-queue .lbl{font-size:12px;font-weight:800;color:var(--ink-faint);margin-right:2px;}
+  .hcl-k{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:15px;padding:6px 12px;border-radius:9px;background:var(--surface-2);border:1.5px solid var(--border-soft);color:var(--ink-faint);}
+  .hcl-k.cur{background:var(--accent);color:var(--accent-ink);border-color:transparent;transform:scale(1.08);}
+  .hcl-k.done{opacity:.4;text-decoration:line-through;}
+  .hcl-calc{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--ink);background:var(--accent-soft);border-radius:10px;padding:8px 12px;line-height:1.6;}
+  .hcl-log{font-size:12.4px;line-height:1.6;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:7px 11px;max-height:110px;overflow:auto;}
+  .hcl-table{display:flex;flex-direction:column;gap:5px;min-width:0;}
+  .hcl-row{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border-soft);border-radius:10px;padding:5px 8px;cursor:pointer;background:var(--surface);transition:.15s;min-height:42px;}
+  .hcl-row:hover{border-color:var(--accent);}
+  .hcl-row.probe{border-color:var(--amber);background:var(--amber-soft);}
+  .hcl-row.bad{border-color:var(--danger);background:var(--danger-soft);}
+  .hcl-row.ok{border-color:var(--teal);}
+  .hcl-idx{width:62px;flex:none;font-family:"JetBrains Mono",monospace;font-weight:800;font-size:12.4px;color:var(--ink-faint);}
+  .hcl-cells{display:flex;align-items:center;gap:4px;flex-wrap:wrap;flex:1;}
+  .hcl-node{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:14px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;padding:3px 10px;color:var(--ink);}
+  .hcl-node.new{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);}
+  .hcl-arrow{color:var(--ink-faint);font-weight:800;font-size:13px;}
+  .hcl-empty{font-size:12px;color:var(--ink-faint);}
+  @media (max-width:760px){.hcl-layout{grid-template-columns:1fr;}}
+  /* ===== 제산 함수 · 접지 함수 ===== */
+  .hfx-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:none;}
+  .hfx-card{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:14px;padding:12px 15px;display:flex;flex-direction:column;gap:6px;min-width:0;}
+  .hfx-card h3{margin:0;font-size:17px;color:var(--ink);}
+  .hfx-card h3 small{font-size:12px;color:var(--ink-faint);font-weight:700;margin-left:6px;}
+  .hfx-card p{margin:0;font-size:13.4px;line-height:1.6;color:var(--ink-soft);}
+  .hfx-f{font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:800;color:var(--accent);background:var(--accent-soft);border-radius:9px;padding:6px 10px;}
+  .hfx-try{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;flex:none;}
+  .hfx-try label{font-size:13px;font-weight:800;color:var(--ink-soft);}
+  .hfx-try input{font-family:"JetBrains Mono",monospace;font-size:16px;font-weight:800;width:170px;padding:7px 10px;border-radius:9px;border:1.5px solid var(--border);background:var(--surface);color:var(--ink);}
+  .hfx-try .chip{font-size:12.4px;padding:6px 11px;}
+  .hfx-out{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;flex:none;}
+  .hfx-res{font-family:"JetBrains Mono",monospace;font-size:13.4px;line-height:1.75;color:var(--ink);background:var(--surface);border:1.5px dashed var(--border);border-radius:12px;padding:9px 13px;min-height:84px;}
+  .hfx-res b{color:var(--teal);}
+  .hfx-res .grp{display:inline-block;padding:0 5px;margin:0 2px;border-radius:5px;background:var(--amber-soft);color:var(--amber);font-weight:800;}
+  .hfx-res .grp.rev{background:var(--danger-soft);color:var(--danger);}
+  @media (max-width:760px){.hfx-grid,.hfx-out{grid-template-columns:1fr;}}
+  /* ===== 이진 탐색 직접 해 보기 ===== */
+  .bsp-top{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px;flex:none;}
+  .bsp-top .lbl{font-size:12px;font-weight:800;color:var(--ink-faint);}
+  .bsp-tgt{appearance:none;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:12.6px;padding:7px 13px;border-radius:9px;cursor:pointer;}
+  .bsp-tgt.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  .bsp-cells{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px;flex:none;}
+  .bsp-cell{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .bsp-box{width:100%;appearance:none;border:1.5px solid var(--border);background:var(--surface);color:var(--ink);font-family:"JetBrains Mono",monospace;font-weight:800;font-size:16px;padding:10px 0;border-radius:9px;cursor:pointer;transition:.2s;}
+  .bsp-box:hover{border-color:var(--accent);}
+  .bsp-cell.out .bsp-box{opacity:.28;background:var(--surface-2);}
+  .bsp-cell.mid .bsp-box{background:var(--amber-soft);border-color:var(--amber);color:var(--amber);}
+  .bsp-cell.hit .bsp-box{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);}
+  .bsp-cell.wrongpick .bsp-box{border-color:var(--danger);background:var(--danger-soft);}
+  .bsp-idx{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-faint);}
+  .bsp-tag{min-height:18px;display:flex;gap:2px;flex-wrap:wrap;justify-content:center;}
+  .bsp-tag span{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:800;padding:1px 5px;border-radius:5px;color:#fff;}
+  .bsp-tag .t-low{background:var(--accent);}
+  .bsp-tag .t-high{background:var(--danger);}
+  .bsp-tag .t-mid{background:var(--amber);}
+  .bsp-main{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:14px;margin-top:10px;flex:1;min-height:0;}
+  .bsp-vars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-content:start;}
+  .bsp-var{background:var(--surface-2);border-radius:11px;padding:8px 6px;text-align:center;}
+  .bsp-var b{display:block;font-family:"JetBrains Mono",monospace;font-size:24px;color:var(--ink);line-height:1.2;}
+  .bsp-var span{font-size:11.5px;font-weight:800;color:var(--ink-faint);}
+  .bsp-var.v-low b{color:var(--accent);} .bsp-var.v-high b{color:var(--danger);} .bsp-var.v-mid b{color:var(--amber);}
+  .bsp-formula{grid-column:1 / -1;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:7px 10px;text-align:center;}
+  .bsp-side{display:flex;flex-direction:column;gap:8px;min-width:0;}
+  .bsp-acts{display:flex;gap:6px;flex-wrap:wrap;}
+  .bsp-acts .sim-btn{flex:1;min-width:120px;font-size:12.6px;padding:9px 8px;}
+  .bsp-log{font-size:12.4px;line-height:1.6;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:7px 11px;max-height:96px;overflow:auto;}
+  @media (max-width:760px){.bsp-cells{grid-template-columns:repeat(6,minmax(0,1fr));}.bsp-main{grid-template-columns:1fr;}}
+  /* ===== 코드 가리기 (더블클릭으로 공개) ===== */
+  .cv-wrap{position:relative;display:flex;flex-direction:column;}
+  .cv-wrap{min-width:0;min-height:0;}
+  .cv-wrap > .code-block{min-height:0;}
+  .cv-wrap:has(> [hidden]),.cv-wrap:has(> .code-block[style*="display: none"]),.cv-wrap:has(> .code-block[style*="display:none"]),.cv-wrap:has(> .mini-code[style*="display:none"]),.cv-wrap:has(> .mini-code[style*="display: none"]){display:none;}
+  .cv-wrap > .code-block,.cv-wrap > .mini-code{transition:filter .35s;}
+  .cv-wrap.hidden-code > .code-block,.cv-wrap.hidden-code > .mini-code{filter:blur(9px);user-select:none;pointer-events:none;}
+  .cv-veil{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;border-radius:13px;font-size:14px;font-weight:800;color:var(--ink-soft);background:color-mix(in srgb,var(--surface) 55%,transparent);cursor:default;user-select:none;transition:opacity .3s;}
+  .cv-wrap:not(.hidden-code) > .cv-veil{opacity:0;pointer-events:none;}
   /* ===== 시간 복잡도 실전 문제 ===== */
   .tcp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center;}
   .tcp-tab{appearance:none;border:1px solid var(--border);background:var(--surface-2);color:var(--ink-soft);font-weight:800;font-size:12.8px;padding:8px 15px;border-radius:9px;cursor:pointer;}
@@ -1874,7 +1958,7 @@
         <div class="hu-top"><span class="hu-num">3-2</span><span class="hu-badge">✨ 인터랙티브</span></div>
         <h2>탐색 알고리즘</h2>
         <p>선형 탐색·이진 탐색·해싱의 원리를 이해하고, 탐색 알고리즘이 데이터를 찾아가는 과정을 직접 실습한다.</p>
-        <div class="hu-foot"><span>총 21장</span><span class="hu-open">열기 →</span></div>
+        <div class="hu-foot"><span>총 23장</span><span class="hu-open">열기 →</span></div>
       </button>
       <button class="hub-unit" type="button" data-target="u33">
         <div class="hu-top"><span class="hu-num">3-3</span><span class="hu-badge">✨ 인터랙티브</span></div>
@@ -5226,7 +5310,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
           <div class="code-explain-body placeholder" id="insExplainBody">코드를 한 줄씩 클릭해 보세요. 그 줄이 하는 일이 여기에 표시됩니다.</div>
         </div>
       </div>
-      <div class="insight-strip" style="margin-top:10px;">💡 개선 아이디어: 삽입 위치를 순차 탐색 대신 이진 탐색으로 찾으면 O(n log n), 일정 간격으로 부분 집합을 구성해 삽입 정렬을 반복하는 방식을 셸 정렬이라 한다.</div>
+      <div class="insight-strip" style="margin-top:10px;">💡 개선 아이디어: 삽입 위치를 순차 탐색 대신 이진 탐색으로 찾으면 비교 횟수는 O(n log n)으로 줄지만, 값을 옮기는 횟수는 그대로라 전체 시간 복잡도는 여전히 O(n²)이다. 일정 간격으로 부분 집합을 구성해 삽입 정렬을 반복하는 방식을 셸 정렬이라 한다.</div>
       <div class="textbook-toggle-row">
         <button class="sim-btn textbook-toggle-btn" data-textbook-toggle type="button" aria-expanded="false">📘 교과서 원본 코드(C) 보기</button>
       </div>
@@ -5472,11 +5556,6 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       <span class="kicker">Concept · 탐색의 개념</span>
       <h1 class="h1">탐색이란 무엇일까?</h1>
       <p class="lead" style="margin-bottom:14px;">탐색이란 <b>데이터 집합에서 원하는 값을 가진 데이터를 찾아내는 것</b>을 말한다. 이때 데이터가 가진 요소 중 탐색의 대상이 되는 값을 키(key)라고 한다. 탐색은 데이터를 삽입하거나 삭제하는 경우에도 활용되는데, 먼저 그 원소의 위치를 찾아야 하기 때문이다.</p>
-      <div class="card-grid cols-3">
-        <div class="card"><span class="num">①</span><h3>탐색 성공</h3><p>키값이 일치하는 원소를 찾으면 그 원소의 위치를 반환한다.</p></div>
-        <div class="card"><span class="num">②</span><h3>탐색 실패</h3><p>끝까지 비교해도 키값이 일치하는 원소를 찾지 못하면 실패로 처리한다.</p></div>
-        <div class="card"><span class="num">③</span><h3>탐색에 쓰이는 자료 구조</h3><p>배열, 선형 연결 리스트, 이진 탐색 트리 등이 활용된다.</p></div>
-      </div>
       <div class="insight-strip" style="margin-top:14px;">💡 탐색은 정렬과 더불어 가장 많이 사용되는 알고리즘이며, 주어진 데이터나 수행 환경에 따라 적합한 탐색 방법이 달라진다.</div>
     </div>
   </section>
@@ -5486,12 +5565,13 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     <div class="topbar"><span class="breadcrumb">01. 탐색의 이해</span><span class="kind-tag">표</span></div>
     <div class="slide-inner">
       <span class="kicker">Table · 탐색 알고리즘 비교</span>
-      <h1 class="h1">데이터의 상태와 환경에 따라 적합한 탐색 방법이 다르다</h1>
+      <h1 class="h1">자료 구조와 정렬 상태에 따라 성능에 영향을 받는다</h1>
+      <div style="font-size:15px;font-weight:800;color:var(--ink);margin:4px 0 8px;display:flex;align-items:center;gap:8px;flex:none;"><span style="width:4px;height:16px;border-radius:2px;background:var(--accent);display:inline-block;"></span>탐색의 종류에 따른 시간 복잡도</div>
       <div class="table-wrap"><table class="modeling">
         <thead><tr><th style="width:16%;">탐색 종류</th><th style="width:18%;">평균 시간 복잡도</th><th>특징</th></tr></thead>
         <tbody>
           <tr><td class="strong">선형 탐색</td><td>O(n)</td><td>정렬되지 않은 무작위 데이터 집합에서도 탐색 가능한, 가장 간단한 형태의 탐색 기법이다.</td></tr>
-          <tr><td class="strong">이진 탐색</td><td>O(n log n)</td><td>정렬된 데이터 집합에서만 탐색 가능하며, 분할 정복 기법을 활용한 빠른 탐색 기법이다.</td></tr>
+          <tr><td class="strong">이진 탐색</td><td>O(log n)</td><td>정렬된 데이터 집합에서만 탐색 가능하며, 분할 정복 기법을 활용한 빠른 탐색 기법이다.</td></tr>
           <tr><td class="strong">해시 탐색</td><td>O(1)</td><td>비교 연산이 아닌 산술 연산으로 키가 있는 위치를 계산하며, 정렬 여부에 영향받지 않는다.</td></tr>
         </tbody>
       </table></div>
@@ -5520,6 +5600,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         <button class="tab-btn active" data-tab="lin">선형 탐색</button>
         <button class="tab-btn" data-tab="bin">이진 탐색</button>
       </div>
+      <div id="searchConcept" style="flex:none;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;padding:9px 14px;margin:2px 0 8px;font-size:14px;line-height:1.6;color:var(--ink);"></div>
       <div class="search-target-row" id="searchCaseRow"></div>
       <div class="array-wrap">
         <div class="array-row" id="searchBars"></div>
@@ -5534,6 +5615,35 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     </div>
   </section>
 
+  <!-- 이진 탐색 직접 해 보기 (low · high · mid) -->
+  <section class="slide" data-kind="interactive" data-title="직접 해 보기 — 이진 탐색" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">02. 대표 탐색 알고리즘</span><span class="kind-tag">✨ 실습 · 이진 탐색 직접 하기</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Practice · low, high, mid를 직접 움직여 보자</span>
+      <h1 class="h1" style="margin-bottom:8px;">이진 탐색을 내 손으로 한 단계씩 해 보자</h1>
+      <div class="bsp-top"><span class="lbl">찾는 값</span><span id="bspTargets" style="display:flex;gap:6px;flex-wrap:wrap;"></span></div>
+      <div class="bsp-cells" id="bspCells"></div>
+      <div class="bsp-main">
+        <div class="bsp-vars">
+          <div class="bsp-var v-low"><b id="bspLow">0</b><span>low</span></div>
+          <div class="bsp-var v-high"><b id="bspHigh">11</b><span>high</span></div>
+          <div class="bsp-var v-mid"><b id="bspMid">?</b><span>mid</span></div>
+          <div class="bsp-var"><b id="bspCmp">0</b><span>비교 횟수</span></div>
+          <div class="bsp-formula" id="bspFormula">mid = (low + high) // 2</div>
+        </div>
+        <div class="bsp-side">
+          <div class="nu-msg info" id="bspMsg"></div>
+          <div class="bsp-acts" id="bspActs">
+            <button class="sim-btn" type="button" data-act="found">🎯 찾았다! (값이 같다)</button>
+            <button class="sim-btn" type="button" data-act="left">⬅ 왼쪽으로 (high = mid − 1)</button>
+            <button class="sim-btn" type="button" data-act="right">오른쪽으로 (low = mid + 1) ➡</button>
+          </div>
+          <div class="bsp-log" id="bspLog"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 8 : 선형 탐색 코드 -->
   <section class="slide" data-kind="concept" data-title="선형 탐색 알고리즘" data-tag="코드">
     <div class="topbar"><span class="breadcrumb">02. 대표 탐색 알고리즘</span><span class="kind-tag">코드</span></div>
@@ -5541,6 +5651,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       <span class="kicker">Concept · 선형 탐색(linear search) · 순차 탐색</span>
       <h1 class="h1">처음부터 끝까지 차례대로 값을 비교한다</h1>
       <p class="lead" style="margin-bottom:10px;font-size:13.6px;">데이터 집합의 처음부터 마지막 원소까지 키값이 일치하는지 차례대로 비교한다. 원소가 n개일 때 평균 비교 횟수는 (1+2+…+n)/n = (n+1)/2이므로 시간 복잡도는 O(n)이다.</p>
+      <div class="cv-wrap hidden-code" id="linCodeVeil">
       <div class="code-block">
         <span class="cline"><span class="kw">def</span> linear_search(a, key):</span>
         <span class="cline">&nbsp;&nbsp;<span class="kw">for</span> i <span class="kw">in</span> range(len(a)):</span>
@@ -5550,6 +5661,8 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         <span class="cline">&nbsp;</span>
         <span class="cline">data = [32, 11, 31, 7, 19, 9, 37, 25]</span>
         <span class="cline"><span class="kw">print</span>(linear_search(data, 7))</span>
+      </div>
+        <div class="cv-veil">🔒 코드는 잠시 후 함께 확인해요</div>
       </div>
       <div class="insight-strip" style="margin-top:10px;">💡 정렬된 리스트라면 현재 탐색하는 값이 찾는 키값보다 큰 순간 실패로 판단해 비교 횟수를 줄일 수 있다. 색인 순차 탐색(index sequential search)은 정렬된 리스트를 일정 간격으로 나누어 해당 구간만 순차 탐색하는 기법이다.</div>
     </div>
@@ -5623,20 +5736,37 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     </div>
   </section>
 
-  <!-- 13 : 해시테이블 삽입 시뮬레이터 (interactive) -->
-  <section class="slide" data-kind="interactive" data-title="해시 테이블 삽입 시뮬레이터" data-tag="실습">
-    <div class="topbar"><span class="breadcrumb">03. 해시 탐색</span><span class="kind-tag">✨ 인터랙티브 · 체이닝 기법</span></div>
-    <div class="slide-inner">
-      <span class="kicker">Try it · 제산 함수 h(k) = k mod 7 로 데이터를 삽입해 보자</span>
-      <h1 class="h1">다음 삽입을 눌러 체이닝 기법의 동작을 확인해 보자</h1>
-      <div class="hash-formula" id="hashFormulaLabel">h(k) = k mod 7 · 삽입할 키: 4, 11, 18, 5, 12, 25</div>
-      <div class="hash-insert-row">
-        <span>다음에 삽입할 키:</span><span class="hash-cur-key" id="hashCurKey">4</span>
-        <button class="sim-btn primary" id="hashNextBtn" style="max-width:150px;">다음 삽입 ▶</button>
-        <button class="sim-btn" id="hashResetBtn" style="max-width:120px;">처음부터 ⟲</button>
+  <!-- 해시 함수의 종류 : 제산 함수 · 접지 함수 -->
+  <section class="slide" data-kind="concept" data-title="해시 함수 — 제산 함수와 접지 함수" data-tag="개념">
+    <div class="topbar"><span class="breadcrumb">03. 해시 탐색</span><span class="kind-tag">개념 · 직접 계산</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Concept · 키로 해시 주소를 계산하는 대표적인 방법</span>
+      <h1 class="h1" style="margin-bottom:10px;">제산 함수와 접지 함수</h1>
+      <div class="hfx-grid">
+        <div class="hfx-card">
+          <h3>제산 함수<small>나머지 연산</small></h3>
+          <div class="hfx-f">h(k) = k mod M</div>
+          <p>키 k를 해시 테이블의 크기 M으로 나눈 <b>나머지</b>를 해시 주소로 쓴다. 계산이 간단해서 가장 많이 쓰인다. 충돌을 줄이기 위해 M은 보통 <b>소수</b>를 고른다.</p>
+          <p>예) M = 7, k = 25 → 25 = 7 × 3 + <b>4</b> → 주소 <b>4</b></p>
+        </div>
+        <div class="hfx-card">
+          <h3>접지 함수<small>폴딩(folding)</small></h3>
+          <div class="hfx-f">키를 여러 부분으로 나눠 → 더하기</div>
+          <p>키를 같은 길이의 여러 부분으로 나누고, 그 부분들을 <b>더해서</b> 해시 주소를 만든다. 자릿수가 긴 키에 알맞다.</p>
+          <p><b>이동 접지</b>: 나눈 부분을 그대로 더한다. <b>경계 접지</b>: 이웃한 부분을 하나 걸러 <b>거꾸로 뒤집어</b> 더한다.</p>
+        </div>
       </div>
-      <div class="hash-table-wrap" id="hashTableWrap"></div>
-      <div class="stepper-log" id="hashLog">시작하려면 다음 삽입을 눌러 보세요.</div>
+      <div class="hfx-try">
+        <label for="hfxKey">키를 넣어 직접 계산해 보기</label>
+        <input id="hfxKey" type="text" inputmode="numeric" maxlength="12" value="123456789">
+        <button class="chip" type="button" data-k="123456789">123456789</button>
+        <button class="chip" type="button" data-k="25">25</button>
+        <button class="chip" type="button" data-k="20251111">20251111</button>
+      </div>
+      <div class="hfx-out">
+        <div class="hfx-res" id="hfxDiv"></div>
+        <div class="hfx-res" id="hfxFold"></div>
+      </div>
     </div>
   </section>
 
@@ -5678,6 +5808,30 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
         </tbody>
       </table></div>
       <div class="insight-strip" style="margin-top:10px;">💡 좋은 해시 함수의 조건: ① 충돌이 적을 것 ② 계산이 빠를 것 ③ 해시 함수의 역연산이 어려울 것(보안 관련 응용에서 중요)</div>
+    </div>
+  </section>
+
+  <!-- 13 : 오버플로 처리 직접 해 보기 (체이닝 / 선형 개방 주소법) -->
+  <section class="slide" data-kind="interactive" data-title="직접 해 보기 — 체이닝과 선형 개방 주소법" data-tag="실습">
+    <div class="topbar"><span class="breadcrumb">03. 해시 탐색</span><span class="kind-tag">✨ 실습 · 충돌 처리 직접 하기</span></div>
+    <div class="slide-inner" style="justify-content:flex-start;">
+      <span class="kicker">Try it · h(k) = k mod 7 로 주소를 계산해 알맞은 자리에 넣어 보자</span>
+      <h1 class="h1" style="margin-bottom:8px;">충돌이 나면 어디에 넣어야 할까?</h1>
+      <div class="hcl-tabs" id="hclTabs">
+        <button class="hcl-tab active" type="button" data-m="chain">체이닝</button>
+        <button class="hcl-tab" type="button" data-m="linear">선형 개방 주소법</button>
+      </div>
+      <div class="hcl-layout">
+        <div class="hcl-side">
+          <div class="hcl-desc" id="hclDesc"></div>
+          <div class="hcl-queue" id="hclQueue"></div>
+          <div class="hcl-calc" id="hclCalc"></div>
+          <div class="nu-msg info" id="hclMsg"></div>
+          <div class="hcl-log" id="hclLog"></div>
+          <div class="ctrl-row" style="margin-top:0;"><button class="sim-btn" type="button" id="hclReset">처음부터 ⟲</button></div>
+        </div>
+        <div class="hcl-table" id="hclTable"></div>
+      </div>
     </div>
   </section>
 
@@ -6701,7 +6855,41 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     else if(name === 'u32') initU32();
     else if(name === 'u33') initU33();
     else if(name === 'u34') initU34();
+    veilAllCode();
   }
+
+  /* ===== 모든 코드 가리기: 코드 영역을 더블클릭하면 공개 / 다시 더블클릭하면 가리기 ===== */
+  function veilAllCode(){
+    var list = deckStage.querySelectorAll('.code-block, .mini-code');
+    Array.prototype.forEach.call(list, function(code){
+      if(code.closest('.cv-wrap')) return;
+      if(code.id === 'tcpCode' || code.classList.contains('pickable')) return; /* 문제·디버깅 활동은 코드가 보여야 함 */
+      var cs = getComputedStyle(code);
+      var w = document.createElement('div');
+      w.className = 'cv-wrap hidden-code';
+      w.style.flex = cs.flex;
+      w.style.alignSelf = cs.alignSelf;
+      w.style.gridColumn = cs.gridColumn;
+      w.style.gridRow = cs.gridRow;
+      w.style.margin = cs.margin;
+      code.style.margin = '0';
+      if(cs.flexGrow !== '0') code.style.flex = '1 1 auto';
+      code.parentNode.insertBefore(w, code);
+      w.appendChild(code);
+      var v = document.createElement('div');
+      v.className = 'cv-veil';
+      v.textContent = '🔒 코드는 잠시 후 함께 확인해요';
+      w.appendChild(v);
+    });
+  }
+  deckStage.addEventListener('dblclick', function(e){
+    var w = e.target.closest && e.target.closest('.cv-wrap');
+    if(!w) return;
+    if(!w.classList.contains('hidden-code') && !e.target.closest('.cv-veil') && e.target.closest('button,input,select,textarea')) return;
+    e.preventDefault();
+    w.classList.toggle('hidden-code');
+    if(window.getSelection) window.getSelection().removeAllRanges();
+  });
 
   Array.prototype.forEach.call(document.querySelectorAll('.hub-unit'), function(btn){
     btn.addEventListener('click', function(){ showDeck(btn.dataset.target); });
@@ -10299,6 +10487,289 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
 
   /* ================= 단원 3-2 : 탐색 알고리즘 (specific interactions) ================= */
   function initU32(){
+    /* ===== 오버플로 처리 직접 해 보기 (체이닝 / 선형 개방 주소법) ===== */
+    (function(){
+      var tableEl = document.getElementById('hclTable');
+      if(!tableEl) return;
+      var KEYS = [4, 11, 18, 5, 12, 25], M = 7;
+      var descEl = document.getElementById('hclDesc'), qEl = document.getElementById('hclQueue'), calcEl = document.getElementById('hclCalc');
+      var msgEl = document.getElementById('hclMsg'), logEl = document.getElementById('hclLog');
+      var tabs = document.querySelectorAll('#hclTabs .hcl-tab');
+      var DESC = {
+        chain: '<b>체이닝</b> · 같은 주소로 계산된 키는 그 버킷에 <b>연결 리스트로 줄줄이</b> 이어 붙인다. 주소를 계산해서 해당 버킷을 눌러 보세요.',
+        linear: '<b>선형 개방 주소법</b> · 칸마다 키를 하나만 넣는다. 계산한 주소가 이미 차 있으면 <b>바로 다음 칸(+1)</b>을 차례로 조사해 빈칸에 넣는다. 마지막 칸 다음은 0번 칸이다.'
+      };
+      var mode = 'chain', S = {};
+      function msg(cls, html){ msgEl.className = 'nu-msg' + (cls ? ' ' + cls : ''); msgEl.innerHTML = html; }
+      function fresh(m){
+        var t = []; for(var i = 0; i < M; i++) t.push(m === 'chain' ? [] : null);
+        return {table:t, idx:0, probes:[], bad:-1, last:-1, logs:[], total:0};
+      }
+      function st(){ return S[mode]; }
+      function home(k){ return k % M; }
+      function target(k){
+        if(mode === 'chain') return home(k);
+        var a = home(k), t = st().table, n = 0;
+        while(t[a] !== null && n < M){ a = (a + 1) % M; n++; }
+        return a;
+      }
+      function nextProbe(k){
+        var s = st(), a = home(k);
+        for(var i = 0; i < s.probes.length; i++) a = (a + 1) % M;
+        return a;
+      }
+      function render(){
+        var s = st();
+        tabs.forEach(function(b){ b.classList.toggle('active', b.dataset.m === mode); });
+        descEl.innerHTML = DESC[mode];
+        qEl.innerHTML = '<span class="lbl">넣을 키</span>' + KEYS.map(function(k, i){
+          return '<span class="hcl-k' + (i < s.idx ? ' done' : (i === s.idx ? ' cur' : '')) + '">' + k + '</span>';
+        }).join('');
+        var k = KEYS[s.idx];
+        if(s.idx < KEYS.length){
+          var txt = 'h(' + k + ') = ' + k + ' mod 7 = ?';
+          if(mode === 'linear' && s.probes.length){
+            txt = 'h(' + k + ') = ' + home(k) + ' → 충돌! 조사한 칸: ' + s.probes.join(', ') + ' → 다음 칸은 ?';
+          }
+          calcEl.textContent = txt;
+        } else {
+          calcEl.textContent = '모든 키를 넣었어요.';
+        }
+        tableEl.innerHTML = '';
+        for(var b = 0; b < M; b++){
+          var row = document.createElement('div');
+          row.className = 'hcl-row' + (s.probes.indexOf(b) >= 0 ? ' probe' : '') + (s.bad === b ? ' bad' : '');
+          var cells = '';
+          if(mode === 'chain'){
+            cells = s.table[b].length ? s.table[b].map(function(v, j){
+              return '<span class="hcl-node' + (s.last === b && j === s.table[b].length - 1 ? ' new' : '') + '">' + v + '</span>';
+            }).join('<span class="hcl-arrow">→</span>') : '<span class="hcl-empty">비어 있음</span>';
+          } else {
+            cells = s.table[b] === null ? '<span class="hcl-empty">빈칸</span>' : '<span class="hcl-node' + (s.last === b ? ' new' : '') + '">' + s.table[b] + '</span>';
+          }
+          row.innerHTML = '<span class="hcl-idx">' + (mode === 'chain' ? '버킷 ' : '칸 ') + b + '</span><div class="hcl-cells">' + cells + '</div>';
+          (function(bb){ row.addEventListener('click', function(){ place(bb); }); })(b);
+          tableEl.appendChild(row);
+        }
+        logEl.innerHTML = s.logs.length ? s.logs.join('<br>') : '넣은 기록이 여기에 쌓여요.';
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+      function place(b){
+        var s = st();
+        if(s.idx >= KEYS.length) return;
+        var k = KEYS[s.idx], h = home(k);
+        s.bad = -1;
+        if(mode === 'chain'){
+          if(b !== h){
+            s.bad = b;
+            msg('bad', '❌ ' + b + '번 버킷이 아니에요. ' + k + ' mod 7 (7로 나눈 나머지)을 다시 계산해 보세요.');
+            render(); return;
+          }
+          var coll = s.table[h].length > 0;
+          s.table[h].push(k); s.last = h;
+          s.logs.push('h(' + k + ') = ' + k + ' mod 7 = ' + h + (coll ? ' → 충돌! 버킷 ' + h + '의 리스트 끝에 연결' : ' → 버킷 ' + h + '에 저장'));
+          msg(coll ? 'info' : 'ok', coll ? '🔗 충돌! 버킷 ' + h + '에 이미 키가 있어서, 리스트 끝에 이어 붙였어요.' : '✅ 버킷 ' + h + '에 넣었어요.');
+          s.idx++;
+        } else {
+          var expect = nextProbe(k);
+          if(b !== expect){
+            s.bad = b;
+            if(s.probes.length === 0) msg('bad', '❌ ' + b + '번 칸이 아니에요. 먼저 ' + k + ' mod 7 을 계산해서 그 칸을 눌러 보세요.');
+            else msg('bad', '❌ 충돌이 나면 바로 <b>다음 칸</b>을 조사해요. 지금 조사할 칸은 ' + s.probes[s.probes.length - 1] + '번의 다음 칸이에요.');
+            render(); return;
+          }
+          if(s.table[b] !== null){
+            s.probes.push(b); s.total++;
+            msg('info', '💥 ' + b + '번 칸에는 이미 다른 키(' + s.table[b] + ')가 있어요. 다음 칸(+1)을 눌러 보세요.');
+            render(); return;
+          }
+          s.total++;
+          var tries = s.probes.length + 1;
+          s.table[b] = k; s.last = b;
+          s.logs.push('h(' + k + ') = ' + h + (s.probes.length ? ' → 조사 ' + s.probes.concat([b]).join(' → ') + ' → 칸 ' + b + '에 저장 (' + tries + '번 조사)' : ' → 칸 ' + b + '에 바로 저장'));
+          msg('ok', s.probes.length ? '✅ ' + tries + '번 조사한 끝에 빈칸 ' + b + '번에 넣었어요.' : '✅ 칸 ' + b + '에 넣었어요.');
+          s.probes = []; s.idx++;
+        }
+        if(s.idx >= KEYS.length){
+          if(mode === 'chain') msg('ok', '🎉 완료! 버킷 4에 키가 4개나 줄줄이 연결됐어요. 체이닝은 칸이 모자라지 않지만, 한 버킷의 리스트가 길어지면 찾을 때 그만큼 차례로 비교해야 해요.');
+          else msg('ok', '🎉 완료! 키 6개를 넣는 데 칸을 모두 ' + s.total + '번 조사했어요. 충돌한 키들이 4번 칸 근처부터 줄지어 모이는 현상(군집)이 생겼어요.');
+        }
+        render();
+      }
+      function start(m, keep){
+        mode = m;
+        if(!keep || !S[m]) S[m] = fresh(m);
+        if(st().idx > 0 && st().idx < KEYS.length) msg('info', '이어서 진행해요. 지금 넣을 키: <b>' + KEYS[st().idx] + '</b>');
+        else if(st().idx >= KEYS.length) msg('ok', '이 방법으로는 모두 넣었어요. 처음부터 다시 하려면 ⟲ 버튼을 누르세요.');
+        if(st().idx === 0) msg('info', '첫 번째 키 <b>' + KEYS[0] + '</b>부터 시작해요. h(k) = k mod 7 을 계산해서 알맞은 ' + (m === 'chain' ? '버킷' : '칸') + '을 눌러 보세요.');
+        render();
+      }
+      tabs.forEach(function(b){ b.addEventListener('click', function(){ start(b.dataset.m, true); }); });
+      document.getElementById('hclReset').addEventListener('click', function(){ start(mode, false); });
+      start('chain', false);
+    })();
+    /* ===== 제산 함수 · 접지 함수 직접 계산 ===== */
+    (function(){
+      var inp = document.getElementById('hfxKey');
+      if(!inp) return;
+      var divEl = document.getElementById('hfxDiv'), foldEl = document.getElementById('hfxFold');
+      var M = 7;
+      function rev(s){ return s.split('').reverse().join(''); }
+      function calc(){
+        var raw = (inp.value || '').replace(/[^0-9]/g, '').slice(0, 12);
+        if(inp.value !== raw) inp.value = raw;
+        if(!raw){ divEl.innerHTML = '숫자 키를 입력해 보세요.'; foldEl.innerHTML = ''; return; }
+        var k = parseInt(raw, 10);
+        divEl.innerHTML = '<span style="color:var(--ink-faint);">제산 함수 (M = ' + M + ')</span><br>' +
+          'h(' + k + ') = ' + k + ' mod ' + M + '<br>' +
+          k + ' = ' + M + ' × ' + Math.floor(k / M) + ' + <b>' + (k % M) + '</b><br>→ 해시 주소 <b>' + (k % M) + '</b>';
+        if(raw.length <= 3){
+          foldEl.innerHTML = '<span style="color:var(--ink-faint);">접지 함수 (3자리씩 나누기)</span><br>키가 3자리 이하라 나눌 부분이 하나뿐이에요.<br>→ 해시 주소 <b>' + k + '</b>';
+          return;
+        }
+        var parts = [];
+        for(var i = 0; i < raw.length; i += 3) parts.push(raw.slice(i, i + 3));
+        var shiftSum = 0, bSum = 0, shiftHtml = [], bHtml = [];
+        parts.forEach(function(p, j){
+          shiftSum += parseInt(p, 10);
+          shiftHtml.push('<span class="grp">' + p + '</span>');
+          var q = (j % 2 === 1) ? rev(p) : p;
+          bSum += parseInt(q, 10);
+          bHtml.push('<span class="grp' + (j % 2 === 1 ? ' rev' : '') + '">' + q + '</span>');
+        });
+        function last3(n){ var s = String(n); return s.length > 3 ? parseInt(s.slice(-3), 10) : n; }
+        foldEl.innerHTML = '<span style="color:var(--ink-faint);">접지 함수 (3자리씩 나누기, 주소 0~999)</span><br>' +
+          '이동 접지: ' + shiftHtml.join('+') + ' = ' + shiftSum + ' → 주소 <b>' + last3(shiftSum) + '</b><br>' +
+          '경계 접지: ' + bHtml.join('+') + ' = ' + bSum + ' → 주소 <b>' + last3(bSum) + '</b>' +
+          (shiftSum > 999 || bSum > 999 ? '<br><span style="color:var(--ink-faint);font-size:12px;">합이 세 자리를 넘으면 마지막 세 자리만 주소로 써요.</span>' : '');
+      }
+      inp.addEventListener('input', calc);
+      Array.prototype.forEach.call(document.querySelectorAll('.hfx-try .chip'), function(b){
+        b.addEventListener('click', function(){ inp.value = b.dataset.k; calc(); });
+      });
+      calc();
+    })();
+    /* ===== 이진 탐색 직접 해 보기 ===== */
+    (function(){
+      var cellsEl = document.getElementById('bspCells');
+      if(!cellsEl) return;
+      var A = [3, 8, 12, 15, 21, 27, 33, 38, 42, 47, 51, 56];
+      var TARGETS = [42, 8, 30];
+      var tgtEl = document.getElementById('bspTargets');
+      var lowEl = document.getElementById('bspLow'), highEl = document.getElementById('bspHigh'), midEl = document.getElementById('bspMid'), cmpEl = document.getElementById('bspCmp');
+      var fEl = document.getElementById('bspFormula'), msgEl = document.getElementById('bspMsg'), logEl = document.getElementById('bspLog');
+      var acts = document.querySelectorAll('#bspActs .sim-btn');
+      var target, low, high, mid, cmp, phase, logs, wrongIdx, foundIdx;
+      /* phase: 'pick' = mid 칸 고르기, 'decide' = 비교 후 다음 행동 고르기, 'done' = 끝 */
+      function msg(cls, html){ msgEl.className = 'nu-msg' + (cls ? ' ' + cls : ''); msgEl.innerHTML = html; }
+      function start(t){
+        target = t; low = 0; high = A.length - 1; mid = null; cmp = 0; phase = 'pick'; logs = []; wrongIdx = -1; foundIdx = -1;
+        Array.prototype.forEach.call(tgtEl.children, function(b){ b.classList.toggle('active', +b.dataset.t === t); });
+        msg('info', '찾는 값: <b>' + t + '</b> — 먼저 mid를 계산해서, 가운데 칸(mid)을 눌러 보세요.');
+        render();
+      }
+      function render(){
+        cellsEl.innerHTML = '';
+        A.forEach(function(v, i){
+          var c = document.createElement('div');
+          var cls = 'bsp-cell';
+          if(foundIdx === i) cls += ' hit';
+          else if(i === mid && phase !== 'pick') cls += ' mid';
+          else if(i < low || i > high) cls += ' out';
+          if(i === wrongIdx) cls += ' wrongpick';
+          c.className = cls;
+          var tags = '';
+          if(phase !== 'done' || foundIdx >= 0){
+            if(i === low && low <= high) tags += '<span class="t-low">low</span>';
+            if(i === high && low <= high) tags += '<span class="t-high">high</span>';
+            if(i === mid && phase !== 'pick') tags += '<span class="t-mid">mid</span>';
+          }
+          c.innerHTML = '<button type="button" class="bsp-box">' + v + '</button><span class="bsp-idx">[' + i + ']</span><div class="bsp-tag">' + tags + '</div>';
+          c.querySelector('.bsp-box').addEventListener('click', function(){ pick(i); });
+          cellsEl.appendChild(c);
+        });
+        lowEl.textContent = low; highEl.textContent = high;
+        midEl.textContent = (mid === null || phase === 'pick') ? '?' : mid;
+        cmpEl.textContent = cmp;
+        fEl.textContent = (phase === 'pick' && low <= high) ? 'mid = (low + high) // 2 = (' + low + ' + ' + high + ') // 2 = ?' :
+                          (mid !== null ? 'mid = (' + low + ' + ' + high + ') // 2 = ' + mid : 'mid = (low + high) // 2');
+        if(phase !== 'decide') fEl.textContent = (phase === 'pick') ? fEl.textContent : 'low = ' + low + ', high = ' + high;
+        acts.forEach(function(b){ b.disabled = phase !== 'decide'; });
+        logEl.innerHTML = logs.length ? logs.map(function(l, k){ return (k + 1) + '. ' + l; }).join('<br>') : '진행 기록이 여기에 쌓여요.';
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+      function pick(i){
+        if(phase !== 'pick') return;
+        var m = Math.floor((low + high) / 2);
+        if(i !== m){
+          wrongIdx = i;
+          msg('bad', '❌ ' + i + '번 칸은 mid가 아니에요. mid = (' + low + ' + ' + high + ') // 2 를 계산해 보세요. (// 는 몫)');
+          render(); return;
+        }
+        wrongIdx = -1; mid = m; cmp++; phase = 'decide';
+        msg('info', 'mid = ' + mid + ', A[mid] = <b>' + A[mid] + '</b>, 찾는 값 = <b>' + target + '</b>. 두 값을 비교해서 다음 행동을 골라 보세요.');
+        render();
+      }
+      function act(kind){
+        if(phase !== 'decide') return;
+        var v = A[mid], right = v === target ? 'found' : (target < v ? 'left' : 'right');
+        if(kind !== right){
+          var why = right === 'found' ? 'A[mid]와 찾는 값이 같아요.' : (right === 'left' ? '찾는 값(' + target + ')이 A[mid](' + v + ')보다 작아요. 그러면 어느 쪽에 있을까요?' : '찾는 값(' + target + ')이 A[mid](' + v + ')보다 커요. 그러면 어느 쪽에 있을까요?');
+          msg('bad', '❌ 다시 생각해 보세요. ' + why);
+          return;
+        }
+        if(kind === 'found'){
+          foundIdx = mid; phase = 'done';
+          logs.push('mid = ' + mid + ', A[' + mid + '] = ' + v + ' → 찾는 값과 같음 → <b>탐색 성공</b>');
+          msg('ok', '🎉 탐색 성공! ' + mid + '번 칸에서 찾는 값(' + target + ')을 찾았어요. 비교 <b>' + cmp + '번</b> 만에 찾았어요. (선형 탐색이었다면 ' + (mid + 1) + '번)');
+        } else if(kind === 'left'){
+          logs.push('mid = ' + mid + ', A[' + mid + '] = ' + v + ' > ' + target + ' → high = ' + (mid - 1));
+          high = mid - 1; next();
+        } else {
+          logs.push('mid = ' + mid + ', A[' + mid + '] = ' + v + ' < ' + target + ' → low = ' + (mid + 1));
+          low = mid + 1; next();
+        }
+        render();
+      }
+      function next(){
+        mid = null;
+        if(low > high){
+          phase = 'done';
+          logs.push('low(' + low + ') > high(' + high + ') → 남은 범위 없음 → <b>탐색 실패</b>');
+          msg('bad', '🔍 low가 high보다 커져서 더 이상 찾을 범위가 없어요. 찾는 값(' + target + ')은 데이터에 없어요. 비교 <b>' + cmp + '번</b>으로 확인했어요.');
+        } else {
+          phase = 'pick';
+          msg('info', '범위가 [' + low + ' ~ ' + high + ']로 줄었어요. 새 mid를 계산해서 가운데 칸을 눌러 보세요.');
+        }
+      }
+      acts.forEach(function(b){ b.addEventListener('click', function(){ act(b.dataset.act); }); });
+      TARGETS.forEach(function(t){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'bsp-tgt'; b.dataset.t = t;
+        b.textContent = t + (A.indexOf(t) < 0 ? ' (없는 값)' : '');
+        b.addEventListener('click', function(){ start(t); });
+        tgtEl.appendChild(b);
+      });
+      var rb = document.createElement('button');
+      rb.type = 'button'; rb.className = 'bsp-tgt'; rb.textContent = '🎲 랜덤';
+      rb.addEventListener('click', function(){ var t = Math.random() < 0.8 ? A[Math.floor(Math.random() * A.length)] : [5, 18, 30, 45, 60][Math.floor(Math.random() * 5)]; start(t); Array.prototype.forEach.call(tgtEl.children, function(b){ b.classList.toggle('active', b === rb); }); });
+      tgtEl.appendChild(rb);
+      start(TARGETS[0]);
+    })();
+    /* ===== 탐색 시뮬레이터: 탭별 개념 문구 ===== */
+    (function(){
+      var box = document.getElementById('searchConcept');
+      if(!box) return;
+      var TXT = {
+        lin: '<b>선형 탐색</b> · 데이터의 처음부터 끝까지 하나씩 차례대로 비교하며 원하는 값을 찾는 방법이에요. 정렬되지 않은 데이터에서도 쓸 수 있어요.',
+        bin: '<b>이진 탐색</b> · 정렬된 데이터에서 가운데 값과 비교해, 찾는 값이 있을 수 없는 절반을 버리며 범위를 좁혀 가는 방법이에요. 데이터가 정렬되어 있어야 해요.'
+      };
+      var btns = document.querySelectorAll('#searchAlgoTabs .tab-btn');
+      function show(k){ box.innerHTML = TXT[k] || ''; }
+      btns.forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.tab); }); });
+      var act = document.querySelector('#searchAlgoTabs .tab-btn.active');
+      show(act ? act.dataset.tab : 'lin');
+    })();
 
   /* ================= slide 1 : 숫자 맞히기 게임 (생각 열기) ================= */
   (function(){
@@ -10355,11 +10826,11 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
 
   /* ================= slide 7 : 탐색 알고리즘 단계별 시뮬레이터 (flagship) ================= */
   (function(){
-    var LIN_ARR = [32, 11, 31, 7, 19, 9, 37, 25];
-    var BIN_ARR = [7, 9, 11, 19, 25, 31, 32, 37];
+    var LIN_ARR = [23, 14, 38, 6, 29, 17, 35, 10];
+    var BIN_ARR = [6, 10, 14, 17, 23, 29, 35, 38];
     var CASES = {
-      lin: [ {key:'found', label:'성공 사례 (찾는 값 7)', target:7}, {key:'fail', label:'실패 사례 (찾는 값 100)', target:100} ],
-      bin: [ {key:'found', label:'성공 사례 (찾는 값 11)', target:11}, {key:'fail', label:'실패 사례 (찾는 값 29)', target:29} ]
+      lin: [ {key:'found', label:'성공 사례 (찾는 값 17)', target:17}, {key:'fail', label:'실패 사례 (찾는 값 50)', target:50} ],
+      bin: [ {key:'found', label:'성공 사례 (찾는 값 6)', target:6}, {key:'fail', label:'실패 사례 (찾는 값 30)', target:30} ]
     };
     var searchBars = document.getElementById('searchBars');
     var searchIdxRow = document.getElementById('searchIdx');
@@ -10381,7 +10852,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       var foundAt = -1;
       for(var i=0;i<arr.length;i++){
         cmp++;
-        push(i, null, '인덱스 ' + i + '(값 ' + arr[i] + ')과 ' + target + '을 비교합니다.');
+        push(i, null, '인덱스 ' + i + '의 값(' + arr[i] + ')을 찾는 값(' + target + ')과 비교합니다.');
         if(arr[i] === target){ foundAt = i; push(null, i, '✅ 인덱스 ' + i + '에서 값을 찾았습니다! 탐색 성공.'); break; }
         checked.push(i);
       }
@@ -10401,7 +10872,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
       while(low <= high){
         var mid = Math.floor((low+high)/2);
         cmp++;
-        push(mid, null, '가운데 인덱스 ' + mid + '(값 ' + arr[mid] + ')와 ' + target + '을 비교합니다.', low, high);
+        push(mid, null, '가운데 인덱스 ' + mid + '의 값(' + arr[mid] + ')을 찾는 값(' + target + ')과 비교합니다.', low, high);
         if(arr[mid] === target){ foundAt = mid; push(null, mid, '✅ 인덱스 ' + mid + '에서 값을 찾았습니다! 탐색 성공.', low, high); break; }
         else if(arr[mid] < target){ low = mid + 1; push(null, null, '값이 더 크므로 오른쪽 범위에서 다시 탐색합니다.', low, high); }
         else { high = mid - 1; push(null, null, '값이 더 작으므로 왼쪽 범위에서 다시 탐색합니다.', low, high); }
@@ -10495,6 +10966,7 @@ print(<span class="str">"1부터 10까지의 합은:"</span>, total)</pre></div>
     var resetBtn = document.getElementById('hashResetBtn');
     var wrap = document.getElementById('hashTableWrap');
     var logEl = document.getElementById('hashLog');
+    if(!wrap || !nextBtn) return;
     var buckets, idx, lastBucket, lastIsNew;
 
     function render(){
